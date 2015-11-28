@@ -1,0 +1,132 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*END CSS CLEAR*/
+
+body{
+	background-color: #f2f2f2;
+}
+
+h1{
+	font-family:'Fjalla One', sans-serif;
+	font-size: 125px;
+}
+h2{
+	font-family: 'Slabo 27px', serif;
+	font-size: 30px;
+}
+h4{
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+p{
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	line-height: 1.4;
+}
+i{
+	font-weight: 400;
+	font-style: italic;
+}
+li{
+	margin-right: 25px;
+}
+#splash{
+	display: none;
+}
+#splash img{
+	height: auto;
+	width: 930px;
+	border: 4px solid #0d0d0d;
+	margin-top: 20px;
+}
+
+#projects img{
+	margin-top: 5px;
+	height: 270px;
+	width:auto;
+	border: 2px solid black;
+}
+.glyphicon{
+	top: 100px;
+	font-size: 50px;
+}
+#title{
+	left:-4px;
+}
+.top-buffer{
+	margin-top: 65px;
+}
+.menu-buffer{
+	margin-top: 10px;
+}
+.content-buffer{
+	margin-top: 25px;
+}
+.describe-buffer{
+	margin-top: 25px;
+}
+
+#about{
+	left: 0px;
+	display: none;
+	transition: left 1s;
+}
+#about.active{
+	left: -100%;
+}
+
+#projects{
+	display:none;
+}
+
+.show{
+	display: block;
+}
