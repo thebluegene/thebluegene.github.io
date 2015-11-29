@@ -1,16 +1,20 @@
 $(function(){
 	var prevTab = 'splash';
-	$('#splash').addClass('show');
+	var currentProj = 'tictactoe';
+	var prevProj, nextProj;
+	$('#splash').show();
+
 	$('#title').on('click', function(){
-		$('#'+prevTab).removeClass('show');
-		$('#splash').addClass('show');
+		var random = Math.floor((Math.random()*4)+1);
+		$('#'+prevTab).hide();
+		$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
 		prevTab = 'splash';
-	})
+	});
 
 	$('#menu').on('click', 'li', function(){
 		var select = $(this).attr('class');
-		$('#'+prevTab).removeClass('show');
+		$('#'+prevTab).hide();
 		prevTab = select;
-		$('#'+select).addClass('show');
-	})
+		$('#'+select).show();
+	});
 })
