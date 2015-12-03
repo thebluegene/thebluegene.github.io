@@ -12,6 +12,32 @@ $(function(){
 	$('#splash').show();
 	$('#title').wrapInner('<a href= index.html />');
 
+	//Behavior on resize
+	function windowBehavior(){
+		if(xs.matches){
+				$('#title h1').addClass('notHome');
+				$('#menu li').addClass('notHome');
+				$('#subtitle').hide();
+				$('.project-list').hide();
+				$('#projects .item').addClass('active');
+			}
+		else if(sm.matches){
+			$('#projects .item').addClass('active');
+			$('.project-list').hide();
+		}
+		else{
+			$('#title h1').removeClass('notHome');
+			$('#menu li').removeClass('notHome');
+			$('#subtitle').show();
+			$('.project-list').show();
+			$('#projects .item').removeClass('active');
+			$('#Simon_Game').addClass('active');
+		}
+	}
+
+	$(window).bind('resize', function(){
+		windowBehavior();
+	});
 
 	//Create projects list navigation 
 	$('.item').each(function(index){
@@ -48,18 +74,7 @@ $(function(){
 		prevTab = select[0];
 		$('#'+select[0]).show();
 
-		//Extra small screen behavior
-		if(xs.matches){
-			$('#title h1').addClass('notHome');
-			$('#menu li').addClass('notHome');
-			$('#subtitle').hide();
-			$('.project-list').hide();
-			$('#projects .item').addClass('active');
-		}
-		else if(sm.matches){
-			$('#projects .item').addClass('active');
-			$('.project-list').hide();
-		}
+		windowBehavior();
 	});
 
 	//go to specific project
@@ -91,9 +106,4 @@ $(function(){
 	});
 
 
-	//Reload on window resize
-	window.addEventListener('resize', function(){
-		"use strict";
-		window.location.reload();
-	});
 })

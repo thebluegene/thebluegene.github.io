@@ -112,7 +112,7 @@ a:hover{
 }
 .describe-buffer{
 	margin-top: 5px;
-	text-align: justify;
+	text-align: left;
 }
 
 #menu li{
@@ -126,7 +126,7 @@ a:hover{
 #about{
 	left: 0px;
 	display: none;
-	text-align: justify;
+	text-align: left;
 	margin-bottom: 40px;
 }
 
