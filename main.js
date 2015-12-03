@@ -88,6 +88,8 @@ $(function(){
 		$('#title h1').addClass('notHome');
 		$('#menu li').addClass('notHome');
 
+		$('.project-list li').removeClass('selected');
+		$('.project-list .Simon_Game').addClass('selected');
 		windowBehavior();
 	});
 
