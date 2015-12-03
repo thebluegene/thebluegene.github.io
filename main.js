@@ -10,7 +10,7 @@ $(function(){
 	//Splash page with random image at the start...
 	$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
 	$('#splash').show();
-
+	$('#title').wrapInner('<a href= index.html />');
 
 
 	//Create projects list navigation 
@@ -21,7 +21,12 @@ $(function(){
 
 	$('.project-list li').first().addClass('selected');
 
-	//Adding functionality to the site...
+	//change url for each tab
+	$('#menu li').each(function(){
+		$(this).wrapInner('<a href= index.html#'+$(this).attr('class')+'/>');
+	});
+
+	//take user back to splash screen
 	$('#title').on('click', function(){
 		random = Math.floor((Math.random()*4)+1);
 		$('#'+prevTab).hide();
@@ -34,6 +39,8 @@ $(function(){
 			$('#subtitle').show();
 		}
 	});
+
+	//go to tab content
 	$('#menu').on('click', 'li', function(){
 		var select = $(this).attr('class').split(' ');
 
@@ -55,6 +62,7 @@ $(function(){
 		}
 	});
 
+	//go to specific project
 	$('.project-list').on('click','li',function(){
 		var projID = $(this).attr('class');
 		if(!$(this).hasClass('selected')){
