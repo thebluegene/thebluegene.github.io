@@ -6,32 +6,35 @@ $(function(){
 	var sm = window.matchMedia("(max-width: 768px)");
 	var url = window.location.href;
 	var random = Math.floor((Math.random()*4)+1);
+	var atTitle = true;
 
 	//Splash page with random image at the start...
 	$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
 	$('#splash').show();
-	$('#title').wrapInner('<a href= index.html />');
 
 	//Behavior on resize
 	function windowBehavior(){
 		if(xs.matches){
+			if(!atTitle){
 				$('#title h1').addClass('notHome');
 				$('#menu li').addClass('notHome');
-				$('#subtitle').hide();
-				$('.project-list').hide();
-				$('#projects .item').addClass('active');
 			}
+			$('#subtitle').hide();
+			$('.project-list').hide();
+			$('#projects .item').addClass('active');
+		}
 		else if(sm.matches){
 			$('#projects .item').addClass('active');
+			$('#subtitle').show();
 			$('.project-list').hide();
 		}
 		else{
 			$('#title h1').removeClass('notHome');
 			$('#menu li').removeClass('notHome');
-			$('#subtitle').show();
 			$('.project-list').show();
 			$('#projects .item').removeClass('active');
 			$('#Simon_Game').addClass('active');
+			$('#subtitle').show();
 		}
 	}
 
@@ -54,25 +57,36 @@ $(function(){
 
 	//take user back to splash screen
 	$('#title').on('click', function(){
+		atTitle = true;
+		var temp = random;
 		random = Math.floor((Math.random()*4)+1);
+		while(temp == random){
+			random = Math.floor((Math.random()*4)+1);
+		}
+		$('#menu li').css('border-bottom','none');
 		$('#'+prevTab).hide();
 		$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
 		prevTab = 'splash';
 
-		if(xs.matches){
-			$('#title h1').removeClass('notHome');
-			$('#menu li').removeClass('notHome');
-			$('#subtitle').show();
-		}
+		$('#title h1').removeClass('notHome');
+		$('#menu li').removeClass('notHome');
+
 	});
 
 	//go to tab content
 	$('#menu').on('click', 'li', function(){
 		var select = $(this).attr('class').split(' ');
+		atTitle = false;
+
+		$('#menu li').css('border-bottom','none');
+		$(this).css('border-bottom','2px solid black');
 
 		$('#'+prevTab).hide();
 		prevTab = select[0];
 		$('#'+select[0]).show();
+
+		$('#title h1').addClass('notHome');
+		$('#menu li').addClass('notHome');
 
 		windowBehavior();
 	});
