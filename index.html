@@ -12,21 +12,22 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel = "stylesheet" href = "style.css">
+	<title>Gene's Portfolio</title>
 </head>
 <body>
 	<div class = 'container-fluid'>
 		<div class = 'row top-buffer'>
-			<div id = "title" class = 'col-sm-offset-1 col-sm-11'>
+			<div id = "title" class = 'col-sm-offset-1 col-sm-10'>
 				<h1>GENE ANG</h1>
 			</div>
 		</div>
 		<div class = 'row'>
-			<div id = 'subtitle' class = 'col-sm-offset-1 col-sm-11'>
+			<div id = 'subtitle' class = 'col-sm-offset-1 col-sm-10'>
 				<h2>Front-end developer in the San Francisco Bay Area</h2>
 			</div>
 		</div>
 		<div class = 'row menu-buffer'>
-			<div class = 'col-sm-offset-1 col-sm-5'>
+			<div  class = 'col-sm-offset-1 col-sm-10'>
 				<ul id='menu' class = 'list-inline'>
 					<li class='about'><h4><i class="fa fa-user"></i> About</h4></li>
 					<li class='projects'><h4><span class='glyphicon glyphicon-wrench'></span> Projects</h4></li>
@@ -38,8 +39,8 @@
 		<div id = 'content' class = 'row content-buffer'>
 
 
-			<div id = 'splash' class= 'col-sm-offset-1 col-sm-10'>
-				<img src = 'images/splash-1.jpg' alt='home page photo'>	
+			<div id = 'splash' class= 'col-sm-offset-1 col-sm-10 col-lg-8'>
+				<!--<img src = 'images/splash-1.jpg' alt='home page photo'>-->	
 			</div>
 
 			<div id = 'about' class = 'col-sm-offset-1 col-sm-8'>
@@ -59,23 +60,11 @@
 
 			<div id ='projects' class='carousel slide' data-ride='carousel' data-interval='false'>
 				<div class = 'carousel-inner' role='listbox'>
-					<div class='item active'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/tictac.jpg" alt='Tic-Tac-Toe image'>
-						</div>
-						<div class = 'describe-buffer col-sm-5'>
-							<h2>Unbeatable Tic-Tac-Toe</h2>
-							<br />
-							<p>Created a tic-tac-toe game using Javascript and jQuery. The user can make the futile decision of whether to go first or second, and then ultimately discover that the computer is programmed to never lose (within the rules of tic-tac-toe, of course).</p>
-							<br />
-							<a href = 'http://codepen.io/thebluegene/pen/qOvwxP'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-					<div class='item'>
+					<div id='Simon_Game' class='item active'>
 						<div class = 'col-sm-offset-1 col-sm-3'>
 							<img src="images/simon.jpg" alt='Simon game image'>
 						</div>
-						<div class = 'describe-buffer col-sm-5'>
+						<div class = 'describe-buffer col-sm-7 col-lg-6'>
 							<h2>Simon Memory Game</h2>
 							<br />
 							<p>Created a 'Simon' game using Javascript and jQuery. The user must follow a random pattern that increments by one move when the user matches the previous pattern. To win the user must correctly match a computer pattern of 20 moves. If the user is wrong, the pattern is played again; however, if 'strict mode' is activated, the game restarts.</p>
@@ -83,19 +72,42 @@
 							<a href = 'http://codepen.io/thebluegene/pen/megMWX'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
 						</div>
 					</div>
-					<div class='item'>
+					<div id = 'Wikipedia_Viewer' class='item'>
+						<div class = 'col-sm-offset-1 col-sm-3'>
+							<img src="images/wiki.jpg" alt='Wiki viewer image'>
+						</div>
+						<div class = 'describe-buffer col-sm-7 col-lg-6'>
+							<h2>Wikipedia Viewer</h2>
+							<br />
+							<p>Made with Javascript/jQuery using Ajax and the Wiki API, this application clones the functionality of the Wikipedia search bar. It displays up to 10 items after the search is submitted, and also gives auto-complete suggestions as the user types. The user can be taken to a random Wikipedia page by clicking the 'Random' button.</p>
+							<br />
+							<a href = 'http://codepen.io/thebluegene/pen/Oyrexw'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
+						</div>
+					</div>
+					<div id = 'Tic-Tac-Toe' class='item'>
+						<div class = 'col-sm-offset-1 col-sm-3'>
+							<img src="images/tictac.jpg" alt='Tic-Tac-Toe image'>
+						</div>
+						<div class = 'describe-buffer col-sm-7 col-lg-6'>
+							<h2>Unbeatable Tic-Tac-Toe</h2>
+							<br />
+							<p>Created a tic-tac-toe game using Javascript and jQuery. The user can make the futile decision of whether to go first or second, and then ultimately discover that the computer is programmed to never lose (within the rules of tic-tac-toe, of course).</p>
+							<br />
+							<a href = 'http://codepen.io/thebluegene/pen/qOvwxP'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
+						</div>
+					</div>
+					<div id='TwitchTV_User_App'class='item'>
 						<div class = 'col-sm-offset-1 col-sm-3'>
 							<img src="images/twitch.jpg" alt='TwitchTV API app image'>
 						</div>
-						<div class = 'describe-buffer col-sm-5'>
+						<div class = 'describe-buffer col-sm-7 col-lg-6'>
 							<h2>TwitchTV User App</h2>
 							<br />
-							<p>Made with Javascript and the TwitchTV API, this application tells the user which TwitchTV users are streaming and which aren't. The user is able to search for a stream in the list and/or filter by online or offline users.</p>
+							<p>Made with Javascript/jQuery and the TwitchTV API, this application tells the user which TwitchTV users are streaming and which aren't. The user is able to search for a stream in the list and/or filter by online or offline users.</p>
 							<br />
 							<a href = 'http://codepen.io/thebluegene/pen/YyRxKd'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
 						</div>
 					</div>
-					
 				</div>	
 				<a class='left carousel-control' href = '#projects' role='button' data-slide='prev'>
 					<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
@@ -103,7 +115,14 @@
 				<a class='right carousel-control' href = '#projects' role='button' data-slide='next'>
 					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 				</a>	
+
+				<div class='project-menu'>
+					<ul class = 'project-list'>
+					</ul>
+				</div>
+
 			</div>
+
 
 			<div id='contact' class='col-sm-offset-1 col-sm-9'>
 				<h2> Connect with me </h2>

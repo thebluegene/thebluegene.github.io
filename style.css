@@ -91,16 +91,16 @@ a:hover{
 }
 #splash img{
 	height: auto;
-	width: 930px;
+	width: 100%;
 	border: 0px solid #0d0d0d;
-	margin-top: 20px;
+	margin-top: 15px;
 }
 #title{
 	left:-4px;
 	cursor: default;
 }
 .top-buffer{
-	margin-top: 65px;
+	margin-top: 55px;
 }
 .menu-buffer{
 	margin-top: 10px;
@@ -138,13 +138,31 @@ a:hover{
 	border: 2px solid black;
 	left: 10px;
 }
+#projects .item{
+	min-height: 240px;
+}
 .carousel-control.left, .carousel-control.right {
-	top: 110px;
+	top: 50px;
     background-image: none;
     color: black;
     margin-left: -30px;
-    margin-right: 90px;
     font-size: 40px;
+}
+
+.project-list{
+	position: relative;
+	margin-top: 10px;
+	text-align: center;
+}
+.project-list li{
+	border: 1px solid black;
+	border-radius: 2px;
+	width: 20%;
+	display: inline-block;
+	padding: 4px 0 4px 0;
+}
+.project-list li.selected{
+	background-color: lightblue;
 }
 
 #contact{
@@ -160,4 +178,69 @@ a:hover{
 }
 .contact-list{
 	margin-top: 10px;
+}
+/* Medium devices (tablets, less than 62em)*/
+@media (max-width: 768px) {
+	#projects .item{
+		padding: 10px;
+		margin-bottom: 30px;
+	}
+	#projects .item img{
+		width: 400px;
+		/*display: block;
+		position: relative;
+		margin: 0 auto;*/
+    }
+    #projects .item.active:nth-of-type(1){
+    	border-top: 0;
+    }
+
+    .carousel-control.left, .carousel-control.right{
+    	display:none;
+    }
+}
+/*Extra small devices (portrait phones, less than 34em)*/
+@media (max-width: 480px) {
+    h1, #subtitle{
+    	text-align: center;
+    }
+    #title h1.notHome{
+    	position: absolute;
+    	top: -45px;
+    	text-align: left;
+    	font-size: 50px;
+    }
+
+    #splash img{
+    	display: none;
+    }
+
+    #menu li{
+    	display: block;
+    	margin: 20px;
+    	text-align: center;
+    }
+    #menu li.notHome{
+    	margin: 0px;
+    	text-align: left;
+    	display: inline-block;
+    }
+    #menu li.notHome h4{
+    	font-size: 18px;
+    }
+
+    #projects .item img{
+		width: 100%;
+    }
+    #projects .item.active{
+    	margin: 0;
+    	padding-top: 20px;
+    	padding-bottom: 30px;
+    	border-bottom: 1px solid black;
+    	border-top: 1px solid black;
+    }
+    #projects .item.active:nth-of-type(1){
+    	border-top: 0;
+    	margin-top: -20px;
+    }
 }
