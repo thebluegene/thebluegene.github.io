@@ -51,9 +51,9 @@ $(function(){
 	$('.project-list li').first().addClass('selected');
 
 	//change url for each tab
-	$('#menu li').each(function(){
-		$(this).wrapInner('<a href= index.html#'+$(this).attr('class')+'/>');
-	});
+	//$('#menu li').each(function(){
+	//	$(this).wrapInner('<a href= index.html#'+$(this).attr('class')+'/>');
+	//});
 
 	//take user back to splash screen
 	$('#title').on('click', function(){
