@@ -1,6 +1,6 @@
 $(function(){
 	var prevTab = 'splash';
-	var currentProj = 'tictactoe';
+	var currentProj = 'Poll_App'; //This is the starting project
 	var prevProj, nextProj;
 	var xs = window.matchMedia("(max-width: 480px)");
 	var sm = window.matchMedia("(max-width: 768px)");
@@ -33,7 +33,8 @@ $(function(){
 			$('#menu li').removeClass('notHome');
 			$('.project-list').show();
 			$('#projects .item').removeClass('active');
-			$('#Simon_Game').addClass('active');
+			//First selected proejct
+			$('#Poll_App').addClass('active');
 			$('#subtitle').show();
 		}
 	}
@@ -89,7 +90,9 @@ $(function(){
 		$('#menu li').addClass('notHome');
 
 		$('.project-list li').removeClass('selected');
-		$('.project-list .Simon_Game').addClass('selected');
+
+		//This is the first project
+		$('.project-list .Poll_App').addClass('selected');
 		windowBehavior();
 	});
 
