@@ -34,7 +34,7 @@ $(function(){
 			$('.project-list').show();
 			$('#projects .item').removeClass('active');
 			//First selected proejct
-			$('#Poll_App').addClass('active');
+			$('#Simon_Game').addClass('active');
 			$('#subtitle').show();
 		}
 	}
@@ -92,7 +92,7 @@ $(function(){
 		$('.project-list li').removeClass('selected');
 
 		//This is the first project
-		$('.project-list .Poll_App').addClass('selected');
+		$('.project-list .Simon_Game').addClass('selected');
 		windowBehavior();
 	});
 
