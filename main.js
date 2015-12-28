@@ -92,7 +92,7 @@ $(function(){
 		$('.project-list li').removeClass('selected');
 
 		//This is the first project
-		$('.project-list #Nightlife_App').addClass('selected');
+		$('.project-list .Nightlife_App').addClass('selected');
 		windowBehavior();
 	});
 
