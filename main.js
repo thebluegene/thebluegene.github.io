@@ -1,6 +1,6 @@
 $(function(){
 	var prevTab = 'splash';
-	var currentProj = 'Poll_App'; //This is the starting project
+	var currentProj = 'Nightlife_App'; //This is the starting project
 	var prevProj, nextProj;
 	var xs = window.matchMedia("(max-width: 480px)");
 	var sm = window.matchMedia("(max-width: 768px)");
@@ -34,7 +34,7 @@ $(function(){
 			$('.project-list').show();
 			$('#projects .item').removeClass('active');
 			//First selected proejct
-			$('#Simon_Game').addClass('active');
+			$('#Nightlife_App').addClass('active');
 			$('#subtitle').show();
 		}
 	}
@@ -92,7 +92,7 @@ $(function(){
 		$('.project-list li').removeClass('selected');
 
 		//This is the first project
-		$('.project-list .Simon_Game').addClass('selected');
+		$('.project-list #Nightlife_App').addClass('selected');
 		windowBehavior();
 	});
 
