@@ -159,7 +159,7 @@ a:hover{
 .project-list{
 	position: relative;
 	margin-top: 20px;
-	cursor: default;
+	cursor: crosshair;
 }
 .project-list li{
 	text-align: center;
