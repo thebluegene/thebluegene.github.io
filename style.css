@@ -132,6 +132,11 @@ a:hover{
 	text-align: left;
 	margin-bottom: 40px;
 }
+#about img{
+	width: 100%;
+	max-width: 350px;
+	margin-bottom: 15px;
+}
 
 #projects{
 	display:none;
@@ -141,12 +146,17 @@ a:hover{
 	margin-top: 5px;
 	height: auto;
 	width: 100%;
+	max-width: 350px;
 	border: 2px solid black;
-	left: 10px;
+	margin-left: 10px;
 }
 #projects .item{
-	min-height: 240px;
+	min-height: 200px;
 }
+#projects .describe-buffer{
+	max-width: 700px;
+}
+
 .carousel-control.left, .carousel-control.right {
 	display: none;
 	top: 50px;
@@ -187,27 +197,27 @@ a:hover{
 .contact-list{
 	margin-top: 10px;
 }
-/* Medium devices (tablets, less than 62em)*/
+
+/* Medium devices (tablets, less than 768px)*/
 @media (max-width: 768px) {
-	#projects .item{
+	#projects .item.active{
 		padding: 10px;
-		margin-bottom: 30px;
 	}
 	#projects .item img{
-		width: 400px;
-		/*display: block;
-		position: relative;
-		margin: 0 auto;*/
+		width: 100%;
+		margin-left: 0;
     }
     #projects .item.active:nth-of-type(1){
     	border-top: 0;
     }
-
+    #projects .item.active:nth-of-type(odd){
+    	background-color: lightblue;
+    }
     .carousel-control.left, .carousel-control.right{
     	display:none;
     }
 }
-/*Extra small devices (portrait phones, less than 34em)*/
+/*Extra small devices (portrait phones, less than 480px)*/
 @media (max-width: 480px) {
     h1, #subtitle{
     	text-align: center;
@@ -244,11 +254,8 @@ a:hover{
     	margin: 0;
     	padding-top: 20px;
     	padding-bottom: 30px;
-    	border-bottom: 1px solid black;
-    	border-top: 1px solid black;
     }
     #projects .item.active:nth-of-type(1){
     	border-top: 0;
-    	margin-top: -20px;
     }
 }
