@@ -35,6 +35,11 @@ $(function(){
 			$('#projects .item').removeClass('active');
 			//First selected proejct
 			$('#Nightlife_App').addClass('active');
+
+			//project menu resets on resize
+			$('.project-list li').removeClass('selected');
+			$('.project-list li').first().addClass('selected');
+
 			$('#subtitle').show();
 		}
 	}
@@ -50,11 +55,6 @@ $(function(){
 	});
 
 	$('.project-list li').first().addClass('selected');
-
-	//change url for each tab
-	//$('#menu li').each(function(){
-	//	$(this).wrapInner('<a href= index.html#'+$(this).attr('class')+'/>');
-	//});
 
 	//take user back to splash screen
 	$('#title').on('click', function(){
@@ -107,22 +107,4 @@ $(function(){
 			$('#'+projID).addClass('active');
 		}
 	});
-
-
-	//To change highlighted project-list item
-	$('.carousel-control').on('click', function(){
-		//timeout made because active wouldn't move until animation from carousel finished
-		setTimeout(
-			function(){
-				$('li').removeClass('selected');
-				$('.item').each(function(){
-				if($(this).attr('class').split(' ')[1] == 'active'){
-					var currentItem = $(this).attr('id');
-				}
-				$('.'+currentItem).addClass('selected');
-			});
-		}, 1000)
-	});
-
-
 })

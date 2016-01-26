@@ -122,9 +122,9 @@ a:hover{
 	padding: 3px;
 }
 
-#about, #projects, #contact{
+/*#about, #projects, #contact{
 	animation-duration: 500;
-}
+}*/
 
 #about{
 	left: 0px;
