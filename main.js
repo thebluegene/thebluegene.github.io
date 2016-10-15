@@ -1,110 +1,54 @@
-$(function(){
-	var prevTab = 'splash';
-	var currentProj = 'Nightlife_App'; //This is the starting project
-	var prevProj, nextProj;
-	var xs = window.matchMedia("(max-width: 480px)");
-	var sm = window.matchMedia("(max-width: 768px)");
-	var url = window.location.href;
-	var random = Math.floor((Math.random()*4)+1);
-	var atTitle = true;
+/**
+ * React Static Boilerplate
+ * https://github.com/kriasoft/react-static-boilerplate
+ *
+ * Copyright © 2015-present Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
-	//Splash page with random image at the start...
-	$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
-	$('#splash').show();
+import 'babel-polyfill';
+import 'whatwg-fetch';
 
-	//Behavior on resize
-	function windowBehavior(){
-		if(xs.matches){
-			if(!atTitle){
-				$('#title h1').addClass('notHome');
-				$('#menu li').addClass('notHome');
-			}
-			$('#subtitle').hide();
-			$('.project-list').hide();
-			$('#projects .item').addClass('active');
-		}
-		else if(sm.matches){
-			$('#projects .item').addClass('active');
-			$('#subtitle').show();
-			$('.project-list').hide();
-		}
-		else{
-			$('#title h1').removeClass('notHome');
-			$('#menu li').removeClass('notHome');
-			$('.project-list').show();
-			$('#projects .item').removeClass('active');
-			//First selected proejct
-			$('#Nightlife_App').addClass('active');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import FastClick from 'fastclick';
+import { Provider } from 'react-redux';
 
-			//project menu resets on resize
-			$('.project-list li').removeClass('selected');
-			$('.project-list li').first().addClass('selected');
+import store from './core/store';
+import router from './core/router';
+import history from './core/history';
 
-			$('#subtitle').show();
-		}
-	}
+let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
+const container = document.getElementById('container');
 
-	$(window).bind('resize', function(){
-		windowBehavior();
-	});
+function renderComponent(component) {
+  ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
+}
 
-	//Create projects list navigation 
-	$('.item').each(function(index){
-		var projItem = $(this).attr('id').replace(/_/g,' ');
-		$('.project-list').append('<li class="'+$(this).attr('id')+'"><p>'+projItem+'</p></li>');
-	});
+// Find and render a web page matching the current URL path,
+// if such page is not found then render an error page (see routes.json, core/router.js)
+function render(location) {
+  router.resolve(routes, location)
+    .then(renderComponent)
+    .catch(error => router.resolve(routes, { ...location, error }).then(renderComponent));
+}
 
-	$('.project-list li').first().addClass('selected');
+// Handle client-side navigation by using HTML5 History API
+// For more information visit https://github.com/ReactJSTraining/history/tree/master/docs#readme
+history.listen(render);
+render(history.getCurrentLocation());
 
-	//take user back to splash screen
-	$('#title').on('click', function(){
-		atTitle = true;
-		var temp = random;
-		random = Math.floor((Math.random()*4)+1);
-		while(temp == random){
-			random = Math.floor((Math.random()*4)+1);
-		}
-		$('#menu li').css('border-bottom','none');
-		$('#'+prevTab).hide();
-		$('#splash').html('<img src="images/splash-'+random+'.jpg" alt="home page image">').show();
-		prevTab = 'splash';
+// Eliminates the 300ms delay between a physical tap
+// and the firing of a click event on mobile browsers
+// https://github.com/ftlabs/fastclick
+FastClick.attach(document.body);
 
-		$('#title h1').removeClass('notHome');
-		$('#menu li').removeClass('notHome');
-
-	});
-
-	//go to tab content
-	$('#menu').on('click', 'li', function(){
-		var select = $(this).attr('class').split(' ');
-		atTitle = false;
-
-		$('#menu li').css('border-bottom','none');
-		$(this).css('border-bottom','2px solid black');
-
-		$('#'+prevTab).hide();
-		prevTab = select[0];
-		$('#'+select[0]).show();
-
-		$('#title h1').addClass('notHome');
-		$('#menu li').addClass('notHome');
-
-		$('.project-list li').removeClass('selected');
-
-		//This is the first project
-		$('.project-list .Nightlife_App').addClass('selected');
-		windowBehavior();
-	});
-
-	//go to specific project
-	$('.project-list').on('click','li',function(){
-		var projID = $(this).attr('class');
-		if(!$(this).hasClass('selected')){
-			$('li').removeClass('selected');
-			$(this).addClass('selected');
-		
-			$('.item').removeClass('active');
-			$('#'+projID).addClass('active');
-		}
-	});
-})
+// Enable Hot Module Replacement (HMR)
+if (module.hot) {
+  module.hot.accept('./routes.json', () => {
+    routes = require('./routes.json'); // eslint-disable-line global-require
+    render(history.getCurrentLocation());
+  });
+}
