@@ -1,36 +1,50 @@
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #333;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
+$bg-color: #efefef;
+$text-color: #1c1c1c;
+$border-width: 5px;
+$photo-color: #b2cefe;
+$film-color: #f8b88b;
+$code-color: #fea3aa;
+$main-font-family: 'Quicksand', sans-serif;
+
+body{
+  background-color: $bg-color;
 }
 
-header {
-  color: #fff;
-  background: #0066bb url(../images/reactjs.png) no-repeat right 10px;
-  background-size: contain;
-  h1 {
-    display: inline-block;
-    padding: 0 20px;
+h1{
+  color: $text-color;
+  font-family: $main-font-family;
+  font-size: 80px;
+}
+
+.home-hero{
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  border: $border-width solid $text-color;
+}
+
+.main-title{
+  font-size: 120px;
+  line-height: 100px;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+.sub-title{
+  color: $text-color;
+  font-family: $main-font-family;
+  font-size: 30px;
+  text-align: center;
+  .code-link{
+    color: $code-color;
   }
-  a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-    &.active,
-    &:hover {
-      background-color: #0085F3;
-    }
+  .photo-link{
+    color: $photo-color;
+  }
+  .film-link{
+    color: $film-color;
   }
 }
 
-section {
- padding: 20px;
+.photo-title{
+  text-align: center;
 }
