@@ -1,36 +1,52 @@
 import React from 'react';
+import Header from './Header';
+import classnames from 'classnames';
 import { Link } from 'react-router';
 
-// const App = ({ children }) => (
-//   <div>
-//     <header>
-//       <h1>React Starterify {version}</h1>
-//       <Link to="/about">About</Link>
-//       <Link to="/poweredby">Powered by</Link>
-//     </header>
-//     <section>
-//       {children || 'Welcome to React Starterify'}
-//     </section>
-//   </div>
-// );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      categories: [
+        {name:'Develop', class:'code-link home-nav-link', link:'/code'},
+        {name:'Photograph', class:'photo-link home-nav-link' ,link:'/photo'},
+        {name:'Film', class:'film-link home-nav-link' ,link:'/link'}
+      ]
+    };
+  }
 
+  activateLink(index ,e) {
+    this.state.categories[index].class += " extra";
+    this.setState({
+      categories: this.state.categories
+    });
+  }
 
-const App = ({ children }) => (
-  <div>
-    {children ||
-      <div className="row expanded home-hero">
-        <div className="small-12 columns">
-          <div className="home-content">
-            <h1 className="main-title"> Gene Ang </h1>
-            <h2 className="sub-title">Front-End <Link to="/code" className="code-link">Developer</Link> for Vonnda,</h2>
-            <h2 className="sub-title"><Link to="/photo" className="photo-link">Photographer</Link> and <Link to="/film" className="film-link">Filmmaker</Link> for fun,</h2>
-            <h2 className="sub-title">And some other stuff</h2>
+  render() {
+
+    return(
+      <div>
+          <div className="row home-hero">
+            <div className="small-12 columns">
+              <div className="home-content">
+                <h1 className="main-title"><Link to="/">Gene Ang</Link></h1>
+                <p className="about">
+                  Hi, Im a front-end developer in San Francisco, working for Vonnda.
+                  <br />
+                  <br />
+                  Check out what I do:
+                </p>
+                {this.state.categories.map((data, i) =>  {
+                  return <Link key={i} to={data.link} className={data.class} onClick={this.activateLink.bind(this, i)}>{data.name}</Link>;
+                })}
+              </div>
+            </div>
           </div>
-        </div>
+          {this.props.children}
       </div>
-    }
-  </div>
-);
+    );
+  }
+}
 
 App.propTypes = { children: React.PropTypes.object };
 
