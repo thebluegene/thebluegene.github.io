@@ -1,14 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Sidebar = (props) => {
-  return (
-    <div className="static-sidebar">
-      <h1 className="sidebar-title">{props.title}</h1>
-      <ul>
-      </ul>
-    </div>
-  );
-};
+class Sidebar extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      title: props.title
+    }
+  }
+
+  componentDidMount() {
+    this.sidebarBehavior();
+  }
+
+  sidebarBehavior() {
+    $(window).scroll(function() {
+      if(($('body').scrollTop() >= $('.static-sidebar').offset().top) && (!$('.sidebar-title').hasClass('fix-it'))) {
+        $('.sidebar-title').addClass('fix-it');
+      }
+      else if(($('body').scrollTop() < $('.static-sidebar').offset().top) && ($('.sidebar-title').hasClass('fix-it'))){
+        $('.sidebar-title').removeClass('fix-it');
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="static-sidebar">
+        <h1 className="sidebar-title">{this.state.title}</h1>
+        <ul>
+        </ul>
+      </div>
+    );
+  };
+}
+
+// const Sidebar = (props) => {
+//   return (
+//     <div className="static-sidebar">
+//       <h1 className="sidebar-title">{props.title}</h1>
+//       <ul>
+//       </ul>
+//     </div>
+//   );
+// };
 
 export default Sidebar;

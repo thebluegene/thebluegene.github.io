@@ -7,64 +7,107 @@ $code-color: #fea3aa;
 $color-white: #ffffff;
 $main-font-family: 'Suranna', serif;
 
-
-body{
+body {
   background-color: $bg-color;
 }
 
-h1{
+h1 {
   color: $text-color;
   font-family: $main-font-family;
   font-style: normal;
-  font-size: 64px;
+  font-size: 100px;
   font-weight: 300;
 }
 
-a{
-  color: $text-color;
+a {
   transition: all .25s ease;
-  &:hover, &:active, &:focus{
+}
+
+.main-title {
+  margin: 40px 0 20px 0;
+  text-align: center;
+  a {
     color: $text-color;
   }
 }
 
-.main-title{
-  margin-top: 40px;
+.about {
+  margin: 0 0 25px 0;
+  a {
+    color: #f9c66d;
+  }
+  .about-paragraph {
+    margin: 15px 0;
+  }
 }
 
-
-.home-nav-link{
-  margin: 0 25px 0 0;
+.home-nav-link {
+  margin: 10px auto;
+  text-align: center;
+  width: 40%;
 }
-.code-link:hover{
-  color: $code-color;
-}
-.photo-link:hover{
-  color: $photo-color;
-}
-.film-link:hover{
-  color: $film-color;
+.home-develop-box {
+  background: #111111;
+  border: 1px solid black;
+  height: 370px;
+  width: 100%;
 }
 
-.static-sidebar{
+@define-mixin cat-links, $color {
+  color: $color;
+	display: block;
+	position: relative;
+	padding-bottom: 2px;
+  &:hover, &:active, &:focus {
+    color: $color;
+  }
+  &:after {
+    content: '';
+  	display: block;
+  	margin: auto;
+  	height: 2px;
+  	width: 0px;
+  	background: transparent;
+  	transition: width .5s ease, background-color .5s ease;
+  }
+  &:hover:after, &.extra:after {
+  	width: 100%;
+  	background: $color;
+  }
+}
+
+.navbar{
+  margin: 0 0 25px 0;
+}
+.code-link {
+  @mixin cat-links, $code-color;
+}
+.photo-link {
+  @mixin cat-links, $photo-color;
+}
+.film-link {
+  @mixin cat-links, $film-color;
+}
+
+.static-sidebar {
   height: 100vh;
   width: 100%;
-  position: fixed;
-  .sidebar-title{
+  .sidebar-title {
     font-size: 60px;
+    &.fix-it{
+      position: fixed;
+      top: 0px;
+    }
   }
-  ul{
+  ul {
     margin: 0;
-    li{
+    li {
       list-style: none;
     }
   }
 }
 
 
-.image-container{
-  margin: 20px 0;
-  img{
-    border: 5px solid black;
-  }
+.image-container {
+  margin: 0 0 50px 0;
 }
