@@ -4,9 +4,12 @@ class Code extends React.Component {
   constructor() {
     super();
     this.state = {
+      // projectArray: [
+      //   { 'title' : '7 Years of Photography' , 'styles' : {fontFamily:'Marcellus SC', fontSize:'28px'} },
+      //   { 'title' : 'This Website' , 'styles' : {fontFamily:'Fredericka the Great', fontSize:'28px'} }
+      // ]
       projectArray: [
-        { 'title' : '7 Years of Photography' , 'styles' : {fontFamily:'Marcellus SC', fontSize:'28px'} },
-        { 'title' : 'This Website' , 'styles' : {fontFamily:'Fredericka the Great', fontSize:'28px'} }
+        { 'title' : 'COMING SOON', 'styles' : {fontFamily:'Fredericka the Great', fontSize: '50px'} }
       ]
     }
   }

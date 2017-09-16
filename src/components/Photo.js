@@ -10,7 +10,6 @@ class Photo extends React.Component {
     super();
     this.props = props;
     this.previousLocation = this.props.location;
-
     if (props.params !== undefined && props.params.hasOwnProperty('album')) {
       this.state = {
         photoArray: [],
@@ -19,7 +18,8 @@ class Photo extends React.Component {
         page: 'album-individual',
         activeAlbum: props.params.album,
         loading: 'loading',
-        activePhoto: 0
+        activePhoto: 0,
+        lightbox: false
       };
     } else {
       this.state = {
@@ -29,7 +29,8 @@ class Photo extends React.Component {
         page: props.page ? props.page:'album-list',
         activeAlbum: 0,
         loading: 'loading',
-        activePhoto: 0
+        activePhoto: 0,
+        lightbox: false
       };
     }
   }
@@ -48,7 +49,13 @@ class Photo extends React.Component {
       });
       this.loadFlickAlbums();
     }
-}
+    console.log(nextProps);
+    var images = document.getElementsByTagName('img');
+    for(var i = 0; i < images.length; i++) {
+      console.log('hello');
+      document.getElementsByTagName('img')[i].setAttribute('class','none');
+    }
+  }
 
   createUrl(farmId, serverId, photoId, photoSecret) {
     return 'https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + photoId + '_' + photoSecret + '_b.jpg';
@@ -72,7 +79,7 @@ class Photo extends React.Component {
   }
 
   getAlbumThumbnails(flickrGroup) {
-  let photoUrls = [];
+    let photoUrls = [];
     const deferred = [];
     const react = this;
     for (let group of flickrGroup) {
@@ -96,18 +103,18 @@ class Photo extends React.Component {
       }
 
       if(react.state.activeAlbum) {
-        react.showAlbum(react.state.activeAlbum, photoUrls);
+        react.handlePhotoClick(react.state.activeAlbum, photoUrls, 'album-list');
       } else {
         react.setState({
           photoArray: photoUrls,
-          loading: null
+          loading: ' '
         });
       }
     });
   }
 
-  showAlbum(index, photoUrls) {
-    if(this.state.page == 'album-list' || this.state.page == 'album-individual') {
+  handlePhotoClick(index, photoUrls, prevPageState) {
+    if(prevPageState == 'album-list') {
       let albumPhotos = [];
       let url;
       let album = photoUrls[index].photos;
@@ -122,37 +129,52 @@ class Photo extends React.Component {
           currentTitle: '',
           layoutClass: 'small-up-1',
           page: 'album-individual',
-          loading: null,
-          activePhoto: 0
+          activePhoto: 0,
+          loading: ' '
         });
       }
     }
-  }
 
-  nextPhoto(index) {
-    let react = this;
-    // console.log('does this fire?');
-    if(this.state.page == 'album-individual') {
+    if(prevPageState == 'album-individual') {
       this.setState({
         activePhoto: index + 1 < this.state.photoArray.length ? index + 1 : 0
       });
     }
   }
 
+  lightSwitch() {
+    if (this.state.lightbox == false) {
+      document.body.classList.add('lightbox');
+      this.setState({
+        lightbox: true
+      });
+    } else {
+      document.body.classList.remove('lightbox');
+      this.setState({
+        lightbox: false
+      });
+    }
+  }
+
+  handleImageLoad = (e, i) => {
+    var target = e.target;
+      console.log(target);
+    setTimeout(function() {
+      target.setAttribute("class", "show");
+    }, 50);
+  }
+
   render() {
     return (
       <div>
-        <div className={"placeholder " + this.state.loading}>
-          <Placeholder />
-        </div>
-        <div className={"photo-container " + this.state.page + " " + this.state.loading}>
+        <div className={"photo-container " + this.state.page}>
           <div className="row">
             <div className="small-12 column">
               <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container"}>
                 {this.state.photoArray.map((data, i) => {
                   return (
                     <div key={i} className={ "column align-middle " + (this.state.activePhoto !== i ? 'photo-hide':'') }
-                      onClick={ this.nextPhoto.bind(this, i) }>
+                      onClick={ this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page) }>
                         <div className={"image-container " + this.state.activeAlbum} >
                           <div className="album-title-overlay">
                             { data.title &&
@@ -160,8 +182,7 @@ class Photo extends React.Component {
                             }
                           </div>
                           <Link to={{ pathname: "/photo/" + i, state: {page: 'album-individual'}}}>
-                              <img src= { data.url }
-                              onClick={ this.showAlbum.bind(this, i, this.state.photoArray)}>
+                              <img onLoad={ (e) => this.handleImageLoad(e, i) } src= { data.url } >
                               </img>
                           </Link>
                         </div>
@@ -169,6 +190,11 @@ class Photo extends React.Component {
                   );
                 })}
               </div>
+              { this.state.page == 'album-individual' &&
+              <span className="lightswitch" onClick={ this.lightSwitch.bind(this) }>
+                { this.state.lightbox ? 'lights on' : 'lights off' }
+              </span>
+              }
             </div>
           </div>
         </div>

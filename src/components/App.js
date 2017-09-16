@@ -47,33 +47,48 @@ class App extends React.Component {
     if (!this.props.children) {
       return (
         <div>
-          <div className="row">
-            <div className="medium-12 columns">
+          <div>
+            <div>
               <div className="home-content">
-                <h1 className="main-title neon">
-                  <Link to="/">
-                    Gene Ang
-                  </Link>
-                </h1>
-                <div className="row">
-                {this.state.categories.map((data, i) => {
-                  return (
-                    <div key={i} className="small-12 medium-4 columns text-center">
-                      <Link key={i} to={ data.link } className={ data.class + ' home-nav-link' }>
-                       { data.name }
-                      </Link>
-                      { data.link === "/blog" &&
-                        <Blog page="home" />
-                      }
-                      { data.link === "/photo" &&
-                        <Photo layout="small-up-1" page="home" />
-                      }
-                      { data.link === "/code" &&
-                        <Code page="home" />
-                      }
-                    </div>
-                  );
-                })}
+                <div className="row expanded">
+                  <div className="social-media">
+                    <ul className="social-media__list">
+                      <li className="social-media__list-item"><i className="fa fa-flickr" aria-hidden="true"></i></li>
+                      <li className="social-media__list-item"><i className="fa fa-vimeo" aria-hidden="true"></i></li>
+                      <li className="social-media__list-item"><i className="fa fa-linkedin-square" aria-hidden="true"></i></li>
+                    </ul>
+                  </div>
+                  <div className="main-title">
+                    <h1>
+                        <Link to="/">
+                          Gene Ang
+                        </Link>
+                        <span className="sub-title"> Web developer & Photographer</span>
+                    </h1>
+                  </div>
+                </div>
+                <div className="home-content__sections">
+                  <div className="row expanded-constraint">
+                  {this.state.categories.map((data, i) => {
+                    return (
+                      <div key={i} className="small-12 medium-4 columns text-center">
+                        <Link key={i} to={ data.link } className={ data.class + ' home-nav-link' }>
+                         { data.name }
+                         <i className="fa fa-angle-right"></i>
+                        </Link>
+                        { data.link === "/blog" &&
+                          <Blog page="home" />
+                        }
+                        { data.link === "/photo" &&
+                          <Photo layout="small-up-1" page="home" />
+                        }
+                        { data.link === "/code" &&
+                          <Code page="home" />
+                        }
+                      </div>
+                    );
+                  })}
+                  </div>
                 </div>
               </div>
             </div>

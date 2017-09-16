@@ -1,12 +1,24 @@
-$default-bg-color: #effbff;
+$default-bg-color: #ffffff;
 $text-color: #1c1c1c;
+$secondary-color: #1938a9;
 $border-width: 10px;
-$photo-color: #effbff;
-$code-color: #effbff;
-$blog-color: #effbff;
+$photo-color: #a91919;
+$code-color: #1938a9;
+$blog-color: #19a987;
 $color-white: #ffffff;
 $main-font-family: "Microsoft Yi Baiti", serif;
 $sans-serif: 'Montserrat', sans-serif;
+
+.expanded-constraint {
+  max-width: 70vw !important;
+  @media only screen and (max-width: 1024px) {
+    max-width: 95vw !important;
+  }
+}
+
+.extra-padding {
+  padding: initial;
+}
 
 body {
   background-color: $default-bg-color;
@@ -20,11 +32,11 @@ h1 {
   font-size: 62px;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 40px;
 }
 
 a {
   transition: all 1s ease;
+  display: block;
   &:hover {
     color: $text-color;
   }
@@ -34,8 +46,27 @@ ul {
   list-style-type: none;
 }
 
-iframe {
-  width: 100%;
+img {
+  opacity: 0;
+  transition: all 1.5s;
+  &.show {
+    opacity: 1;
+  }
+}
+
+.lightswitch {
+  cursor: pointer;
+  float: right;
+  font-family: $main-font-family;
+  position: absolute;
+  right: 15vh;
+  bottom: 10vh;
+}
+body.lightbox {
+  background-color: $text-color;
+  .lightswitch {
+    color: white;
+  }
 }
 
 .placeholder {
@@ -49,29 +80,51 @@ iframe {
   height: 100vh;
 }
 
-.top-nav {
-  margin: 30px 0;
-  font-family: $main-font-family;
-  &--name {
-    display: inline-block;
-    font-size: 32px;
-    margin: 0 20px 0 0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    a{
-      color: $text-color;
-    }
+.social-media {
+  position: absolute;
+  right: 200px;
+  top: 40px;
+  color: white;
+  z-index: 9;
+  &__list {
+    margin: 20px 5px 0 0;
   }
-  ul.top-nav-list {
+  &__list-item {
     display: inline-block;
-    color: $text-color;
-    margin: 0 0 0 10px;
-    li {
+    margin: 0 0 0 30px;
+  }
+}
+
+
+.navbar {
+  background-color: $text-color;
+  .top-nav {
+    margin: 30px 0;
+    font-family: $main-font-family;
+    width: 75vw;
+    position: relative;
+    margin: 10px auto;
+    &--name {
       display: inline-block;
-      margin: 0 30px 0 0;
-      font-size: 24px;
-      a {
-        color: $text-color;
+      font-size: 32px;
+      margin: 0 20px 0 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      a{
+        color: white;
+      }
+    }
+    ul.top-nav-list {
+      display: inline-block;
+      color: white;
+      margin: 0 0 0 10px;
+      li {
+        display: inline-block;
+        margin: 0 30px 0 0;
+        font-size: 24px;
+        a {
+          color: white;
+        }
       }
     }
   }
@@ -82,19 +135,66 @@ iframe {
 }
 
 .main-title {
-  line-height: 80px;
-  margin: 40px 0 50px;
-  text-align: center;
-  a {
-    color: $text-color;
+  height: 50vh;
+  text-align: left;
+  letter-spacing: 20px;
+  width: 100%;
+  position: relative;
+  background-color: $text-color;
+  h1 {
+    position: relative;
+    top: 25vh;
+    width: calc(70vw - 2 * .9375rem);
+    margin: 0 auto;
   }
+  a {
+    color: white;
+  }
+}
+
+.sub-title {
+  text-align: left;
+  color: white;
+  display: block;
+  font-size: 20px;
+  text-transform: none;
+  letter-spacing: 0;
+  bottom: 120px;
+  left: 200px;
 }
 
 .home-nav-link {
   font-family: $main-font-family;
   font-size: 24px;
-  margin: 0 0 10px;
   color: $text-color;
+  text-align: left;
+  text-transform: uppercase;
+  i {
+    position: relative;
+    top: 8px;
+    float: right;
+  }
+  &.code-link {
+    border-bottom: 1px solid $code-color;
+    color: $code-color;
+    i {
+      color: $code-color;
+    }
+  }
+  &.photo-link {
+    border-bottom: 1px solid $photo-color;
+    color: $photo-color;
+    i {
+      color: $photo-color;
+    }
+  }
+  &.writing-link {
+    border-bottom: 1px solid $blog-color;
+    color: $blog-color;
+    i {
+      color: $blog-color;
+    }
+  }
 }
 .home-develop-box {
   background: #111111;
@@ -105,6 +205,10 @@ iframe {
 .home-content {
   .photo-container {
     margin: 20px 0 0 0;
+  }
+  &__sections {
+    height: 100vh;
+    padding: 50px 0 0 0;
   }
 }
 
@@ -144,9 +248,11 @@ iframe {
 }
 
 .photo-container {
-  margin: 40px 0 0;
+  margin: 80px 0 0;
+  opacity: 1;
+  transition: opacity 1s;
   &.loading {
-    display: none;
+    opacity: 0;
   }
   &.album-list {
     margin: 100px 0;
@@ -173,10 +279,12 @@ iframe {
   }
 }
 
+.image-container.loading {
+  display: none;
+}
 
 .blog {
   &__container {
-    padding: 0 30px;
     margin: 20px 0 0 0;
     font-family: $main-font-family;
     text-align: left;
@@ -199,8 +307,6 @@ iframe {
 
 .code {
   margin: 15px 0 0 0;
-  &__title {
-  }
 }
 
 
@@ -211,6 +317,12 @@ iframe {
 
   position: relative;
   margin: 100px auto;
+}
+
+.album-list, .album-individual {
+  .spinner {
+    margin: 340px auto;
+  }
 }
 
 .double-bounce1, .double-bounce2 {
