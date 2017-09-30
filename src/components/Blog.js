@@ -20,15 +20,19 @@ class Blog extends React.Component {
               <div className="blog__title">
                 Hey, welcome
                 <span className="blog__date">
-                  8/5/2017
+                  9/24/2017
                 </span>
               </div>
               <div className="blog__body">
-                This website is my personal showcase for my dev and visual work. I
-                currently work as a web developer in San Francisco and shoot things with a
-                camera on the side.
+                Im Gene, and this is my personal showcase of my dev and visual work.
+                I like to code for the web, so Ill periodically post projects with
+                whatever tech Im trying out. Ill also keep my selected photo works up to date,
+                and eventually get a video section up. This website is an ongoing
+                project and will act like a sandbox for my design and development ideas.
                 <br /><br />
-                Feel free to contact me at gene.ang92@gmail.com
+                Currently Im working as a web developer in San Francisco. Feel free
+                to contact me at gene.ang92@gmail.com if you have any questions or
+                would just like to chat.
               </div>
             </div>
           </div>

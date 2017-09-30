@@ -10,6 +10,7 @@ class Photo extends React.Component {
     super();
     this.props = props;
     this.previousLocation = this.props.location;
+    this.animationTime = 500; //Adjust the CSS animation time for img tags
     if (props.params !== undefined && props.params.hasOwnProperty('album')) {
       this.state = {
         photoArray: [],
@@ -40,20 +41,29 @@ class Photo extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.location.pathname === "/photo") {
-      this.setState({
-        layoutClass: 'small-up-3',
-        page: 'album-list',
-        activeAlbum: 0,
-        loading: 'loading'
-      });
-      this.loadFlickAlbums();
+    let react = this;
+    // if(nextProps.location.pathname === "/photo") {
+    if(nextProps.location.state.page == "album-list") {
+      this.hideImagesBeforeLoad();
+      setTimeout(function() {
+        react.setState({
+          photoArray: [],
+          layoutClass: 'small-up-1 medium-up-3',
+          page: 'album-list',
+          activeAlbum: 0,
+          loading: 'loading',
+          lightbox: false
+        });
+        document.body.classList.remove('lightbox');
+        react.loadFlickAlbums();
+      }, this.animationTime);
     }
-    console.log(nextProps);
+  }
+
+  hideImagesBeforeLoad() {
     var images = document.getElementsByTagName('img');
     for(var i = 0; i < images.length; i++) {
-      console.log('hello');
-      document.getElementsByTagName('img')[i].setAttribute('class','none');
+      images[i].classList.remove('show');
     }
   }
 
@@ -114,24 +124,28 @@ class Photo extends React.Component {
   }
 
   handlePhotoClick(index, photoUrls, prevPageState) {
+    let react = this;
     if(prevPageState == 'album-list') {
       let albumPhotos = [];
       let url;
       let album = photoUrls[index].photos;
 
       if(album) {
+        this.hideImagesBeforeLoad();
         for (let i = 0; i < album.length; i++) {
           url = this.createUrl(album[i].farm, album[i].server, album[i].id, album[i].secret);
           albumPhotos.push({ 'url': url });
         }
-        this.setState({
-          photoArray: albumPhotos,
-          currentTitle: '',
-          layoutClass: 'small-up-1',
-          page: 'album-individual',
-          activePhoto: 0,
-          loading: ' '
-        });
+        setTimeout(function(){
+          react.setState({
+            photoArray: albumPhotos,
+            currentTitle: '',
+            layoutClass: 'small-up-1',
+            page: 'album-individual',
+            activePhoto: 0,
+            loading: ' '
+          });
+        }, this.animationTime);
       }
     }
 
@@ -158,10 +172,9 @@ class Photo extends React.Component {
 
   handleImageLoad = (e, i) => {
     var target = e.target;
-      console.log(target);
     setTimeout(function() {
       target.setAttribute("class", "show");
-    }, 50);
+    }, this.animationTime);
   }
 
   render() {
@@ -181,10 +194,18 @@ class Photo extends React.Component {
                                data.title.split(' ').slice(1, data.title.split(' ').length-1).join(" ")
                             }
                           </div>
-                          <Link to={{ pathname: "/photo/" + i, state: {page: 'album-individual'}}}>
+                          { this.state.page !== "album-individual" &&
+                          <Link className="image-link" to={{ pathname: "/photo/" + i, state: {page: 'album-individual'}}}>
                               <img onLoad={ (e) => this.handleImageLoad(e, i) } src= { data.url } >
                               </img>
-                          </Link>
+                          </Link> }
+                          { this.state.page == "album-individual" &&
+                          <div>
+                            <img onLoad={ (e) => this.handleImageLoad(e, i) } src= { data.url } >
+                            </img>
+                            <div>{ ( i + 1 ) + '/' + this.state.photoArray.length }</div>
+                          </div>
+                          }
                         </div>
                     </div>
                   );

@@ -9,7 +9,9 @@ class Code extends React.Component {
       //   { 'title' : 'This Website' , 'styles' : {fontFamily:'Fredericka the Great', fontSize:'28px'} }
       // ]
       projectArray: [
-        { 'title' : 'COMING SOON', 'styles' : {fontFamily:'Fredericka the Great', fontSize: '50px'} }
+        { 'title' : '8 Years of Photography', 'date' : 'May 2017' , 'styles' : {fontFamily:'Fredericka the Great', fontSize: '50px'} },
+        { 'title' : 'Photo Gallery', 'date' : 'September 2017', 'styles' : {fontFamily:'Suranna', fontSize: '50px'} },
+        { 'title' : 'Past Projects', 'date' : 'January 2016', 'styles' : {fontFamily:'Arial', fontSize: '50px'} }
       ]
     }
   }
@@ -22,9 +24,14 @@ class Code extends React.Component {
           {this.state.projectArray.map((data, i) => {
             return (
               <div key={i} className="code">
-                <div className="code__title" style={ data.styles }>
-                  { data.title }
-                </div>
+                <a href="/test.html">
+                  <div className="code__title" style={ data.styles }>
+                    { data.title }
+                  </div>
+                  <div className="code__date" >
+                    { data.date }
+                  </div>
+                </a>
               </div>
             );
           })}
