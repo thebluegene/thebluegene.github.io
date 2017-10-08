@@ -15,7 +15,7 @@ class Nav extends React.Component {
             <div className="top-nav">
               <span className="top-nav--name"><Link to="/">Gene Ang</Link></span>
               <ul className="top-nav-list">
-                <li><Link to="/"> Code </Link></li>
+                <li><Link to="/code"> Code </Link></li>
                 <li><Link to={{ pathname: "/photo", state: {page: 'album-list'}}}> Pictures </Link></li>
                 <li><Link to="/blog"> Blog </Link></li>
               </ul>

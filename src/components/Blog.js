@@ -1,14 +1,33 @@
 import React from 'react';
-import $ from 'jquery';
 import { Link } from 'react-router';
+import * as contentful from 'contentful';
 
 class Blog extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.getBlogPosts();
+
     this.state = {
-      layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2'
-    }
+      layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
+      blogPosts: []
+    };
+  }
+
+  getBlogPosts() {
+    const react = this;
+    const client = contentful.createClient({
+      space: 'ukd0j57tgsx1',
+      accessToken: '8d5aeb84d6b70df2cccc6e027f6c7197a0f61e851fadf7de8cb865d2d0fa29c1'
+    });
+
+    client.getEntries()
+      .then(function (contentType) {
+        react.setState({
+          blogPosts: contentType.items
+        });
+      })
+      .catch(console.error);
   }
 
   render() {
@@ -16,25 +35,21 @@ class Blog extends React.Component {
       <div className="blog">
         <div className="row">
           <div className={ this.state.layoutClass + " columns" } >
-            <div className="blog__container">
-              <div className="blog__title">
-                Hey, welcome
-                <span className="blog__date">
-                  9/24/2017
-                </span>
+          {this.state.blogPosts.map((data, i) => {
+            return (
+              <div key={i} className="blog__container">
+                <div className="blog__title">
+                  { data.fields.blogTitle }
+                  <span className="blog__date">
+                    { data.fields.date }
+                  </span>
+                </div>
+                <div className="blog__body">
+                  { data.fields.blogContent }
+                </div>
               </div>
-              <div className="blog__body">
-                Im Gene, and this is my personal showcase of my dev and visual work.
-                I like to code for the web, so Ill periodically post projects with
-                whatever tech Im trying out. Ill also keep my selected photo works up to date,
-                and eventually get a video section up. This website is an ongoing
-                project and will act like a sandbox for my design and development ideas.
-                <br /><br />
-                Currently Im working as a web developer in San Francisco. Feel free
-                to contact me at gene.ang92@gmail.com if you have any questions or
-                would just like to chat.
-              </div>
-            </div>
+            );
+          })}
           </div>
         </div>
       </div>
