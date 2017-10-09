@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import * as contentful from 'contentful';
+import Placeholder from './Placeholder';
 
 class Blog extends React.Component {
 
@@ -10,7 +11,8 @@ class Blog extends React.Component {
 
     this.state = {
       layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
-      blogPosts: []
+      blogPosts: [],
+      loading: 'loading'
     };
   }
 
@@ -24,7 +26,8 @@ class Blog extends React.Component {
     client.getEntries()
       .then(function (contentType) {
         react.setState({
-          blogPosts: contentType.items
+          blogPosts: contentType.items,
+          loading: ''
         });
       })
       .catch(console.error);
@@ -33,6 +36,9 @@ class Blog extends React.Component {
   render() {
     return (
       <div className="blog">
+        <div className={"placeholder " + this.state.loading}>
+          <Placeholder />
+        </div>
         <div className="row">
           <div className={ this.state.layoutClass + " columns" } >
           {this.state.blogPosts.map((data, i) => {
