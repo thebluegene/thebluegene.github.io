@@ -4,7 +4,7 @@ import Nav from './Nav';
 import Photo from './Photo';
 import Blog from './Blog';
 import Code from './Code';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -12,9 +12,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       categories: [
-        { name: 'Code', class: 'code-link', link: '/code', image: '' },
-        { name: 'Photograph', class: 'photo-link', link: '/photo', image: '' },
-        { name: 'Blog', class: 'writing-link', link: '/blog', image: '' }
+        {
+          name: 'Code',
+          class: 'code-link',
+          link: '/code',
+          image: ''
+        }, {
+          name: 'Photograph',
+          class: 'photo-link',
+          link: '/photo',
+          image: ''
+        }, {
+          name: 'Blog',
+          class: 'writing-link',
+          link: '/blog',
+          image: ''
+        }
       ],
       background: 'default-bg',
       currentImage: ''
@@ -29,7 +42,7 @@ class App extends React.Component {
           this.setState({
             categories: this.state.categories,
             background: this.state.categories[i].class
-          }, function () {
+          }, function() {
             $('body').removeClass(this.state.background).addClass(this.state.background);
           });
         }
@@ -37,7 +50,7 @@ class App extends React.Component {
     } else {
       this.setState({
         background: 'default-bg'
-      }, function () {
+      }, function() {
         $('body').addClass(this.state.background);
       });
     }
@@ -53,41 +66,49 @@ class App extends React.Component {
                 <div className="row expanded">
                   <div className="social-media">
                     <ul className="social-media__list">
-                      <li className="social-media__list-item"><a href="https://www.flickr.com/people/thebluegene/"><i className="fa fa-flickr" aria-hidden="true"></i></a></li>
-                      <li className="social-media__list-item"><a href="https://vimeo.com/thebluegene"><i className="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                      <li className="social-media__list-item"><a href="https://www.linkedin.com/in/geneang/"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                      <li className="social-media__list-item">
+                        <a href="https://www.flickr.com/people/thebluegene/">
+                          <i className="fa fa-flickr" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li className="social-media__list-item">
+                        <a href="https://vimeo.com/thebluegene">
+                          <i className="fa fa-vimeo" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li className="social-media__list-item">
+                        <a href="https://www.linkedin.com/in/geneang/">
+                          <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+                        </a>
+                      </li>
                     </ul>
                   </div>
                   <div className="main-title">
                     <h1>
-                        <Link to="/">
-                          Gene Ang
-                        </Link>
-                        <span className="sub-title"> Web developer & Photographer</span>
+                      Gene Ang
+                      <span className="sub-title">
+                        Web developer & Photographer</span>
                     </h1>
                   </div>
                 </div>
                 <div className="home-content__sections">
-                  <div className="row expanded-constraint">
-                  {this.state.categories.map((data, i) => {
-                    return (
-                      <div key={i} className="small-12 medium-4 columns text-center">
-                        <Link key={i} to={ data.link } className={ data.class + ' home-nav-link' }>
-                         { data.name }
-                         <i className="fa fa-angle-right"></i>
-                        </Link>
-                        { data.link === "/blog" &&
-                          <Blog page="home" />
-                        }
-                        { data.link === "/photo" &&
-                          <Photo layout="small-up-1" page="home" />
-                        }
-                        { data.link === "/code" &&
-                          <Code page="home" />
-                        }
-                      </div>
-                    );
-                  })}
+                  <div className="row small-collapse medium-uncollapse expanded-constraint">
+                    {this.state.categories.map((data, i) => {
+                      return (
+                        <div key={i} className="small-12 medium-4 columns text-center">
+                          <Link key={i} to={data.link} className={data.class + ' home-nav-link'}>
+                            {data.name}
+                            <i className="fa fa-angle-right"></i>
+                          </Link>
+                          {data.link === "/blog" && <Blog page="home"/>
+}
+                          {data.link === "/photo" && <Photo layout="small-up-1" page="home"/>
+}
+                          {data.link === "/code" && <Code page="home"/>
+}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -97,15 +118,15 @@ class App extends React.Component {
       );
     } else {
       return (
-        <div>
-          <Nav />
-          { this.props.children }
-        </div>
-      );
+          <div>
+            <Nav page={this.props.location.pathname} />
+            { this.props.children }
+          </div>
+        );
+      }
     }
   }
-}
 
-App.propTypes = { children: React.PropTypes.object };
+  App.propTypes = { children: React.PropTypes.object };
 
-export default App;
+  export default App;

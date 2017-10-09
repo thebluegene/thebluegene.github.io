@@ -46,6 +46,10 @@ class Photo extends React.Component {
     this.loadFlickAlbums();
   }
 
+  componentWillUnmount() {
+    document.body.classList.remove('lightbox');
+  }
+
   componentWillReceiveProps(nextProps) {
     let react = this;
     if (nextProps.location.state.page == "album-list") {
@@ -53,7 +57,7 @@ class Photo extends React.Component {
       setTimeout(function() {
         react.setState({
           photoArray: [],
-          layoutClass: 'small-up-1 medium-up-3',
+          layoutClass: 'small-up-1 medium-up-2 large-up-3',
           page: 'album-list',
           activeAlbum: 0,
           activePhoto: 0,
@@ -158,7 +162,7 @@ class Photo extends React.Component {
       //     ? index + 1
       //     : 0;
       // }
-      nexIndex = index < this.state.photoArray.length - 1
+      newIndex = index < this.state.photoArray.length - 1
         ? index + 1
         : 0;
       this.setState({activePhoto: newIndex});
@@ -191,7 +195,7 @@ class Photo extends React.Component {
         <div className={"photo-container " + this.state.page}>
           <div className="row">
             <div className="small-12 column">
-              <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container"}>
+              <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container small-collapse medium-uncollapse"}>
                 {this.state.photoArray.map((data, i) => {
                   return (
                     <div key={i} className={"column align-middle " + (this.state.activePhoto != i
