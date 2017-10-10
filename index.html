@@ -1,166 +1,32 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!doctype html>
+<html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:600italic,400,400italic,300' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gene</title>
 
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel = "stylesheet" href = "style.css">
-	<title>Gene's Portfolio</title>
+  <!-- fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Suranna" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Marcellus+SC" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css">
+
+  <!-- build:css -->
+  <link rel="stylesheet" href="dist/styles/main.css">
+  <!-- endbuild -->
+
+  <link rel="shortcut icon" href="src/images/favicon.ico" type="image/x-icon" />
 </head>
+
 <body>
-	<div class = 'container-fluid'>
-		<div class = 'row top-buffer'>
-			<div id = "title" class = 'col-sm-offset-1 col-sm-10'>
-				<h1>GENE ANG</h1>
-			</div>
-		</div>
-		<div class = 'row'>
-			<div id = 'subtitle' class = 'col-sm-offset-1 col-sm-10'>
-				<h2>Front-end developer in the San Francisco Bay Area</h2>
-			</div>
-		</div>
-		<div class = 'row menu-buffer'>
-			<div  class = 'col-sm-offset-1 col-sm-10'>
-				<ul id='menu' class = 'list-inline'>
-					<li class='about'><h4><i class="fa fa-user"></i> About</h4></li>
-					<li class='projects'><h4><span class='glyphicon glyphicon-wrench'></span> Projects</h4></li>
-					<li class='contact'><h4><span class='glyphicon glyphicon-globe'></span> Contact</h4></li>
-				</ul>
-			</div>
-		</div>
+  <div id="content"></div>
 
-		<div id = 'content' class = 'row content-buffer'>
-
-
-			<div id = 'splash' class= 'col-sm-offset-1 col-sm-10 col-lg-8'>
-				<!--<img src = 'images/splash-1.jpg' alt='home page photo'>-->	
-			</div>
-
-			<div id = 'about' class = 'col-sm-offset-1 col-sm-8'>
-				<img src = 'images/me.jpg' alt = 'Picture of Gene'>
-				<br />
-				<p>I'm a programmer for hire in the South Bay specializing in front-end languages and frameworks. Though my degree is in mechanical engineering, I discovered programming in my last year at UC Davis and loved it. I then took a year's worth of computer-science coursework there, and after graduating I decided to pursue programming as a career. 
-				</p>
-				<br />
-				<p>I've created a variety of projects using HTML, CSS (Bootstrap), and Javascript (jQuery, Angular, Node), and I'm still learning and refining my skills every day. I'm eager to start my career at a place where I can not only contribute my skill, creativity, and passion, but also where I can be a part of a close-knit team and continue to grow as a developer.</p>
-				<br />
-				<p>When I'm not coding or job-hunting, I'm an avid photographer and filmmaker (my <a target="_blank" href = 'http://cargocollective.com/thebluegene'>CargoCollective</a> account, if you're curious). I also enjoy long hikes, shooting hoops, and beaches on cloudy days.</p>
-				<br />
-				<p>-------------- My Toolbox --------------</p>
-				<p><i>Languages:</i> Javascript, HTML, CSS</p>
-				<p><i>Libraries & Frameworks:</i> jQuery, Angular, Node / Express, Bootstrap</p>
-				<p><i>Database:</i> MongoDB / Mongoose</p>
-				<p><i>Software:</i> Adobe Photoshop, Premiere, AfterEffects</p>
-			</div>
-
-
-			<div id ='projects' class='carousel slide' data-ride='carousel' data-interval='false'>
-				
-				<div class = 'carousel-inner' role='listbox'>
-					<div id='Nightlife_App' class='item row'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/nightlife.jpg" alt='Nightlife App image'>
-						</div>
-						<div class = 'describe-buffer col-sm-7'>
-							<h2>Night Light</h2>
-							<br />
-							<p>Created a MEAN stack application using PassportJS and the Yelp API. Any user can search for nightlife locations near them and see how many people have indicated that they are attending. Only authorized users (authorization done with GitHub) are able to indicate that they will be going to a location. </p>
-							<br />
-							<a target="_blank" href = 'https://whats-up-2187.herokuapp.com'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-
-					<div id = 'Stock_Chart' class='item row'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/stocks.jpg" alt='Stock Chart image'>
-						</div>
-						<div class = 'describe-buffer col-sm-7'>
-							<h2>Real-time Stock Chart</h2>
-							<br />
-							<p>A MEAN stack application using the Quandl API, HighchartsJS, and web sockets. Users can view a stock chart which updates in real-time as users add and remove stocks.</p>
-							<br />
-							<a target="_blank" href = 'https://chart-stocks-2187.herokuapp.com/'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-
-					<div id='Simon_Game' class='item row'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/simon.jpg" alt='Simon game image'>
-						</div>
-						<div class = 'describe-buffer col-sm-7'>
-							<h2>Simon Memory Game</h2>
-							<br />
-							<p>Created a 'Simon' game using Javascript and jQuery. The user must follow a random pattern that increments by one move when the user matches the previous pattern. To win the user must correctly match a computer pattern of 20 moves. If the user is wrong, the pattern is played again; however, if 'strict mode' is activated, the game restarts.</p>
-							<br />
-							<a target="_blank" href = 'http://codepen.io/thebluegene/full/megMWX'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-
-					<div id='TwitchTV_App' class='item row'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/twitch.jpg" alt='TwitchTV API app image'>
-						</div>
-						<div class = 'describe-buffer col-sm-7'>
-							<h2>TwitchTV User App</h2>
-							<br />
-							<p>Made with Javascript/jQuery and the TwitchTV API, this application tells the user which TwitchTV users are streaming and which aren't. The user is able to search for a stream in the list and/or filter by online or offline users.</p>
-							<br />
-							<a target="_blank" href = 'http://codepen.io/thebluegene/full/YyRxKd'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-
-					<div id = 'Tic-Tac-Toe' class='item row'>
-						<div class = 'col-sm-offset-1 col-sm-3'>
-							<img src="images/tictac.jpg" alt='Tic-Tac-Toe image'>
-						</div>
-						<div class = 'describe-buffer col-sm-7'>
-							<h2>Unbeatable Tic-Tac-Toe</h2>
-							<br />
-							<p>Created a tic-tac-toe game using Javascript and jQuery. The user can make the futile decision of whether to go first or second, and then ultimately discover that the computer is programmed to never lose (within the rules of tic-tac-toe, of course).</p>
-							<br />
-							<a target="_blank" href = 'http://codepen.io/thebluegene/full/qOvwxP'><h4><i class="fa fa-circle-o"></i> Try it!</h4></a>
-						</div>
-					</div>
-
-				</div>	
-				<a class='left carousel-control' href = '#projects' role='button' data-slide='prev'>
-					<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-				</a>
-				<a class='right carousel-control' href = '#projects' role='button' data-slide='next'>
-					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-				</a>	
-
-				<div class='project-menu col-sm-offset-1 col-sm-10'>
-					<ul class = 'project-list'>
-					</ul>
-				</div>
-
-			</div>
-
-
-			<div id='contact' class='col-sm-offset-1 col-sm-9'>
-				<h2> Connect with me </h2>
-				<div class = "contact-list">
-					<p><span class="glyphicon glyphicon-envelope"></span>gene.ang92@gmail.com</p>
-					<p><a target="_blank" href = "http://codepen.io/thebluegene/"><i class="fa fa-codepen"></i>CodePen</a></p>
-					<p><a target="_blank" href = "http://linkedin.com/in/geneang"><i class="fa fa-linkedin"></i>LinkedIn</a></p>
-					<p><a target="_blank" href = "https://www.github.com/thebluegene"><i class="fa fa-github-alt"></i>Github</a></p>
-					<p><a target="_blank" href = "http://www.freecodecamp.com/thebluegene"> <span class='glyphicon glyphicon-fire'></span>FreeCodeCamp</a></p>
-					<p><a target="_blank" href = "http://cargocollective.com/thebluegene"><i class="fa fa-camera"></i>CargoCollective</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-	<script src="main.js"></script>
+  <!-- build:js -->
+  <script src="dist/js/app.js"></script>
+  <!-- endbuild -->
 </body>
-</html>
 
+</html>
