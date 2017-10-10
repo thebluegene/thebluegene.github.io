@@ -7,7 +7,7 @@ $photo-color: #C9DBBA;
 $code-color: #e29289;
 $blog-color: #F5CDA7;
 $color-white: #ffffff;
-$main-font-family: "Microsoft Yi Baiti", serif;
+$main-font-family: "Microsoft Yi Baiti", Arial, serif;
 $sans-serif: 'Montserrat', sans-serif;
 $max-screen__m: 1024px;
 $max-screen__s: 640px;
@@ -507,13 +507,15 @@ body.lightbox {
   }
 
   &__page {
+    margin: 50px 0 0;
+
     .code {
-      border-bottom: 2px solid $code-color;
-      border-left: 2px solid $code-color;
+      margin: 0;
+      border-bottom: 1px solid $code-color;
       position: relative;
 
       a {
-        padding: 10px 0 20px 30px;
+        padding: 10px 20px 20px 30px;
 
         &:hover {
           transition: all 1s;
@@ -527,8 +529,13 @@ body.lightbox {
           }
         }
       }
-      @media only screen and (max-width: $max-screen__m) {
-        border: 2px solid $code-color;
+    }
+    @media only screen and (max-width: $max-screen__m) {
+      margin: 0;
+
+      .code {
+        border: 1px solid $code-color;
+        margin-bottom: 20px;
       }
     }
   }
