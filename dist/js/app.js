@@ -49554,7 +49554,7 @@ var Code = function (_React$Component) {
       //   { 'title' : 'This Website' , 'styles' : {fontFamily:'Fredericka the Great', fontSize:'28px'} }
       // ]
       idClass: props.page ? '' : 'code__page',
-      layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
+      layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
       projectArray: [{
         'title': '8 Years of Photography',
         'date': 'May 2017',
