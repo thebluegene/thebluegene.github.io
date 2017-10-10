@@ -87,7 +87,7 @@ class App extends React.Component {
                     <h1>
                       Gene Ang
                       <span className="sub-title">
-                        Web developer based in San Francisco </span>
+                      Developer / Photographer / Filmmaker </span>
                     </h1>
                   </div>
                 </div>

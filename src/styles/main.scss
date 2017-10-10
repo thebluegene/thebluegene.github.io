@@ -4,7 +4,7 @@ $secondary-color: #1938a9;
 $border-width: 10px;
 $secondary-bg: #5d6265;
 $photo-color: #C9DBBA;
-$code-color: #B2675E;
+$code-color: #e29289;
 $blog-color: #F5CDA7;
 $color-white: #ffffff;
 $main-font-family: "Microsoft Yi Baiti", serif;
@@ -87,17 +87,6 @@ body.lightbox {
   }
 }
 
-.placeholder {
-  opacity: 0;
-  transition: all 500ms;
-  position: absolute;
-  left: calc(50vw - 30px);
-
-  &.loading {
-    opacity: 1;
-  }
-}
-
 .row.full-height {
   height: 100vh;
 }
@@ -164,8 +153,6 @@ body.lightbox {
 
         &.active {
           .top-nav-item {
-            text-shadow: 1px 1px 1px black;
-
             &--code {
               color: $code-color;
             }
@@ -245,7 +232,7 @@ body.lightbox {
   display: block;
   font-size: 20px;
   text-transform: none;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   bottom: 120px;
   left: 200px;
 }
@@ -256,10 +243,12 @@ body.lightbox {
   color: $text-color;
   text-align: left;
   text-transform: uppercase;
+  padding: 1px 0 5px;
 
   i {
     position: relative;
     top: 8px;
+    right: 15px;
     float: right;
   }
 
@@ -269,7 +258,7 @@ body.lightbox {
     text-align: center;
 
     i {
-      color: $code-color;
+      color: white;
     }
   }
 
@@ -279,7 +268,7 @@ body.lightbox {
     text-align: center;
 
     i {
-      color: $photo-color;
+      color: white;
     }
   }
 
@@ -289,7 +278,7 @@ body.lightbox {
     text-align: center;
 
     i {
-      color: $blog-color;
+      color: white;
     }
   }
   @media only screen and (max-width: $max-screen__s) {
@@ -456,6 +445,8 @@ body.lightbox {
 }
 
 .blog {
+  position: relative;
+
   &__container {
     margin: 20px 0 0;
     font-family: $main-font-family;
@@ -500,6 +491,48 @@ body.lightbox {
   &__date {
     text-transform: uppercase;
     font-family: $main-font-family;
+  }
+  @media only screen and (max-width: $max-screen__m) {
+    &__title {
+      font-size: 32px !important;
+    }
+  }
+
+  &__page {
+    .code {
+      border-bottom: 2px solid $code-color;
+      border-left: 2px solid $code-color;
+      position: relative;
+
+      a {
+        padding: 10px 0 30px 30px;
+
+        &:hover {
+          transition: all 1s;
+          background: $code-color;
+
+          .code__date,
+          .code__title {
+            transition: all 700ms;
+            color: white;
+          }
+        }
+      }
+      @media only screen and (max-width: $max-screen__m) {
+        border: 2px solid $code-color;
+      }
+    }
+  }
+}
+
+.placeholder {
+  opacity: 0;
+  transition: all 500ms;
+  position: absolute;
+  left: calc(50vw - 30px);
+
+  &.loading {
+    opacity: 1;
   }
 }
 

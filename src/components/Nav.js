@@ -47,7 +47,7 @@ class Nav extends React.Component {
                       page: 'album-list'
                     }
                   }} onClick={this.navHandler.bind(this, 'photo')}>
-                    Pictures
+                    Visual
                   </Link>
                 </li>
                 <li className={this.state.active == 'blog'
