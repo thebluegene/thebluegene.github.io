@@ -19,7 +19,7 @@ class Code extends React.Component {
             fontFamily: 'Fredericka the Great',
             fontSize: '40px'
           },
-          'link': ''
+          'link': '/flickr-data-proj'
         }, {
           'title': 'Photo Gallery',
           'date': 'September 2017',
@@ -27,15 +27,16 @@ class Code extends React.Component {
             fontFamily: 'Suranna',
             fontSize: '40px'
           },
-          'link': '/photo'
+          'link': '#/photo'
         }, {
           'title': 'Past Projects',
+          'subtitle': '(Coming soon)',
           'date': 'January 2016',
           'styles': {
             fontFamily: 'Arial',
             fontSize: '40px'
           },
-          'link': ''
+          'link': '#'
         }
       ]
     }
@@ -49,14 +50,17 @@ class Code extends React.Component {
             {this.state.projectArray.map((data, i) => {
               return (
                 <div key={i} className="code">
-                  <Link to={data.link}>
+                  <a href={data.link}>
                     <div className="code__title" style={data.styles}>
                       {data.title}
+                    </div>
+                    <div className="code__subtitle">
+                      {data.subtitle}
                     </div>
                     <div className="code__date">
                       {data.date}
                     </div>
-                  </Link>
+                  </a>
                 </div>
               );
             })}

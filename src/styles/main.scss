@@ -483,9 +483,17 @@ body.lightbox {
   width: 100%;
 
   &__date,
+  &__subtitle,
   &__title {
     color: $text-color;
     text-align: left;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-family: $main-font-family;
+    position: relative;
+    top: -5px;
   }
 
   &__date {
@@ -505,13 +513,14 @@ body.lightbox {
       position: relative;
 
       a {
-        padding: 10px 0 30px 30px;
+        padding: 10px 0 20px 30px;
 
         &:hover {
           transition: all 1s;
           background: $code-color;
 
           .code__date,
+          .code__subtitle,
           .code__title {
             transition: all 700ms;
             color: white;
