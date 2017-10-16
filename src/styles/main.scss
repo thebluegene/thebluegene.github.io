@@ -2,12 +2,13 @@ $default-bg-color: #ffffff;
 $text-color: #1c1c1c;
 $secondary-color: #1938a9;
 $border-width: 10px;
-$secondary-bg: #5d6265;
+$secondary-bg: #556067;
 $photo-color: #C9DBBA;
 $code-color: #e29289;
 $blog-color: #F5CDA7;
 $color-white: #ffffff;
-$main-font-family: "Microsoft Yi Baiti", Arial, serif;
+$name-font-family: 'Lato', sans-serif;
+$main-font-family: 'Lato', Arial, sans-serif;
 $sans-serif: 'Montserrat', sans-serif;
 $max-screen__m: 1024px;
 $max-screen__s: 640px;
@@ -214,9 +215,11 @@ body.lightbox {
     top: 25vh;
     width: calc(70vw - 2 * .9375rem);
     margin: 0 auto;
+    font-family: $name-font-family;
   }
   @media only screen and (max-width: $max-screen__m) {
     h1 {
+      top: 17vh;
       width: 100%;
       padding-left: 30px;
     }
@@ -333,7 +336,6 @@ body.lightbox {
   }
 
   &__sections {
-    min-height: 100vh;
     padding: 50px 0 0;
   }
   @media only screen and (max-width: $max-screen__s) {
@@ -373,9 +375,9 @@ body.lightbox {
   right: 0;
   margin: 0 auto;
   text-align: center;
-  top: calc(50% - 30px);
+  top: calc(50% - 20px);
   font-family: $main-font-family;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold;
   text-transform: uppercase;
   z-index: 100;
@@ -493,7 +495,7 @@ body.lightbox {
     font-size: 16px;
     font-family: $main-font-family;
     position: relative;
-    top: -5px;
+    margin: 0 0 15px;
   }
 
   &__date {
@@ -511,7 +513,6 @@ body.lightbox {
 
     .code {
       margin: 0;
-      border-bottom: 1px solid $code-color;
       position: relative;
 
       a {
@@ -519,7 +520,6 @@ body.lightbox {
 
         &:hover {
           transition: all 1s;
-          background: $code-color;
 
           .code__date,
           .code__subtitle,
@@ -534,7 +534,6 @@ body.lightbox {
       margin: 0;
 
       .code {
-        border: 1px solid $code-color;
         margin-bottom: 20px;
       }
     }
