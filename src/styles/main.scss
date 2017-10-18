@@ -2,12 +2,13 @@ $default-bg-color: #ffffff;
 $text-color: #1c1c1c;
 $secondary-color: #1938a9;
 $border-width: 10px;
-$secondary-bg: #5d6265;
+$secondary-bg: #556067;
 $photo-color: #C9DBBA;
 $code-color: #e29289;
 $blog-color: #F5CDA7;
 $color-white: #ffffff;
-$main-font-family: "Microsoft Yi Baiti", Arial, serif;
+$name-font-family: 'Lato', sans-serif;
+$main-font-family: 'Lato', Arial, sans-serif;
 $sans-serif: 'Montserrat', sans-serif;
 $max-screen__m: 1024px;
 $max-screen__s: 640px;
@@ -73,6 +74,10 @@ img {
   position: fixed;
   right: 15vh;
   bottom: 10vh;
+  @media only screen and (max-width: $max-screen__m) {
+    right: 20px;
+    bottom: 20px;
+  }
   @media only screen and (max-width: $max-screen__s) {
     bottom: 20px;
   }
@@ -122,7 +127,6 @@ body.lightbox {
 
 .navbar {
   background-color: $secondary-bg;
-  margin: 0 0 25px;
 
   .top-nav {
     font-family: $main-font-family;
@@ -174,8 +178,6 @@ body.lightbox {
     }
   }
   @media only screen and (max-width: $max-screen__s) {
-    margin: 0 0 30px;
-
     .top-nav {
       margin: 20px 5px;
       width: 100vw;
@@ -190,6 +192,7 @@ body.lightbox {
 
         li {
           font-size: 16px;
+          margin: 0 21px 0 0;
         }
       }
     }
@@ -214,9 +217,11 @@ body.lightbox {
     top: 25vh;
     width: calc(70vw - 2 * .9375rem);
     margin: 0 auto;
+    font-family: $name-font-family;
   }
   @media only screen and (max-width: $max-screen__m) {
     h1 {
+      top: 17vh;
       width: 100%;
       padding-left: 30px;
     }
@@ -333,7 +338,6 @@ body.lightbox {
   }
 
   &__sections {
-    min-height: 100vh;
     padding: 50px 0 0;
   }
   @media only screen and (max-width: $max-screen__s) {
@@ -344,7 +348,7 @@ body.lightbox {
 }
 
 .image-container {
-  margin: 0 0 50px;
+  margin: 0 0 35px;
   position: relative;
   text-align: center;
 
@@ -358,7 +362,7 @@ body.lightbox {
     }
   }
   @media only screen and (max-width: $max-screen__s) {
-    margin: 0 0 30px;
+    margin: 0;
 
     .album-title-overlay {
       opacity: 1;
@@ -373,9 +377,9 @@ body.lightbox {
   right: 0;
   margin: 0 auto;
   text-align: center;
-  top: calc(50% - 30px);
+  top: calc(50% - 20px);
   font-family: $main-font-family;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold;
   text-transform: uppercase;
   z-index: 100;
@@ -412,8 +416,14 @@ body.lightbox {
   }
 
   &.album-individual {
+    margin: 0;
+
     img {
       max-height: 70vh;
+    }
+
+    .image-container {
+      margin: 0;
     }
 
     .photo-hide {
@@ -428,15 +438,34 @@ body.lightbox {
       bottom: 10vh;
     }
   }
+
+  .album-individual__container {
+    height: calc(100vh - 68px);
+    display: flex;
+    justify-content: center;
+  }
   @media only screen and (max-width: $max-screen__m) {
     &.album-list {
       margin: 30px 0;
+    }
+
+    &.album-individual {
+      .photo-count {
+        bottom: 20px;
+        left: 20px;
+      }
     }
   }
   @media only screen and (max-width: $max-screen__s) {
     margin: 0;
 
-    &.album-individual {
+    .album-individual {
+      &__container {
+        height: calc(100vh - 64px);
+        display: flex;
+        justify-content: center;
+      }
+
       .photo-count {
         bottom: 20px;
       }
@@ -493,7 +522,7 @@ body.lightbox {
     font-size: 16px;
     font-family: $main-font-family;
     position: relative;
-    top: -5px;
+    margin: 0 0 15px;
   }
 
   &__date {
@@ -511,7 +540,6 @@ body.lightbox {
 
     .code {
       margin: 0;
-      border-bottom: 1px solid $code-color;
       position: relative;
 
       a {
@@ -519,7 +547,6 @@ body.lightbox {
 
         &:hover {
           transition: all 1s;
-          background: $code-color;
 
           .code__date,
           .code__subtitle,
@@ -534,7 +561,6 @@ body.lightbox {
       margin: 0;
 
       .code {
-        border: 1px solid $code-color;
         margin-bottom: 20px;
       }
     }
@@ -545,7 +571,7 @@ body.lightbox {
   opacity: 0;
   transition: all 500ms;
   position: absolute;
-  left: calc(50vw - 30px);
+  left: calc(50% - 30px);
 
   &.loading {
     opacity: 1;
