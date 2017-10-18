@@ -361,12 +361,13 @@ body.lightbox {
       opacity: 1;
     }
   }
-  @media only screen and (max-width: $max-screen__s) {
-    margin: 0;
-
+  @media only screen and (max-width: $max-screen__m) {
     .album-title-overlay {
       opacity: 1;
     }
+  }
+  @media only screen and (max-width: $max-screen__s) {
+    margin: 0;
   }
 }
 
@@ -384,6 +385,7 @@ body.lightbox {
   text-transform: uppercase;
   z-index: 100;
   color: white;
+  letter-spacing: 2px;
   cursor: crosshair;
   transition: opacity 0.25s;
 }
@@ -440,7 +442,7 @@ body.lightbox {
   }
 
   .album-individual__container {
-    height: calc(100vh - 68px);
+    height: calc(100vh - 2 * 68px);
     display: flex;
     justify-content: center;
   }
@@ -459,9 +461,13 @@ body.lightbox {
   @media only screen and (max-width: $max-screen__s) {
     margin: 0;
 
+    &.album-list {
+      margin: 0;
+    }
+
     .album-individual {
       &__container {
-        height: calc(100vh - 64px);
+        height: calc(100vh - 2 * 64px);
         display: flex;
         justify-content: center;
       }
@@ -519,7 +525,7 @@ body.lightbox {
   }
 
   &__subtitle {
-    font-size: 16px;
+    font-size: 14px;
     font-family: $main-font-family;
     position: relative;
     margin: 0 0 15px;
@@ -558,10 +564,10 @@ body.lightbox {
       }
     }
     @media only screen and (max-width: $max-screen__m) {
-      margin: 0;
+      margin: 20px 0 0;
 
       .code {
-        margin-bottom: 20px;
+        margin-bottom: 7px;
       }
     }
   }
