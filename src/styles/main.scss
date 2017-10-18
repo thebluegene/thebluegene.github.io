@@ -2,7 +2,7 @@ $default-bg-color: #ffffff;
 $text-color: #1c1c1c;
 $secondary-color: #1938a9;
 $border-width: 10px;
-$secondary-bg: #556067;
+$secondary-bg: #31313a;
 $photo-color: #C9DBBA;
 $code-color: #e29289;
 $blog-color: #F5CDA7;
@@ -248,7 +248,7 @@ body.lightbox {
   color: $text-color;
   text-align: left;
   text-transform: uppercase;
-  padding: 1px 0 5px;
+  padding: 3px 0;
 
   i {
     position: relative;
