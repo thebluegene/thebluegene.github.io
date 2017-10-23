@@ -1,15 +1,17 @@
 $default-bg-color: #ffffff;
+$secondary-bg: #31313a;
+$home-bg-color: #aad4e4;
 $text-color: #1c1c1c;
 $secondary-color: #1938a9;
-$border-width: 10px;
-$secondary-bg: #31313a;
+$border-width: 30px;
 $photo-color: #C9DBBA;
-$code-color: #e29289;
-$blog-color: #F5CDA7;
+$blog-color: #d6ffd3;
+$code-color: #fffcd1;
+$film-color: #f5b0b0;
 $color-white: #ffffff;
 $name-font-family: 'Lato', sans-serif;
 $main-font-family: 'Lato', Arial, sans-serif;
-$sans-serif: 'Montserrat', sans-serif;
+$serif-font-family: 'Times New Roman';
 $max-screen__m: 1024px;
 $max-screen__s: 640px;
 
@@ -41,8 +43,10 @@ h1 {
   font-family: $main-font-family;
   font-style: normal;
   font-size: 62px;
-  font-weight: 300;
+  font-weight: 600;
   text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 20px;
 }
 
 a {
@@ -83,8 +87,12 @@ img {
   }
 }
 
+.page {
+  overflow-y: scroll;
+}
+
 body.lightbox {
-  background-color: $secondary-bg;
+  background-color: $text-color;
 
   .lightswitch,
   .photo-count {
@@ -98,9 +106,9 @@ body.lightbox {
 
 .social-media {
   position: absolute;
-  right: 200px;
-  top: 40px;
-  color: white;
+  right: 60px;
+  bottom: 50px;
+  color: $text-color;
   z-index: 9;
 
   &__list {
@@ -112,67 +120,61 @@ body.lightbox {
     margin: 0 0 0 30px;
 
     a {
-      color: white;
+      color: $text-color;
     }
-  }
-  @media only screen and (max-width: $max-screen__m) {
-    right: 30px;
-    top: 0;
-  }
-  @media only screen and (max-width: $max-screen__s) {
-    top: 0;
-    right: 10px;
   }
 }
 
 .navbar {
-  background-color: $secondary-bg;
+  position: fixed;
 
   .top-nav {
     font-family: $main-font-family;
     position: relative;
-    margin: 10px auto;
+    margin: 30px 0 0 40px;
 
     &--name {
-      display: inline-block;
-      font-size: 32px;
-      margin: 0 40px 0 0;
+      display: block;
+      font-size: 52px;
+      margin: 0 40px 10px 0;
       text-transform: uppercase;
       letter-spacing: 3px;
 
       a {
-        color: white;
+        color: $text-color;
+        font-weight: bold;
       }
     }
 
     ul.top-nav-list {
       display: inline-block;
-      color: white;
-      margin: 0 0 0 10px;
+      color: $text-color;
+      margin: 0;
 
       li {
-        display: inline-block;
-        margin: 0 30px 0 0;
+        display: block;
+        margin: 0 0 15px;
         font-size: 24px;
+        text-transform: uppercase;
 
         &.active {
           .top-nav-item {
             &--code {
-              color: $code-color;
+              background-color: $code-color;
             }
 
             &--photo {
-              color: $photo-color;
+              background-color: $photo-color;
             }
 
             &--blog {
-              color: $blog-color;
+              background-color: $blog-color;
             }
           }
         }
 
         a {
-          color: white;
+          color: $text-color;
         }
       }
     }
@@ -187,7 +189,6 @@ body.lightbox {
       }
 
       ul.top-nav-list {
-        float: right;
         margin: 0;
 
         li {
@@ -199,140 +200,61 @@ body.lightbox {
   }
 }
 
-.home-hero {
-  height: 100vh;
-}
-
 .main-title {
-  height: 50vh;
-  text-align: left;
-  letter-spacing: 20px;
   width: 100%;
+  margin: 0 0 25px;
   position: relative;
-  background-color: $secondary-bg;
 
   h1 {
     position: relative;
-    color: white;
-    top: 25vh;
-    width: calc(70vw - 2 * .9375rem);
+    color: $text-color;
     margin: 0 auto;
     font-family: $name-font-family;
-  }
-  @media only screen and (max-width: $max-screen__m) {
-    h1 {
-      top: 17vh;
-      width: 100%;
-      padding-left: 30px;
-    }
-  }
-  @media only screen and (max-width: $max-screen__s) {
-    min-height: 100vh;
   }
 }
 
 .sub-title {
   text-align: left;
-  color: white;
+  color: $text-color;
+  font-family: "Times New Roman";
   display: block;
   font-size: 20px;
   text-transform: none;
   letter-spacing: 1px;
+  line-height: 35px;
   bottom: 120px;
   left: 200px;
-}
 
-.home-nav-link {
-  font-family: $main-font-family;
-  font-size: 24px;
-  color: $text-color;
-  text-align: left;
-  text-transform: uppercase;
-  padding: 3px 0;
-
-  i {
-    position: relative;
-    top: 8px;
-    right: 15px;
-    float: right;
+  a {
+    display: inline-block;
+    color: $text-color;
+    text-transform: uppercase;
+    padding: 0 10px;
+    margin: 8px 0;
+    letter-spacing: 2px;
   }
 
-  &.code-link {
-    background: $code-color;
-    color: white;
-    text-align: center;
-
-    i {
-      color: white;
-    }
+  .code-link {
+    background: #fff568;
   }
 
-  &.photo-link {
-    background: $photo-color;
-    color: white;
-    text-align: center;
-
-    i {
-      color: white;
-    }
+  .photo-link {
+    background: #68ff88;
   }
 
-  &.writing-link {
-    background: $blog-color;
-    color: white;
-    text-align: center;
-
-    i {
-      color: white;
-    }
+  .film-link {
+    background: #ff6d6d;
   }
-  @media only screen and (max-width: $max-screen__s) {
-    + div {
-      display: none;
-    }
-
-    &.code-link,
-    &.photo-link,
-    &.writing-link {
-      height: 33.333vh;
-      line-height: 33.333vh;
-      width: 100%;
-      font-weight: bold;
-      font-size: 40px;
-      letter-spacing: 4px;
-
-      i {
-        color: white;
-        top: -3px;
-        left: 15px;
-        vertical-align: middle;
-        float: none;
-        font-size: 25px;
-      }
-    }
-
-    &.code-link {
-      background: $code-color;
-    }
-
-    &.photo-link {
-      background: $photo-color;
-    }
-
-    &.writing-link {
-      background: $blog-color;
-    }
-  }
-}
-
-.home-develop-box {
-  background: #111111;
-  border: 1px solid black;
-  height: 370px;
-  width: 100%;
 }
 
 .home-content {
+  height: 100vh;
+  background: $home-bg-color;
+  border: $border-width solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .photo-container {
     margin: 20px 0 0;
   }
@@ -388,6 +310,19 @@ body.lightbox {
   transition: opacity 0.25s;
 }
 
+.photo__page {
+  height: 100vh;
+  margin: 0;
+
+  h1 {
+    padding: 90px 0 50px;
+
+    &.album-individual {
+      display: none;
+    }
+  }
+}
+
 .photo-container {
   margin: 80px 0 0;
   opacity: 1;
@@ -398,7 +333,7 @@ body.lightbox {
   }
 
   &.album-list {
-    margin: 100px 0;
+    margin: 0;
 
     .album-list__container {
       .image-container {
@@ -474,7 +409,15 @@ body.lightbox {
 }
 
 .blog {
-  position: relative;
+  &__page {
+    height: 100vh;
+    background: $blog-color;
+    border: $border-width solid $color-white;
+
+    h1 {
+      margin: 60px 0;
+    }
+  }
 
   &__container {
     margin: 20px 0 0;
@@ -507,22 +450,18 @@ body.lightbox {
 }
 
 .code {
-  margin: 25px 0;
-  display: inline-block;
-  width: 100%;
-
   &__date,
   &__subtitle,
   &__title {
     color: $text-color;
-    text-align: left;
+    text-align: center;
   }
 
   &__subtitle {
-    font-size: 16px;
-    font-family: $main-font-family;
+    font-size: 20px;
+    font-family: $serif-font-family;
     position: relative;
-    margin: 0 0 15px;
+    margin: 10px 0 15px;
   }
 
   &__date {
@@ -536,25 +475,21 @@ body.lightbox {
   }
 
   &__page {
-    margin: 50px 0 0;
+    background: $code-color;
+    height: 100vh;
+    border: $border-width solid white;
+
+    h1 {
+      margin: 60px 0;
+    }
 
     .code {
       margin: 0;
       position: relative;
+      text-align: center;
 
       a {
         padding: 10px 20px 20px 30px;
-
-        &:hover {
-          transition: all 1s;
-
-          .code__date,
-          .code__subtitle,
-          .code__title {
-            transition: all 700ms;
-            color: white;
-          }
-        }
       }
     }
     @media only screen and (max-width: $max-screen__m) {
@@ -563,6 +498,40 @@ body.lightbox {
       .code {
         margin-bottom: 20px;
       }
+    }
+  }
+}
+
+.video {
+  &__page {
+    background: $film-color;
+    height: 100vh;
+    border: $border-width solid white;
+
+    h1 {
+      margin: 60px 0 20px;
+    }
+  }
+
+  &__main-video {
+    margin: 0 0 70px;
+    background: black;
+
+    iframe {
+      width: 100%;
+      max-height: 60vh;
+    }
+  }
+
+  &__video-gallery {
+    margin: 0 0 70px;
+
+    .not-active {
+      display: none;
+    }
+
+    img {
+      margin: 0 0 20px;
     }
   }
 }

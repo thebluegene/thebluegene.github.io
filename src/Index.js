@@ -5,6 +5,7 @@ import App from './components/App';
 import Photo from './components/Photo';
 import Blog from './components/Blog';
 import Code from './components/Code';
+import Film from './components/Film';
 
 window.React = React;
 
@@ -16,6 +17,7 @@ render((
       <Route path="/photo/:album" component={ Photo }/>
       <Route path="/photo/:album/:item" component={ Photo }/>
       <Route path="/blog" component={ Blog }/>
+      <Route path="/film" component={ Film }/>
     </Route>
   </Router>
 ), document.getElementById('content'));

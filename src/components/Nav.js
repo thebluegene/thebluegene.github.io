@@ -6,19 +6,18 @@ class Nav extends React.Component {
   constructor() {
     super();
     this.state = {
-      active: null
+      activeNav: null,
+      activeLink: null
     }
   }
-
-  componentWillMount() {
-    console.log(this.props.page.slice(1));
-    const page = this.props.page.slice(1);
-    this.setState({active: page});
-  }
-
+  //
+  // componentWillMount() {
+  //   const page = this.props.page.slice(1);
+  //   this.setState({active: page});
+  // }
+  //
   navHandler(activePage) {
-    console.log(this.props.location);
-    this.setState({active: activePage})
+    // this.setState({active: activePage})
   }
 
   render() {
@@ -26,19 +25,22 @@ class Nav extends React.Component {
       <div className="navbar">
         <div className="row">
           <div className="columns">
-            <div className="top-nav">
+            <div className={this.state.activeNav + "top-nav"}>
               <span className="top-nav--name">
-                <Link to="/">Gene Ang</Link>
+                +
               </span>
               <ul className="top-nav-list">
-                <li className={this.state.active == 'code'
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li className={this.state.activeLink == 'code'
                   ? 'active'
                   : ''}>
                   <Link className="top-nav-item top-nav-item--code" to="/code" onClick={this.navHandler.bind(this, 'code')}>
                     Code
                   </Link>
                 </li>
-                <li className={this.state.active == 'photo'
+                <li className={this.state.activeLink == 'photo'
                   ? 'active'
                   : ''}>
                   <Link className="top-nav-item top-nav-item--photo" to={{
@@ -47,10 +49,17 @@ class Nav extends React.Component {
                       page: 'album-list'
                     }
                   }} onClick={this.navHandler.bind(this, 'photo')}>
-                    Visual
+                    Photo
                   </Link>
                 </li>
-                <li className={this.state.active == 'blog'
+                <li className={this.state.activeLink == 'film'
+                  ? 'active'
+                  : ''}>
+                  <Link className="top-nav-item top-nav-item--film" to="/film" onClick={this.navHandler.bind(this, 'film')}>
+                    Film
+                  </Link>
+                </li>
+                <li className={this.state.activeLink == 'blog'
                   ? 'active'
                   : ''}>
                   <Link className="top-nav-item top-nav-item--blog" to="/blog" onClick={this.navHandler.bind(this, 'blog')}>

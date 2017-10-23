@@ -188,7 +188,8 @@ class Photo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page photo__page">
+        <h1 className={this.state.page}>Photo</h1>
         <div className={"placeholder " + this.state.loading}>
           <Placeholder/>
         </div>
@@ -203,8 +204,7 @@ class Photo extends React.Component {
                       : '')} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
                       <div className={"image-container"}>
                         <div className="album-title-overlay">
-                          {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")
-}
+                          {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
                         </div>
                         {this.state.page !== "album-individual" && <Link className="image-link" to={{
                           pathname: "/photo/" + i,

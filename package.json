@@ -47,6 +47,7 @@
     "react-router": "^2.0.0"
   },
   "devDependencies": {
+    "@vimeo/player": "^2.2.0",
     "autoprefixer": "^6.0.0",
     "ava": "^0.14.0",
     "babel": "^6.3.13",

@@ -48735,6 +48735,10 @@ var _Code = require('./components/Code');
 
 var _Code2 = _interopRequireDefault(_Code);
 
+var _Film = require('./components/Film');
+
+var _Film2 = _interopRequireDefault(_Film);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.React = _react2.default;
@@ -48749,11 +48753,12 @@ window.React = _react2.default;
     _react2.default.createElement(_reactRouter.Route, { path: '/photo', component: _Photo2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '/photo/:album', component: _Photo2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '/photo/:album/:item', component: _Photo2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/blog', component: _Blog2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: '/blog', component: _Blog2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/film', component: _Film2.default })
   )
 ), document.getElementById('content'));
 
-},{"./components/App":259,"./components/Blog":260,"./components/Code":261,"./components/Photo":263,"react":256,"react-dom":39,"react-router":201}],259:[function(require,module,exports){
+},{"./components/App":259,"./components/Blog":260,"./components/Code":261,"./components/Film":262,"./components/Photo":264,"react":256,"react-dom":39,"react-router":201}],259:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48785,6 +48790,10 @@ var _Blog2 = _interopRequireDefault(_Blog);
 var _Code = require('./Code');
 
 var _Code2 = _interopRequireDefault(_Code);
+
+var _Social = require('./Social');
+
+var _Social2 = _interopRequireDefault(_Social);
 
 var _reactRouter = require('react-router');
 
@@ -48832,29 +48841,6 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var pathname = this.props.location.pathname.replace('/', '');
-      if (pathname) {
-        for (var i = 0; i < this.state.categories.length; i++) {
-          if (this.state.categories[i].class.includes(pathname)) {
-            this.setState({
-              categories: this.state.categories,
-              background: this.state.categories[i].class
-            }, function () {
-              (0, _jquery2.default)('body').removeClass(this.state.background).addClass(this.state.background);
-            });
-          }
-        }
-      } else {
-        this.setState({
-          background: 'default-bg'
-        }, function () {
-          (0, _jquery2.default)('body').addClass(this.state.background);
-        });
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       if (!this.props.children) {
@@ -48873,77 +48859,45 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'row expanded' },
+                  _react2.default.createElement(_Social2.default, null),
                   _react2.default.createElement(
                     'div',
-                    { className: 'social-media' },
+                    { className: 'home-content__main' },
                     _react2.default.createElement(
-                      'ul',
-                      { className: 'social-media__list' },
+                      'div',
+                      { className: 'main-title' },
                       _react2.default.createElement(
-                        'li',
-                        { className: 'social-media__list-item' },
-                        _react2.default.createElement(
-                          'a',
-                          { href: 'https://www.flickr.com/people/thebluegene/' },
-                          _react2.default.createElement('i', { className: 'fa fa-flickr', 'aria-hidden': 'true' })
-                        )
+                        'h1',
+                        null,
+                        'Gene Ang'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'sub-title' },
+                      'I\'m a ',
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { className: 'code-link', to: '/code' },
+                        'Web Developer'
                       ),
+                      ' in San Francisco ',
+                      _react2.default.createElement('br', null),
+                      'Who takes a lot of ',
                       _react2.default.createElement(
-                        'li',
-                        { className: 'social-media__list-item' },
-                        _react2.default.createElement(
-                          'a',
-                          { href: 'https://vimeo.com/thebluegene' },
-                          _react2.default.createElement('i', { className: 'fa fa-vimeo', 'aria-hidden': 'true' })
-                        )
+                        _reactRouter.Link,
+                        { className: 'photo-link', to: '/photo' },
+                        'Photos'
                       ),
+                      ' , ',
+                      _react2.default.createElement('br', null),
+                      'and sometimes makes ',
                       _react2.default.createElement(
-                        'li',
-                        { className: 'social-media__list-item' },
-                        _react2.default.createElement(
-                          'a',
-                          { href: 'https://www.linkedin.com/in/geneang/' },
-                          _react2.default.createElement('i', { className: 'fa fa-linkedin-square', 'aria-hidden': 'true' })
-                        )
+                        _reactRouter.Link,
+                        { className: 'film-link', to: '/film' },
+                        'Movies'
                       )
                     )
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'main-title' },
-                    _react2.default.createElement(
-                      'h1',
-                      null,
-                      'Gene Ang',
-                      _react2.default.createElement(
-                        'span',
-                        { className: 'sub-title' },
-                        'Developer / Photographer / Filmmaker '
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'home-content__sections' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'row small-collapse medium-uncollapse expanded-constraint' },
-                    this.state.categories.map(function (data, i) {
-                      return _react2.default.createElement(
-                        'div',
-                        { key: i, className: 'small-12 medium-4 columns text-center' },
-                        _react2.default.createElement(
-                          _reactRouter.Link,
-                          { key: i, to: data.link, className: data.class + ' home-nav-link' },
-                          data.name,
-                          _react2.default.createElement('i', { className: 'fa fa-angle-right' })
-                        ),
-                        data.link === "/blog" && _react2.default.createElement(_Blog2.default, { page: 'home' }),
-                        data.link === "/photo" && _react2.default.createElement(_Photo2.default, { layout: 'small-up-1', page: 'home' }),
-                        data.link === "/code" && _react2.default.createElement(_Code2.default, { page: 'home' })
-                      );
-                    })
                   )
                 )
               )
@@ -48955,7 +48909,8 @@ var App = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(_Nav2.default, { page: this.props.location.pathname }),
-          this.props.children
+          this.props.children,
+          _react2.default.createElement(_Social2.default, null)
         );
       }
     }
@@ -48968,7 +48923,7 @@ App.propTypes = { children: _react2.default.PropTypes.object };
 
 exports.default = App;
 
-},{"./Blog":260,"./Code":261,"./Nav":262,"./Photo":263,"classnames":1,"jquery":30,"react":256,"react-router":201}],260:[function(require,module,exports){
+},{"./Blog":260,"./Code":261,"./Nav":263,"./Photo":264,"./Social":266,"classnames":1,"jquery":30,"react":256,"react-router":201}],260:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49040,7 +48995,12 @@ var Blog = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'blog' },
+        { className: 'page blog__page' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Blog'
+        ),
         _react2.default.createElement(
           'div',
           { className: "placeholder " + this.state.loading },
@@ -49084,7 +49044,7 @@ var Blog = function (_React$Component) {
 
 exports.default = Blog;
 
-},{"./Placeholder":264,"contentful":2,"react":256,"react-router":201}],261:[function(require,module,exports){
+},{"./Placeholder":265,"contentful":2,"react":256,"react-router":201}],261:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49116,10 +49076,6 @@ var Code = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Code.__proto__ || Object.getPrototypeOf(Code)).call(this, props));
 
     _this.state = {
-      // projectArray: [
-      //   { 'title' : '7 Years of Photography' , 'styles' : {fontFamily:'Marcellus SC', fontSize:'28px'} },
-      //   { 'title' : 'This Website' , 'styles' : {fontFamily:'Fredericka the Great', fontSize:'28px'} }
-      // ]
       idClass: props.page ? '' : 'code__page',
       layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
       projectArray: [{
@@ -49127,13 +49083,9 @@ var Code = function (_React$Component) {
         'date': 'May 2017',
         'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online',
         'color': '#004777',
-        'buttonStyle': {
-          transition: '1s all',
-          borderBottom: '1px solid #004777'
-        },
         'styles': {
           fontFamily: 'Fredericka the Great',
-          fontSize: '40px'
+          fontSize: '45px'
         },
         'link': '/flickr-data-proj'
       }, {
@@ -49141,13 +49093,9 @@ var Code = function (_React$Component) {
         'date': 'September 2017',
         'subtitle': 'React photo gallery using Flickr\'s API',
         'color': '#FF7700',
-        'buttonStyle': {
-          transition: '1s all',
-          borderBottom: '1px solid #FF7700'
-        },
         'styles': {
           fontFamily: 'Suranna',
-          fontSize: '40px'
+          fontSize: '45px'
         },
         'link': '#/photo'
       }, {
@@ -49155,13 +49103,9 @@ var Code = function (_React$Component) {
         'subtitle': '(Coming soon)',
         'date': 'January 2016',
         'color': '#A30000',
-        'buttonStyle': {
-          transition: '1s all',
-          borderBottom: '1px solid #A30000'
-        },
         'styles': {
           fontFamily: 'Arial',
-          fontSize: '40px'
+          fontSize: '45px'
         },
         'link': '#'
       }]
@@ -49170,36 +49114,16 @@ var Code = function (_React$Component) {
   }
 
   _createClass(Code, [{
-    key: 'changeBg',
-    value: function changeBg(i) {
-      this.state.projectArray[i].buttonStyle = {
-        borderBottom: '1px solid ' + this.state.projectArray[i].color,
-        backgroundColor: this.state.projectArray[i].color,
-        transition: '1s all'
-      };
-      this.setState({
-        projectArray: this.state.projectArray
-      });
-    }
-  }, {
-    key: 'revertBg',
-    value: function revertBg(i) {
-      this.state.projectArray[i].buttonStyle = {
-        borderBottom: '1px solid ' + this.state.projectArray[i].color,
-        transition: '1s all'
-      };
-      this.setState({
-        projectArray: this.state.projectArray
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'div',
         { className: this.state.idClass },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'DEVELOP'
+        ),
         _react2.default.createElement(
           'div',
           { className: 'row' },
@@ -49209,7 +49133,7 @@ var Code = function (_React$Component) {
             this.state.projectArray.map(function (data, i) {
               return _react2.default.createElement(
                 'div',
-                { key: i, className: 'code', style: _this2.state.idClass ? data.buttonStyle : {}, onMouseLeave: _this2.revertBg.bind(_this2, i), onMouseEnter: _this2.changeBg.bind(_this2, i) },
+                { key: i, className: 'code' },
                 _react2.default.createElement(
                   'a',
                   { href: data.link },
@@ -49255,6 +49179,166 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Nav = require('./Nav');
+
+var _Nav2 = _interopRequireDefault(_Nav);
+
+var _Placeholder = require('./Placeholder');
+
+var _Placeholder2 = _interopRequireDefault(_Placeholder);
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Film = function (_React$Component) {
+  _inherits(Film, _React$Component);
+
+  function Film() {
+    _classCallCheck(this, Film);
+
+    var _this = _possibleConstructorReturn(this, (Film.__proto__ || Object.getPrototypeOf(Film)).call(this));
+
+    _this.handleImageLoad = function (e, i) {
+      var target = e.target;
+      setTimeout(function () {
+        target.setAttribute("class", "show");
+      }, 400);
+    };
+
+    _this.state = {
+      mainVideo: '',
+      chosenVideos: [],
+      activeIndex: 0,
+      loading: 'loading'
+    };
+    return _this;
+  }
+
+  _createClass(Film, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var react = this;
+      var publicVimeoToken = '164d0f03a106e2cdee40a96e0cae6497';
+      var chosenVideoArr = [];
+      var mainVideo = void 0;
+      _jquery2.default.ajax().then(function () {
+        return _jquery2.default.ajax({
+          method: 'GET',
+          url: 'https://api.vimeo.com/users/thebluegene/videos',
+          headers: {
+            'Authorization': 'Bearer ' + publicVimeoToken
+          },
+          success: function success(result) {
+            mainVideo = result.data[4].embed.html;
+            chosenVideoArr = [result.data[4], result.data[1], result.data[2]];
+          }
+        });
+      }).then(function () {
+        return _jquery2.default.ajax({
+          method: 'GET',
+          url: 'https://api.vimeo.com/users/thebluegene/appearances',
+          headers: {
+            'Authorization': 'Bearer ' + publicVimeoToken
+          },
+          success: function success(result) {
+            chosenVideoArr.push(result.data[0]);
+            react.setState({
+              mainVideo: mainVideo,
+              chosenVideos: chosenVideoArr,
+              loading: ''
+            });
+            console.log(react.state);
+          }
+        });
+      });
+    }
+  }, {
+    key: 'handleVideoClick',
+    value: function handleVideoClick(index, data) {
+      this.setState({
+        mainVideo: data.embed.html,
+        activeIndex: index
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'page video__page' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'FILM'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'small-10 small-offset-1 columns' },
+            _react2.default.createElement(
+              'div',
+              { className: "placeholder " + this.state.loading },
+              _react2.default.createElement(_Placeholder2.default, null)
+            ),
+            _react2.default.createElement('div', { className: 'video__main-video', dangerouslySetInnerHTML: { __html: this.state.mainVideo } }),
+            _react2.default.createElement(
+              'div',
+              { className: 'video__video-gallery' },
+              _react2.default.createElement(
+                'div',
+                { className: 'row small-up-3' },
+                this.state.chosenVideos.map(function (data, i) {
+                  return _react2.default.createElement(
+                    'div',
+                    { className: i == _this2.state.activeIndex ? "not-active columns" : "columns" },
+                    _react2.default.createElement(
+                      'div',
+                      { key: i },
+                      _react2.default.createElement('img', { onLoad: function onLoad(e) {
+                          return _this2.handleImageLoad(e, i);
+                        }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) })
+                    )
+                  );
+                })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Film;
+}(_react2.default.Component);
+
+exports.default = Film;
+
+},{"./Nav":263,"./Placeholder":265,"jquery":30,"react":256}],263:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
 var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -49274,23 +49358,23 @@ var Nav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this));
 
     _this.state = {
-      active: null
+      activeNav: null,
+      activeLink: null
     };
     return _this;
   }
+  //
+  // componentWillMount() {
+  //   const page = this.props.page.slice(1);
+  //   this.setState({active: page});
+  // }
+  //
+
 
   _createClass(Nav, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      console.log(this.props.page.slice(1));
-      var page = this.props.page.slice(1);
-      this.setState({ active: page });
-    }
-  }, {
     key: 'navHandler',
     value: function navHandler(activePage) {
-      console.log(this.props.location);
-      this.setState({ active: activePage });
+      // this.setState({active: activePage})
     }
   }, {
     key: 'render',
@@ -49306,22 +49390,27 @@ var Nav = function (_React$Component) {
             { className: 'columns' },
             _react2.default.createElement(
               'div',
-              { className: 'top-nav' },
+              { className: this.state.activeNav + "top-nav" },
               _react2.default.createElement(
                 'span',
                 { className: 'top-nav--name' },
-                _react2.default.createElement(
-                  _reactRouter.Link,
-                  { to: '/' },
-                  'Gene Ang'
-                )
+                '+'
               ),
               _react2.default.createElement(
                 'ul',
                 { className: 'top-nav-list' },
                 _react2.default.createElement(
                   'li',
-                  { className: this.state.active == 'code' ? 'active' : '' },
+                  null,
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: '/' },
+                    'Home'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: this.state.activeLink == 'code' ? 'active' : '' },
                   _react2.default.createElement(
                     _reactRouter.Link,
                     { className: 'top-nav-item top-nav-item--code', to: '/code', onClick: this.navHandler.bind(this, 'code') },
@@ -49330,7 +49419,7 @@ var Nav = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'li',
-                  { className: this.state.active == 'photo' ? 'active' : '' },
+                  { className: this.state.activeLink == 'photo' ? 'active' : '' },
                   _react2.default.createElement(
                     _reactRouter.Link,
                     { className: 'top-nav-item top-nav-item--photo', to: {
@@ -49339,12 +49428,21 @@ var Nav = function (_React$Component) {
                           page: 'album-list'
                         }
                       }, onClick: this.navHandler.bind(this, 'photo') },
-                    'Visual'
+                    'Photo'
                   )
                 ),
                 _react2.default.createElement(
                   'li',
-                  { className: this.state.active == 'blog' ? 'active' : '' },
+                  { className: this.state.activeLink == 'film' ? 'active' : '' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { className: 'top-nav-item top-nav-item--film', to: '/film', onClick: this.navHandler.bind(this, 'film') },
+                    'Film'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: this.state.activeLink == 'blog' ? 'active' : '' },
                   _react2.default.createElement(
                     _reactRouter.Link,
                     { className: 'top-nav-item top-nav-item--blog', to: '/blog', onClick: this.navHandler.bind(this, 'blog') },
@@ -49364,7 +49462,7 @@ var Nav = function (_React$Component) {
 
 exports.default = Nav;
 
-},{"react":256,"react-router":201}],263:[function(require,module,exports){
+},{"react":256,"react-router":201}],264:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49620,7 +49718,12 @@ var Photo = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'page photo__page' },
+        _react2.default.createElement(
+          'h1',
+          { className: this.state.page },
+          'Photo'
+        ),
         _react2.default.createElement(
           'div',
           { className: "placeholder " + this.state.loading },
@@ -49700,7 +49803,7 @@ var Photo = function (_React$Component) {
 
 exports.default = Photo;
 
-},{"./Placeholder":264,"jquery":30,"react":256,"react-lazyload":167,"react-router":201}],264:[function(require,module,exports){
+},{"./Placeholder":265,"jquery":30,"react":256,"react-lazyload":167,"react-router":201}],265:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49718,6 +49821,68 @@ var About = function About() {
 };
 
 exports.default = About;
+
+},{"react":256}],266:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Social = function Social() {
+  return _react2.default.createElement(
+    "div",
+    { className: "social-media" },
+    _react2.default.createElement(
+      "ul",
+      { className: "social-media__list" },
+      _react2.default.createElement(
+        "li",
+        { className: "social-media__list-item" },
+        _react2.default.createElement(
+          "a",
+          { href: "https://www.flickr.com/people/thebluegene/" },
+          _react2.default.createElement("i", { className: "fa fa-lg fa-flickr", "aria-hidden": "true" })
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "social-media__list-item" },
+        _react2.default.createElement(
+          "a",
+          { href: "https://vimeo.com/thebluegene" },
+          _react2.default.createElement("i", { className: "fa fa-lg fa-vimeo", "aria-hidden": "true" })
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "social-media__list-item" },
+        _react2.default.createElement(
+          "a",
+          { href: "https://www.linkedin.com/in/geneang/" },
+          _react2.default.createElement("i", { className: "fa fa-lg fa-linkedin-square", "aria-hidden": "true" })
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "social-media__list-item" },
+        _react2.default.createElement(
+          "a",
+          { href: "https://www.github.com/thebluegene/" },
+          _react2.default.createElement("i", { className: "fa fa-lg fa-github-alt", "aria-hidden": "true" })
+        )
+      )
+    )
+  );
+};
+
+exports.default = Social;
 
 },{"react":256}]},{},[258])
 
