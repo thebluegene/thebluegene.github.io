@@ -195,7 +195,7 @@ class Photo extends React.Component {
         </div>
         <div className={"photo-container " + this.state.page}>
           <div className="row">
-            <div className="small-12 column">
+            <div className="medium-10 medium-offset-1 column">
               <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container small-collapse medium-uncollapse"}>
                 {this.state.photoArray.map((data, i) => {
                   return (
@@ -225,7 +225,7 @@ class Photo extends React.Component {
                           <img onLoad={(e) => this.handleImageLoad(e, i)} src={data.url}></img>
                           <div className="photo-count">{(i + 1) + ' / ' + this.state.photoArray.length}</div>
                         </Link>
-}
+                      }
                       </div>
                     </div>
                   );
@@ -236,7 +236,14 @@ class Photo extends React.Component {
                   ? 'lights on'
                   : 'lights off'}
               </span>
-}
+              }
+              {this.state.page == 'album-individual' && <span className="back-link"><Link to={{
+                pathname: "/photo",
+                state: {
+                  page: 'album-list'
+                }
+              }}>Back</Link></span>
+              }
             </div>
           </div>
         </div>

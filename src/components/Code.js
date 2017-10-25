@@ -45,7 +45,7 @@ class Code extends React.Component {
 
   render() {
     return (
-      <div className={this.state.idClass}>
+      <div className={this.state.idClass + " page"}>
         <h1>DEVELOP</h1>
         <div className="row">
           <div className={this.state.layoutClass + " columns"}>

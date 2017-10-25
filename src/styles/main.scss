@@ -71,6 +71,19 @@ img {
   }
 }
 
+.back-link {
+  right: 15vh;
+  top: 10vh;
+  position: fixed;
+  @media only screen and (max-width: $max-screen__m) {
+    right: 40px;
+    top: 70px;
+  }
+  @media only screen and (max-width: $max-screen__s) {
+    top: 20px;
+  }
+}
+
 .lightswitch {
   cursor: pointer;
   float: right;
@@ -79,7 +92,7 @@ img {
   right: 15vh;
   bottom: 10vh;
   @media only screen and (max-width: $max-screen__m) {
-    right: 20px;
+    right: 40px;
     bottom: 20px;
   }
   @media only screen and (max-width: $max-screen__s) {
@@ -89,6 +102,13 @@ img {
 
 .page {
   overflow-y: scroll;
+  @media only screen and (max-width: $max-screen__m) {
+    border-width: 15px !important;
+
+    h1 {
+      font-size: 32px;
+    }
+  }
 }
 
 body.lightbox {
@@ -123,6 +143,11 @@ body.lightbox {
       color: $text-color;
     }
   }
+  @media only screen and (max-width: $max-screen__s) {
+    top: 10px;
+    right: 18px;
+    bottom: inherit;
+  }
 }
 
 .navbar {
@@ -133,12 +158,33 @@ body.lightbox {
     position: relative;
     margin: 30px 0 0 40px;
 
+    &.closed {
+      ul.top-nav-list {
+        opacity: 0;
+        display: none;
+      }
+
+      .top-nav--name {
+        transform: rotate(0);
+        transition: 1s all;
+      }
+
+      .social-media {
+        display: none;
+      }
+    }
+
     &--name {
+      position: absolute;
       display: block;
       font-size: 52px;
       margin: 0 40px 10px 0;
       text-transform: uppercase;
       letter-spacing: 3px;
+      transform: rotate(225deg);
+      transition: 1s all;
+      z-index: 999;
+      cursor: pointer;
 
       a {
         color: $text-color;
@@ -149,12 +195,14 @@ body.lightbox {
     ul.top-nav-list {
       display: inline-block;
       color: $text-color;
-      margin: 0;
+      margin: 65px 0 0;
+      opacity: 1;
+      transition: 1s opacity;
 
       li {
         display: block;
         margin: 0 0 15px;
-        font-size: 24px;
+        font-size: 20px;
         text-transform: uppercase;
 
         &.active {
@@ -180,20 +228,29 @@ body.lightbox {
     }
   }
   @media only screen and (max-width: $max-screen__s) {
+    z-index: 999;
+
     .top-nav {
-      margin: 20px 5px;
       width: 100vw;
+      margin: 0;
+      text-align: center;
 
       &--name {
-        font-size: 16px;
+        left: 25px;
+        text-align: left;
+      }
+
+      &.open {
+        height: 100vh;
+        background: $color-white;
       }
 
       ul.top-nav-list {
-        margin: 0;
+        margin: 120px 0 0;
 
         li {
-          font-size: 16px;
-          margin: 0 21px 0 0;
+          font-size: 24px;
+          margin: 0 0 20px;
         }
       }
     }
@@ -244,6 +301,11 @@ body.lightbox {
 
   .film-link {
     background: #ff6d6d;
+  }
+  @media only screen and (max-width: $max-screen__s) {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 0 10px;
   }
 }
 
@@ -306,6 +368,7 @@ body.lightbox {
   text-transform: uppercase;
   z-index: 100;
   color: white;
+  letter-spacing: 2px;
   cursor: crosshair;
   transition: opacity 0.25s;
 }
@@ -375,7 +438,7 @@ body.lightbox {
   }
 
   .album-individual__container {
-    height: calc(100vh - 68px);
+    height: 100vh;
     display: flex;
     justify-content: center;
   }

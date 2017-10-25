@@ -1,4 +1,5 @@
 import React from 'react';
+import Social from './Social';
 import {Link} from 'react-router';
 
 class Nav extends React.Component {
@@ -6,7 +7,7 @@ class Nav extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeNav: null,
+      openNav: 'closed',
       activeLink: null
     }
   }
@@ -18,15 +19,27 @@ class Nav extends React.Component {
   //
   navHandler(activePage) {
     // this.setState({active: activePage})
+      this.setState({
+        openNav: 'closed'
+      });
+  }
+
+  handleNavClick() {
+    this.setState({
+      openNav: this.state.openNav == 'open' ? 'closed' : 'open'
+    });
   }
 
   render() {
     return (
       <div className="navbar">
-        <div className="row">
+        <div className="row small-collapse medium-uncollapse">
           <div className="columns">
-            <div className={this.state.activeNav + "top-nav"}>
-              <span className="top-nav--name">
+            <div className={this.state.openNav + " top-nav"}>
+              <div className="show-for-small-only">
+                <Social />
+              </div>
+              <span className="top-nav--name" onClick={this.handleNavClick.bind(this)}>
                 +
               </span>
               <ul className="top-nav-list">

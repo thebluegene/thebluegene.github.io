@@ -44,7 +44,8 @@
     "react-dom": "^15.0.0",
     "react-lazyload": "^2.2.7",
     "react-progressive-image": "^0.1.2",
-    "react-router": "^2.0.0"
+    "react-router": "^2.0.0",
+    "react-transition-group": "^2.2.1"
   },
   "devDependencies": {
     "@vimeo/player": "^2.2.0",
