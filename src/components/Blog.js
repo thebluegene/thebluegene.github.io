@@ -35,7 +35,8 @@ class Blog extends React.Component {
 
   render() {
     return (
-      <div className="blog">
+      <div className="page blog__page">
+        <h1>Blog</h1>
         <div className={"placeholder " + this.state.loading}>
           <Placeholder />
         </div>

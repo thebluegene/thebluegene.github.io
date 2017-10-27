@@ -188,23 +188,23 @@ class Photo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page photo__page">
+        <h1 className={this.state.page}>Photo</h1>
         <div className={"placeholder " + this.state.loading}>
           <Placeholder/>
         </div>
         <div className={"photo-container " + this.state.page}>
-          <div className="row">
-            <div className="small-12 column">
+          <div className="row align-center">
+            <div className="medium-11 column">
               <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container small-collapse medium-uncollapse"}>
                 {this.state.photoArray.map((data, i) => {
                   return (
                     <div key={i} className={"column align-middle " + (this.state.activePhoto != i
                       ? 'photo-hide'
-                      : '')} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
-                      <div className={"image-container"}>
+                      : '')} >
+                      <div className={"image-container"} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
                         <div className="album-title-overlay">
-                          {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")
-}
+                          {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
                         </div>
                         {this.state.page !== "album-individual" && <Link className="image-link" to={{
                           pathname: "/photo/" + i,
@@ -225,7 +225,7 @@ class Photo extends React.Component {
                           <img onLoad={(e) => this.handleImageLoad(e, i)} src={data.url}></img>
                           <div className="photo-count">{(i + 1) + ' / ' + this.state.photoArray.length}</div>
                         </Link>
-}
+                      }
                       </div>
                     </div>
                   );
@@ -236,7 +236,14 @@ class Photo extends React.Component {
                   ? 'lights on'
                   : 'lights off'}
               </span>
-}
+              }
+              {this.state.page == 'album-individual' && <span className="back-link"><Link to={{
+                pathname: "/photo",
+                state: {
+                  page: 'album-list'
+                }
+              }}>back</Link></span>
+              }
             </div>
           </div>
         </div>
