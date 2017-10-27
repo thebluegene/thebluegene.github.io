@@ -50286,23 +50286,29 @@ var App = function (_React$Component) {
                         { onClick: _this2.handleClick.bind(_this2), className: 'code-link', to: '/code' },
                         'Web Developer'
                       ),
-                      ' in San Francisco ',
+                      ' in San Francisco, ',
                       _react2.default.createElement('br', null),
-                      'Who takes a lot of ',
+                      'who takes a lot of ',
                       _react2.default.createElement(
                         _reactRouter.Link,
                         { onClick: _this2.handleClick.bind(_this2), className: 'photo-link', to: '/photo' },
                         'Photos'
                       ),
-                      ' ',
-                      _react2.default.createElement('br', null),
-                      'and makes a ',
+                      ' and makes ',
                       _react2.default.createElement(
                         _reactRouter.Link,
                         { onClick: _this2.handleClick.bind(_this2), className: 'film-link', to: '/film' },
-                        'Video'
+                        'Videos'
                       ),
-                      ' here and there.'
+                      ' here and there. ',
+                      _react2.default.createElement('br', null),
+                      'I\'ll update my ',
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { onClick: _this2.handleClick.bind(_this2), className: 'blog-link', to: '/blog' },
+                        'blog'
+                      ),
+                      ' occasionally.'
                     )
                   )
                 )
@@ -50647,19 +50653,19 @@ var Film = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var react = this;
-      var publicVimeoToken = '164d0f03a106e2cdee40a96e0cae6497';
+      var publicVimeoToken = '2cdf01eba4de6c5d983064404b2ca260';
       var chosenVideoArr = [];
       var mainVideo = void 0;
       _jquery2.default.ajax().then(function () {
         return _jquery2.default.ajax({
           method: 'GET',
-          url: 'https://api.vimeo.com/users/thebluegene/videos',
+          url: 'https://api.vimeo.com/users/thebluegene/videos?direction=desc',
           headers: {
             'Authorization': 'Bearer ' + publicVimeoToken
           },
           success: function success(result) {
-            mainVideo = result.data[4].embed.html;
-            chosenVideoArr = [result.data[4], result.data[1], result.data[2]];
+            mainVideo = result.data[3].embed.html;
+            chosenVideoArr = [result.data[3], result.data[1], result.data[0]];
           }
         });
       }).then(function () {
@@ -50676,7 +50682,6 @@ var Film = function (_React$Component) {
               chosenVideos: chosenVideoArr,
               loading: ''
             });
-            console.log(react.state);
           }
         });
       });
@@ -50707,7 +50712,7 @@ var Film = function (_React$Component) {
           { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'small-10 small-offset-1 columns' },
+            { className: 'medium-10 medium-offset-1 columns' },
             _react2.default.createElement(
               'div',
               { className: "placeholder " + this.state.loading },
@@ -50723,10 +50728,10 @@ var Film = function (_React$Component) {
                 this.state.chosenVideos.map(function (data, i) {
                   return _react2.default.createElement(
                     'div',
-                    { className: i == _this2.state.activeIndex ? "not-active columns" : "columns" },
+                    { key: i, className: i == _this2.state.activeIndex ? "not-active columns" : "columns" },
                     _react2.default.createElement(
                       'div',
-                      { key: i },
+                      null,
                       _react2.default.createElement('img', { onLoad: function onLoad(e) {
                           return _this2.handleImageLoad(e, i);
                         }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) })
@@ -50787,18 +50792,10 @@ var Nav = function (_React$Component) {
     };
     return _this;
   }
-  //
-  // componentWillMount() {
-  //   const page = this.props.page.slice(1);
-  //   this.setState({active: page});
-  // }
-  //
-
 
   _createClass(Nav, [{
     key: 'navHandler',
     value: function navHandler(activePage) {
-      // this.setState({active: activePage})
       this.setState({
         openNav: 'closed'
       });
@@ -50836,56 +50833,60 @@ var Nav = function (_React$Component) {
                 '+'
               ),
               _react2.default.createElement(
-                'ul',
-                { className: 'top-nav-list' },
+                'div',
+                { className: 'top-nav--container' },
                 _react2.default.createElement(
-                  'li',
-                  null,
+                  'ul',
+                  { className: 'top-nav-list' },
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { to: '/' },
-                    'Home'
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: this.state.activeLink == 'code' ? 'active' : '' },
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                      _reactRouter.Link,
+                      { to: '/' },
+                      'Home'
+                    )
+                  ),
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'top-nav-item top-nav-item--code', to: '/code', onClick: this.navHandler.bind(this, 'code') },
-                    'Code'
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: this.state.activeLink == 'photo' ? 'active' : '' },
+                    'li',
+                    { className: this.state.activeLink == 'code' ? 'active' : '' },
+                    _react2.default.createElement(
+                      _reactRouter.Link,
+                      { className: 'top-nav-item top-nav-item--code', to: '/code', onClick: this.navHandler.bind(this, 'code') },
+                      'Code'
+                    )
+                  ),
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'top-nav-item top-nav-item--photo', to: {
-                        pathname: "/photo",
-                        state: {
-                          page: 'album-list'
-                        }
-                      }, onClick: this.navHandler.bind(this, 'photo') },
-                    'Photo'
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: this.state.activeLink == 'film' ? 'active' : '' },
+                    'li',
+                    { className: this.state.activeLink == 'photo' ? 'active' : '' },
+                    _react2.default.createElement(
+                      _reactRouter.Link,
+                      { className: 'top-nav-item top-nav-item--photo', to: {
+                          pathname: "/photo",
+                          state: {
+                            page: 'album-list'
+                          }
+                        }, onClick: this.navHandler.bind(this, 'photo') },
+                      'Photo'
+                    )
+                  ),
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'top-nav-item top-nav-item--film', to: '/film', onClick: this.navHandler.bind(this, 'film') },
-                    'Film'
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: this.state.activeLink == 'blog' ? 'active' : '' },
+                    'li',
+                    { className: this.state.activeLink == 'film' ? 'active' : '' },
+                    _react2.default.createElement(
+                      _reactRouter.Link,
+                      { className: 'top-nav-item top-nav-item--film', to: '/film', onClick: this.navHandler.bind(this, 'film') },
+                      'Film'
+                    )
+                  ),
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'top-nav-item top-nav-item--blog', to: '/blog', onClick: this.navHandler.bind(this, 'blog') },
-                    'Blog'
+                    'li',
+                    { className: this.state.activeLink == 'blog' ? 'active' : '' },
+                    _react2.default.createElement(
+                      _reactRouter.Link,
+                      { className: 'top-nav-item top-nav-item--blog', to: '/blog', onClick: this.navHandler.bind(this, 'blog') },
+                      'Blog'
+                    )
                   )
                 )
               )
@@ -51173,20 +51174,20 @@ var Photo = function (_React$Component) {
           { className: "photo-container " + this.state.page },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
+            { className: 'row align-center' },
             _react2.default.createElement(
               'div',
-              { className: 'medium-10 medium-offset-1 column' },
+              { className: 'medium-11 column' },
               _react2.default.createElement(
                 'div',
                 { className: "row " + this.state.layoutClass + " " + this.state.page + "__container small-collapse medium-uncollapse" },
                 this.state.photoArray.map(function (data, i) {
                   return _react2.default.createElement(
                     'div',
-                    { key: i, className: "column align-middle " + (_this4.state.activePhoto != i ? 'photo-hide' : ''), onClick: _this4.handlePhotoClick.bind(_this4, i, _this4.state.photoArray, _this4.state.page) },
+                    { key: i, className: "column align-middle " + (_this4.state.activePhoto != i ? 'photo-hide' : '') },
                     _react2.default.createElement(
                       'div',
-                      { className: "image-container" },
+                      { className: "image-container", onClick: _this4.handlePhotoClick.bind(_this4, i, _this4.state.photoArray, _this4.state.page) },
                       _react2.default.createElement(
                         'div',
                         { className: 'album-title-overlay' },
@@ -51241,7 +51242,7 @@ var Photo = function (_React$Component) {
                         page: 'album-list'
                       }
                     } },
-                  'Back'
+                  'back'
                 )
               )
             )

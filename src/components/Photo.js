@@ -194,15 +194,15 @@ class Photo extends React.Component {
           <Placeholder/>
         </div>
         <div className={"photo-container " + this.state.page}>
-          <div className="row">
-            <div className="medium-10 medium-offset-1 column">
+          <div className="row align-center">
+            <div className="medium-11 column">
               <div className={"row " + this.state.layoutClass + " " + this.state.page + "__container small-collapse medium-uncollapse"}>
                 {this.state.photoArray.map((data, i) => {
                   return (
                     <div key={i} className={"column align-middle " + (this.state.activePhoto != i
                       ? 'photo-hide'
-                      : '')} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
-                      <div className={"image-container"}>
+                      : '')} >
+                      <div className={"image-container"} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
                         <div className="album-title-overlay">
                           {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
                         </div>
@@ -242,7 +242,7 @@ class Photo extends React.Component {
                 state: {
                   page: 'album-list'
                 }
-              }}>Back</Link></span>
+              }}>back</Link></span>
               }
             </div>
           </div>

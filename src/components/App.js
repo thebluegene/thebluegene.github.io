@@ -84,9 +84,9 @@ class App extends React.Component {
                     </h1>
                   </div>
                   <div className="sub-title">
-                    I'm a <Link onClick={this.handleClick.bind(this)} className="code-link" to="/code">Web Developer</Link> in San Francisco <br />
-                  Who takes a lot of <Link onClick={this.handleClick.bind(this)} className="photo-link" to="/photo">Photos</Link> <br />
-                and makes a <Link onClick={this.handleClick.bind(this)} className="film-link" to="/film">Video</Link> here and there.
+                    I'm a <Link onClick={this.handleClick.bind(this)} className="code-link" to="/code">Web Developer</Link> in San Francisco, <br />
+                  who takes a lot of <Link onClick={this.handleClick.bind(this)} className="photo-link" to="/photo">Photos</Link> and makes <Link onClick={this.handleClick.bind(this)} className="film-link" to="/film">Videos</Link> here and there. <br />
+              I'll update my <Link onClick={this.handleClick.bind(this)} className="blog-link" to="/blog">blog</Link> occasionally.
                   </div>
                 </div>
               </div>

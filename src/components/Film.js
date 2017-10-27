@@ -16,20 +16,20 @@ class Film extends React.Component {
 
   componentDidMount() {
     const react = this;
-    const publicVimeoToken = '164d0f03a106e2cdee40a96e0cae6497';
+    const publicVimeoToken = '2cdf01eba4de6c5d983064404b2ca260';
     let chosenVideoArr = [];
     let mainVideo;
     $.ajax()
     .then(function(){
       return $.ajax({
         method: 'GET',
-        url: 'https://api.vimeo.com/users/thebluegene/videos',
+        url: 'https://api.vimeo.com/users/thebluegene/videos?direction=desc',
         headers: {
           'Authorization': 'Bearer ' + publicVimeoToken
         },
         success: (result) => {
-          mainVideo = result.data[4].embed.html;
-          chosenVideoArr = [result.data[4], result.data[1], result.data[2]]
+          mainVideo = result.data[3].embed.html;
+          chosenVideoArr = [result.data[3], result.data[1], result.data[0]]
         }
       })
     })
@@ -47,7 +47,6 @@ class Film extends React.Component {
             chosenVideos: chosenVideoArr,
             loading: ''
           });
-          console.log(react.state);
         }
       });
     })
@@ -72,7 +71,7 @@ class Film extends React.Component {
       <div className="page video__page">
         <h1>FILM</h1>
         <div className="row">
-          <div className="small-10 small-offset-1 columns">
+          <div className="medium-10 medium-offset-1 columns">
             <div className={"placeholder " + this.state.loading}>
               <Placeholder/>
             </div>
@@ -81,8 +80,8 @@ class Film extends React.Component {
               <div className="row small-up-3">
                 {this.state.chosenVideos.map((data, i) => {
                   return (
-                  <div className={i == this.state.activeIndex ? "not-active columns" : "columns"}>
-                    <div key={i}>
+                  <div key={i} className={i == this.state.activeIndex ? "not-active columns" : "columns"}>
+                    <div>
                       <img onLoad={(e) => this.handleImageLoad(e, i)} src={ data.pictures.sizes[3].link } onClick={this.handleVideoClick.bind(this, i, data)} />
                     </div>
                   </div>
