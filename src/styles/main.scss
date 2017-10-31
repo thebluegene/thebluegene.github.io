@@ -436,6 +436,11 @@ body.lightbox {
   letter-spacing: 2px;
   cursor: crosshair;
   transition: opacity 0.25s;
+  display: none;
+
+  &.loaded {
+    display: block;
+  }
 }
 
 .photo__page {

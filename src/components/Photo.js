@@ -110,7 +110,12 @@ class Photo extends React.Component {
         for (let i = 0; i < albumPhoto.length; i++) {
           let url = this.createUrl(albumPhoto[i].farm, albumPhoto[i].server, albumPhoto[i].id, albumPhoto[i].secret);
           if (albumPhoto[i].isprimary === '1') {
-            photoUrls.push({'url': url, 'title': data.photoset.title, 'photos': data.photoset.photo});
+            photoUrls.push({
+              'url': url, 
+              'title': data.photoset.title,
+              'photos': data.photoset.photo, 
+              'loaded': ' '
+            });
           }
         }
       }));
@@ -141,6 +146,7 @@ class Photo extends React.Component {
 
       if (album) {
         this.hideImagesBeforeLoad();
+
         for (let i = 0; i < album.length; i++) {
           url = this.createUrl(album[i].farm, album[i].server, album[i].id, album[i].secret);
           albumPhotos.push({'url': url});
@@ -180,10 +186,21 @@ class Photo extends React.Component {
   }
 
   handleImageLoad = (e, i) => {
-    var target = e.target;
+    let target = e.target;
+    let overlayArray = this.state.photoArray;
+    let react = this;
+    
     setTimeout(function() {
       target.setAttribute("class", "show");
+      if (react.state.page == "album-list") {
+        //Show overlay after image load
+        overlayArray[i].loaded = 'loaded';
+        react.setState({
+          photoArray: overlayArray
+        });  
+      }
     }, this.animationTime);
+    
   }
 
   render() {
@@ -203,7 +220,7 @@ class Photo extends React.Component {
                       ? 'photo-hide'
                       : '')} >
                       <div className={"image-container"} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
-                        <div className="album-title-overlay">
+                        <div className={"album-title-overlay " + data.loaded}>
                           {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
                         </div>
                         {this.state.page !== "album-individual" && <Link className="image-link" to={{
