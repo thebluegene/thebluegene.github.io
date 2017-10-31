@@ -50124,14 +50124,12 @@ window.React = _react2.default;
   )
 ), document.getElementById('content'));
 
-},{"./components/App":268,"./components/Blog":269,"./components/Code":270,"./components/Film":271,"./components/Photo":273,"react":265,"react-dom":42,"react-router":204}],268:[function(require,module,exports){
+},{"./components/App":268,"./components/Blog":269,"./components/Code":270,"./components/Film":271,"./components/Photo":274,"react":265,"react-dom":42,"react-router":204}],268:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -50163,13 +50161,17 @@ var _Social = require('./Social');
 
 var _Social2 = _interopRequireDefault(_Social);
 
+var _Home = require('./Home');
+
+var _Home2 = _interopRequireDefault(_Home);
+
 var _reactRouter = require('react-router');
+
+var _reactTransitionGroup = require('react-transition-group');
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _reactTransitionGroup = require('react-transition-group');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50179,166 +50181,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var duration = 1000;
-
-var defaultStyle = {
-  transition: 'background ' + duration + 'ms ease-in-out'
-  // background: 'red',
-};
-
-var transitionStyles = {
-  // entering: { background: 'red' },
-  // entered: { background: 'blue' },
-};
-
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
   function App(props) {
     _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-    _this.state = {
-      categories: [{
-        name: 'Code',
-        class: 'code-link',
-        link: '/code',
-        image: ''
-      }, {
-        name: 'Visual',
-        class: 'photo-link',
-        link: '/photo',
-        image: ''
-      }, {
-        name: 'Blog',
-        class: 'writing-link',
-        link: '/blog',
-        image: ''
-      }],
-      background: 'default-bg',
-      fadeIn: false
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     fadeIn: true
-  //   });
-  // }
-  //
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.fadeIn == false) {
-  //    this.setState({
-  //      fadeIn: true
-  //    })
-  //  }
-  // }
-  //
-
-
   _createClass(App, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      // this.setState({
-      //   fadeIn: false
-      // });
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
-      if (!this.props.children) {
-        return _react2.default.createElement(
+      return _react2.default.createElement(
+        'div',
+        null,
+        !this.props.children && _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(
-            _reactTransitionGroup.Transition,
-            { 'in': true, timeout: duration },
-            function (state) {
-              return _react2.default.createElement(
-                'div',
-                { className: 'home-content page', style: _extends({}, defaultStyle, transitionStyles[state]) },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'row expanded' },
-                  _react2.default.createElement(_Social2.default, null),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'home-content__main' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'main-title' },
-                      _react2.default.createElement(
-                        'h1',
-                        null,
-                        'Gene Ang'
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'sub-title' },
-                      'I\'m a ',
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { onClick: _this2.handleClick.bind(_this2), className: 'code-link', to: '/code' },
-                        'Web Developer'
-                      ),
-                      ' in San Francisco, ',
-                      _react2.default.createElement('br', null),
-                      'who takes a lot of ',
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { onClick: _this2.handleClick.bind(_this2), className: 'photo-link', to: '/photo' },
-                        'Photos'
-                      ),
-                      ' and makes ',
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { onClick: _this2.handleClick.bind(_this2), className: 'film-link', to: '/film' },
-                        'Videos'
-                      ),
-                      ' here and there. ',
-                      _react2.default.createElement('br', null),
-                      'I\'ll update my ',
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { onClick: _this2.handleClick.bind(_this2), className: 'blog-link', to: '/blog' },
-                        'blog'
-                      ),
-                      ' occasionally.'
-                    )
-                  )
-                )
-              );
-            }
-          )
-        );
-      } else {
-        return _react2.default.createElement(
+          _react2.default.createElement(_Home2.default, null)
+        ),
+        this.props.children && _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(_Nav2.default, { page: this.props.location.pathname }),
           _react2.default.createElement(
-            _reactTransitionGroup.Transition,
-            { 'in': this.state.fadeIn, timeout: duration },
-            function (state) {
-              return _react2.default.createElement(
-                'div',
-                { style: _extends({}, defaultStyle, transitionStyles[state]) },
-                _this2.props.children
-              );
-            }
+            'div',
+            null,
+            this.props.children
           ),
           _react2.default.createElement(
             'div',
             { className: 'hide-for-small-only' },
             _react2.default.createElement(_Social2.default, null)
           )
-        );
-      }
+        )
+      );
     }
   }]);
 
@@ -50349,7 +50227,7 @@ App.propTypes = { children: _react2.default.PropTypes.object };
 
 exports.default = App;
 
-},{"./Blog":269,"./Code":270,"./Nav":272,"./Photo":273,"./Social":275,"classnames":1,"jquery":33,"react":265,"react-router":204,"react-transition-group":237}],269:[function(require,module,exports){
+},{"./Blog":269,"./Code":270,"./Home":272,"./Nav":273,"./Photo":274,"./Social":276,"classnames":1,"jquery":33,"react":265,"react-router":204,"react-transition-group":237}],269:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50470,7 +50348,7 @@ var Blog = function (_React$Component) {
 
 exports.default = Blog;
 
-},{"./Placeholder":274,"contentful":2,"react":265,"react-router":204}],270:[function(require,module,exports){
+},{"./Placeholder":275,"contentful":2,"react":265,"react-router":204}],270:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50751,7 +50629,233 @@ var Film = function (_React$Component) {
 
 exports.default = Film;
 
-},{"./Nav":272,"./Placeholder":274,"jquery":33,"react":265}],272:[function(require,module,exports){
+},{"./Nav":273,"./Placeholder":275,"jquery":33,"react":265}],272:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Social = require('./Social');
+
+var _Social2 = _interopRequireDefault(_Social);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactRouter = require('react-router');
+
+var _reactTransitionGroup = require('react-transition-group');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var duration = 400;
+
+var defaultStyle = {
+    transition: 'opacity ' + duration + 'ms ease-in-out',
+    opacity: 0
+};
+
+var transitionStyles = {
+    entering: { opacity: 0 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 }
+};
+
+var linkStyle = {
+    transition: 'all 1s ease-in-out',
+    width: 0
+};
+
+var transitionLinkStyles = {
+    entering: { width: 0 },
+    entered: { width: '100%' }
+};
+
+var HomePage = function (_React$Component) {
+    _inherits(HomePage, _React$Component);
+
+    function HomePage(props) {
+        _classCallCheck(this, HomePage);
+
+        var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
+
+        _this.state = {
+            animateIn: false
+        };
+        return _this;
+    }
+
+    _createClass(HomePage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({
+                animateIn: true
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.animateIn == false) {
+                this.setState({
+                    animateIn: true
+                });
+            }
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick() {
+            this.setState({
+                animateIn: false
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'home-content page' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row expanded' },
+                    _react2.default.createElement(
+                        _reactTransitionGroup.Transition,
+                        { 'in': this.state.animateIn, timeout: duration * 3 },
+                        function (state) {
+                            return _react2.default.createElement(
+                                'div',
+                                { style: _extends({}, defaultStyle, transitionStyles[state]) },
+                                _react2.default.createElement(_Social2.default, null)
+                            );
+                        }
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'home-content__main' },
+                        _react2.default.createElement(
+                            _reactTransitionGroup.Transition,
+                            { 'in': this.state.animateIn, timeout: duration },
+                            function (state) {
+                                return _react2.default.createElement(
+                                    'div',
+                                    { className: 'main-title', style: _extends({}, defaultStyle, transitionStyles[state]) },
+                                    _react2.default.createElement(
+                                        'h1',
+                                        null,
+                                        'Gene Ang'
+                                    )
+                                );
+                            }
+                        ),
+                        _react2.default.createElement(
+                            _reactTransitionGroup.Transition,
+                            { 'in': this.state.animateIn, timeout: duration * 2 },
+                            function (state) {
+                                return _react2.default.createElement(
+                                    'div',
+                                    { className: 'sub-title', style: _extends({}, defaultStyle, transitionStyles[state]) },
+                                    'I\'m a',
+                                    _react2.default.createElement(
+                                        _reactRouter.Link,
+                                        { onClick: _this2.handleClick.bind(_this2), to: '/code' },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'link-text' },
+                                            'Web Developer'
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { style: _extends({}, linkStyle, transitionLinkStyles[state]), className: 'link-text--bg code-link' },
+                                            ' '
+                                        )
+                                    ),
+                                    'in San Francisco, ',
+                                    _react2.default.createElement('br', null),
+                                    ' who takes a lot of',
+                                    _react2.default.createElement(
+                                        _reactRouter.Link,
+                                        { onClick: _this2.handleClick.bind(_this2), to: {
+                                                pathname: "/photo",
+                                                state: {
+                                                    page: "album-list"
+                                                } } },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'link-text' },
+                                            'Photos'
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { style: _extends({}, linkStyle, transitionLinkStyles[state]), className: 'link-text--bg photo-link' },
+                                            ' '
+                                        )
+                                    ),
+                                    'and makes',
+                                    _react2.default.createElement(
+                                        _reactRouter.Link,
+                                        { to: '/film' },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'link-text' },
+                                            'Videos'
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { style: _extends({}, linkStyle, transitionLinkStyles[state]), className: 'link-text--bg film-link' },
+                                            ' '
+                                        )
+                                    ),
+                                    'here and there. ',
+                                    _react2.default.createElement('br', null),
+                                    'I\'ll update my',
+                                    _react2.default.createElement(
+                                        _reactRouter.Link,
+                                        { onClick: _this2.handleClick.bind(_this2), to: '/blog' },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'link-text' },
+                                            'blog'
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { style: _extends({}, linkStyle, transitionLinkStyles[state]), className: 'link-text--bg blog-link' },
+                                            ' '
+                                        )
+                                    ),
+                                    'occasionally.'
+                                );
+                            }
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return HomePage;
+}(_react2.default.Component);
+
+exports.default = HomePage;
+
+},{"./Social":276,"classnames":1,"react":265,"react-router":204,"react-transition-group":237}],273:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50902,7 +51006,7 @@ var Nav = function (_React$Component) {
 
 exports.default = Nav;
 
-},{"./Social":275,"react":265,"react-router":204}],273:[function(require,module,exports){
+},{"./Social":276,"react":265,"react-router":204}],274:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50947,8 +51051,18 @@ var Photo = function (_React$Component) {
 
     _this.handleImageLoad = function (e, i) {
       var target = e.target;
+      var overlayArray = _this.state.photoArray;
+      var react = _this;
+
       setTimeout(function () {
         target.setAttribute("class", "show");
+        if (react.state.page == "album-list") {
+          //Show overlay after image load
+          overlayArray[i].loaded = 'loaded';
+          react.setState({
+            photoArray: overlayArray
+          });
+        }
       }, _this.animationTime);
     };
 
@@ -51068,7 +51182,12 @@ var Photo = function (_React$Component) {
             for (var i = 0; i < albumPhoto.length; i++) {
               var url = _this3.createUrl(albumPhoto[i].farm, albumPhoto[i].server, albumPhoto[i].id, albumPhoto[i].secret);
               if (albumPhoto[i].isprimary === '1') {
-                photoUrls.push({ 'url': url, 'title': data.photoset.title, 'photos': data.photoset.photo });
+                photoUrls.push({
+                  'url': url,
+                  'title': data.photoset.title,
+                  'photos': data.photoset.photo,
+                  'loaded': ' '
+                });
               }
             }
           }));
@@ -51115,6 +51234,7 @@ var Photo = function (_React$Component) {
 
         if (album) {
           this.hideImagesBeforeLoad();
+
           for (var i = 0; i < album.length; i++) {
             url = this.createUrl(album[i].farm, album[i].server, album[i].id, album[i].secret);
             albumPhotos.push({ 'url': url });
@@ -51190,7 +51310,7 @@ var Photo = function (_React$Component) {
                       { className: "image-container", onClick: _this4.handlePhotoClick.bind(_this4, i, _this4.state.photoArray, _this4.state.page) },
                       _react2.default.createElement(
                         'div',
-                        { className: 'album-title-overlay' },
+                        { className: "album-title-overlay " + data.loaded },
                         data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")
                       ),
                       _this4.state.page !== "album-individual" && _react2.default.createElement(
@@ -51257,7 +51377,7 @@ var Photo = function (_React$Component) {
 
 exports.default = Photo;
 
-},{"./Placeholder":274,"jquery":33,"react":265,"react-lazyload":170,"react-router":204}],274:[function(require,module,exports){
+},{"./Placeholder":275,"jquery":33,"react":265,"react-lazyload":170,"react-router":204}],275:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51276,7 +51396,7 @@ var About = function About() {
 
 exports.default = About;
 
-},{"react":265}],275:[function(require,module,exports){
+},{"react":265}],276:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
