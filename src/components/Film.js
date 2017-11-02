@@ -68,15 +68,15 @@ class Film extends React.Component {
 
   render() {
     return (
-      <div className="page video__page">
+      <div className="page">
         <h1>FILM</h1>
         <div className="row">
           <div className="medium-10 medium-offset-1 columns">
             <div className={"placeholder " + this.state.loading}>
               <Placeholder/>
             </div>
-            <div className="video__main-video" dangerouslySetInnerHTML={{ __html: this.state.mainVideo }} />
-            <div className="video__video-gallery">
+            <div className="film__main-video" dangerouslySetInnerHTML={{ __html: this.state.mainVideo }} />
+            <div className="film__video-gallery">
               <div className="row small-up-3">
                 {this.state.chosenVideos.map((data, i) => {
                   return (

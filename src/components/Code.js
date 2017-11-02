@@ -1,11 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router';
+import { Transition } from 'react-transition-group';
+
+const duration = 500;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 }
+};
 
 class Code extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idClass: props.page ? '' : 'code__page',
+      animateIn: false,
       layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
       projectArray: [
         {
@@ -42,28 +55,37 @@ class Code extends React.Component {
       ]
     }
   }
+  componentDidMount() {
+      this.setState({
+        animateIn: true
+      });
+  }
 
   render() {
     return (
-      <div className={this.state.idClass + " page"}>
+      <div className="page">
         <h1>DEVELOP</h1>
         <div className="row">
           <div className={this.state.layoutClass + " columns"}>
             {this.state.projectArray.map((data, i) => {
               return (
-                <div key={i} className="code">
-                  <a href={data.link}>
-                    <div className="code__title" style={data.styles}>
-                      {data.title}
-                    </div>
-                    <div className="code__subtitle">
-                      {data.subtitle}
-                    </div>
-                    <div className="code__date">
-                      {data.date}
-                    </div>
-                  </a>
-                </div>
+                <Transition key={i} in={this.state.animateIn} timeout={duration * i} >
+                  {(state) => (
+                  <div className="code" style={{...defaultStyle, ...transitionStyles[state]}}>
+                    <a href={data.link}>
+                      <div className="code__title" style={data.styles}>
+                        {data.title}
+                      </div>
+                      <div className="code__subtitle">
+                        {data.subtitle}
+                      </div>
+                      <div className="code__date">
+                        {data.date}
+                      </div>
+                    </a>
+                  </div>
+                  )}
+                </Transition>
               );
             })}
           </div>

@@ -50187,15 +50187,28 @@ var App = function (_React$Component) {
   function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      backgroundClass: _this.props.location.pathname.split('/')[1] + '__page'
+    };
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var pageType = nextProps.location.pathname.split('/')[1];
+      this.setState({
+        backgroundClass: pageType ? pageType + '__page' : 'home__page'
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: this.state.backgroundClass + ' site-container' },
         !this.props.children && _react2.default.createElement(
           'div',
           null,
@@ -50234,6 +50247,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -50250,6 +50265,8 @@ var _Placeholder = require('./Placeholder');
 
 var _Placeholder2 = _interopRequireDefault(_Placeholder);
 
+var _reactTransitionGroup = require('react-transition-group');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -50259,6 +50276,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var duration = 500;
+
+var defaultStyle = {
+  transition: 'opacity ' + duration + 'ms ease-in-out',
+  opacity: 0
+};
+
+var transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 }
+};
 
 var Blog = function (_React$Component) {
   _inherits(Blog, _React$Component);
@@ -50273,10 +50302,16 @@ var Blog = function (_React$Component) {
     _this.state = {
       layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       blogPosts: [],
-      loading: 'loading'
+      loading: 'loading',
+      animateIn: false
     };
     return _this;
   }
+
+  // componentDidMount() {
+  //   this.setState({
+  //   });
+  // }
 
   _createClass(Blog, [{
     key: 'getBlogPosts',
@@ -50292,14 +50327,20 @@ var Blog = function (_React$Component) {
           blogPosts: contentType.items,
           loading: ''
         });
+      }).then(function () {
+        react.setState({
+          animateIn: true
+        });
       }).catch(console.error);
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
-        { className: 'page blog__page' },
+        { className: 'page' },
         _react2.default.createElement(
           'h1',
           null,
@@ -50318,23 +50359,29 @@ var Blog = function (_React$Component) {
             { className: this.state.layoutClass + " columns" },
             this.state.blogPosts.map(function (data, i) {
               return _react2.default.createElement(
-                'div',
-                { key: i, className: 'blog__container' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'blog__title' },
-                  data.fields.blogTitle,
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'blog__date' },
-                    data.fields.date
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'blog__body' },
-                  data.fields.blogContent
-                )
+                _reactTransitionGroup.Transition,
+                { key: i, 'in': _this2.state.animateIn, timeout: duration },
+                function (state) {
+                  return _react2.default.createElement(
+                    'div',
+                    { className: 'blog__container', style: _extends({}, defaultStyle, transitionStyles[state]) },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'blog__title' },
+                      data.fields.blogTitle,
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'blog__date' },
+                        data.fields.date
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'blog__body' },
+                      data.fields.blogContent
+                    )
+                  );
+                }
               );
             })
           )
@@ -50348,12 +50395,14 @@ var Blog = function (_React$Component) {
 
 exports.default = Blog;
 
-},{"./Placeholder":275,"contentful":2,"react":265,"react-router":204}],270:[function(require,module,exports){
+},{"./Placeholder":275,"contentful":2,"react":265,"react-router":204,"react-transition-group":237}],270:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -50363,6 +50412,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
+var _reactTransitionGroup = require('react-transition-group');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50370,6 +50421,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var duration = 500;
+
+var defaultStyle = {
+  transition: 'opacity ' + duration + 'ms ease-in-out',
+  opacity: 0
+};
+
+var transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 }
+};
 
 var Code = function (_React$Component) {
   _inherits(Code, _React$Component);
@@ -50380,7 +50443,7 @@ var Code = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Code.__proto__ || Object.getPrototypeOf(Code)).call(this, props));
 
     _this.state = {
-      idClass: props.page ? '' : 'code__page',
+      animateIn: false,
       layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
       projectArray: [{
         'title': '8 Years of Photography',
@@ -50418,11 +50481,20 @@ var Code = function (_React$Component) {
   }
 
   _createClass(Code, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setState({
+        animateIn: true
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
-        { className: this.state.idClass + " page" },
+        { className: 'page' },
         _react2.default.createElement(
           'h1',
           null,
@@ -50436,27 +50508,33 @@ var Code = function (_React$Component) {
             { className: this.state.layoutClass + " columns" },
             this.state.projectArray.map(function (data, i) {
               return _react2.default.createElement(
-                'div',
-                { key: i, className: 'code' },
-                _react2.default.createElement(
-                  'a',
-                  { href: data.link },
-                  _react2.default.createElement(
+                _reactTransitionGroup.Transition,
+                { key: i, 'in': _this2.state.animateIn, timeout: duration * i },
+                function (state) {
+                  return _react2.default.createElement(
                     'div',
-                    { className: 'code__title', style: data.styles },
-                    data.title
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'code__subtitle' },
-                    data.subtitle
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'code__date' },
-                    data.date
-                  )
-                )
+                    { className: 'code', style: _extends({}, defaultStyle, transitionStyles[state]) },
+                    _react2.default.createElement(
+                      'a',
+                      { href: data.link },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'code__title', style: data.styles },
+                        data.title
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'code__subtitle' },
+                        data.subtitle
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'code__date' },
+                        data.date
+                      )
+                    )
+                  );
+                }
               );
             })
           )
@@ -50470,7 +50548,7 @@ var Code = function (_React$Component) {
 
 exports.default = Code;
 
-},{"react":265,"react-router":204}],271:[function(require,module,exports){
+},{"react":265,"react-router":204,"react-transition-group":237}],271:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50579,7 +50657,7 @@ var Film = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page video__page' },
+        { className: 'page' },
         _react2.default.createElement(
           'h1',
           null,
@@ -50596,10 +50674,10 @@ var Film = function (_React$Component) {
               { className: "placeholder " + this.state.loading },
               _react2.default.createElement(_Placeholder2.default, null)
             ),
-            _react2.default.createElement('div', { className: 'video__main-video', dangerouslySetInnerHTML: { __html: this.state.mainVideo } }),
+            _react2.default.createElement('div', { className: 'film__main-video', dangerouslySetInnerHTML: { __html: this.state.mainVideo } }),
             _react2.default.createElement(
               'div',
-              { className: 'video__video-gallery' },
+              { className: 'film__video-gallery' },
               _react2.default.createElement(
                 'div',
                 { className: 'row small-up-3' },
@@ -51069,6 +51147,8 @@ var Photo = function (_React$Component) {
     _this.props = props;
     _this.previousLocation = _this.props.location;
     _this.animationTime = 500; //Adjust the CSS animation time for img tags
+    _this.loadFlickAlbums();
+
     if (props.params !== undefined && props.params.hasOwnProperty('album')) {
       _this.state = {
         photoArray: [],
@@ -51096,11 +51176,6 @@ var Photo = function (_React$Component) {
   }
 
   _createClass(Photo, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.loadFlickAlbums();
-    }
-  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       document.body.classList.remove('lightbox');
@@ -51278,7 +51353,7 @@ var Photo = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page photo__page' },
+        { className: 'page' },
         _react2.default.createElement(
           'h1',
           { className: this.state.page },
