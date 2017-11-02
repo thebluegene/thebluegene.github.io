@@ -109,8 +109,6 @@ img {
 .page {
   overflow-y: auto;
   @media only screen and (max-width: $max-screen__m) {
-    border-width: 15px !important;
-
     h1 {
       font-size: 32px;
     }
@@ -290,6 +288,17 @@ body.lightbox {
   }
 }
 
+.site-container {
+  overflow-y: auto;
+  transition: all 1s;
+  @media only screen and (max-width: $max-screen__m) {
+    border-width: 15px !important;
+  } 
+  @media only screen and (max-width: $max-screen__s) {
+    border-width: 0 !important;
+  } 
+}
+
 .main-title {
   width: 100%;
   margin: 0 0 25px;
@@ -367,7 +376,7 @@ body.lightbox {
     margin: 0 20px;
 
     a {
-      margin: 5px 0 5px;
+      margin: 5px;
     }
 
     br {
@@ -376,7 +385,7 @@ body.lightbox {
   }
 }
 
-.home-content {
+.home__page {
   height: 100vh;
   background: $home-bg-color;
   border: $border-width solid white;
@@ -448,13 +457,19 @@ body.lightbox {
   height: 100vh;
   border: $border-width solid $color-white;
   background: #e6e6e6;
-  transition: all 1s;
 
   h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
     padding: 60px 0 50px;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .2s, opacity .2s;
 
     &.album-individual {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
     }
   }
 }
@@ -469,7 +484,7 @@ body.lightbox {
   }
 
   &.album-list {
-    margin: 0 0 35px;
+    margin: 200px 0 35px;
 
     .album-list__container {
       .image-container {
@@ -512,14 +527,13 @@ body.lightbox {
 
   .album-individual__container {
     position: relative;
-    top: 30px;
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
   }
   @media only screen and (max-width: $max-screen__m) {
     &.album-list {
-      margin: 30px 0;
+      margin: 200px 0;
     }
 
     &.album-individual {
@@ -531,6 +545,10 @@ body.lightbox {
   }
   @media only screen and (max-width: $max-screen__s) {
     margin: 0;
+
+    &.album-list {
+      margin: 150px 0;
+    }
 
     .album-individual {
       &__container {
@@ -640,7 +658,7 @@ body.lightbox {
   }
 }
 
-.video {
+.film {
   &__page {
     background: $film-color;
     height: 100vh;
@@ -687,6 +705,7 @@ body.lightbox {
   transition: all 500ms;
   position: absolute;
   left: calc(50% - 30px);
+  top: 25%;
 
   &.loading {
     opacity: 1;

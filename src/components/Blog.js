@@ -2,6 +2,19 @@ import React from 'react';
 import { Link } from 'react-router';
 import * as contentful from 'contentful';
 import Placeholder from './Placeholder';
+import { Transition } from 'react-transition-group';
+
+const duration = 500;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 }
+};
 
 class Blog extends React.Component {
 
@@ -12,9 +25,15 @@ class Blog extends React.Component {
     this.state = {
       layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       blogPosts: [],
-      loading: 'loading'
+      loading: 'loading',
+      animateIn: false
     };
   }
+
+  // componentDidMount() {
+  //   this.setState({
+  //   });
+  // }
 
   getBlogPosts() {
     const react = this;
@@ -30,12 +49,17 @@ class Blog extends React.Component {
           loading: ''
         });
       })
+      .then(function () {
+        react.setState({
+          animateIn: true,
+        });
+      })
       .catch(console.error);
   }
 
   render() {
     return (
-      <div className="page blog__page">
+      <div className="page">
         <h1>Blog</h1>
         <div className={"placeholder " + this.state.loading}>
           <Placeholder />
@@ -44,17 +68,21 @@ class Blog extends React.Component {
           <div className={ this.state.layoutClass + " columns" } >
           {this.state.blogPosts.map((data, i) => {
             return (
-              <div key={i} className="blog__container">
-                <div className="blog__title">
-                  { data.fields.blogTitle }
-                  <span className="blog__date">
-                    { data.fields.date }
-                  </span>
-                </div>
-                <div className="blog__body">
-                  { data.fields.blogContent }
-                </div>
-              </div>
+              <Transition key={i} in={this.state.animateIn} timeout={duration} >
+                {(state) => (
+                  <div className="blog__container" style={{...defaultStyle, ...transitionStyles[state]}}>
+                    <div className="blog__title">
+                      { data.fields.blogTitle }
+                      <span className="blog__date">
+                        { data.fields.date }
+                      </span>
+                    </div>
+                    <div className="blog__body">
+                      { data.fields.blogContent }
+                    </div>
+                  </div>
+                )}
+              </Transition>
             );
           })}
           </div>

@@ -11,6 +11,8 @@ class Photo extends React.Component {
     this.props = props;
     this.previousLocation = this.props.location;
     this.animationTime = 500; //Adjust the CSS animation time for img tags
+    this.loadFlickAlbums();
+
     if (props.params !== undefined && props.params.hasOwnProperty('album')) {
       this.state = {
         photoArray: [],
@@ -42,9 +44,6 @@ class Photo extends React.Component {
     }
   }
 
-  componentWillMount() {
-    this.loadFlickAlbums();
-  }
 
   componentWillUnmount() {
     document.body.classList.remove('lightbox');
@@ -205,7 +204,7 @@ class Photo extends React.Component {
 
   render() {
     return (
-      <div className="page photo__page">
+      <div className="page">
         <h1 className={this.state.page}>Photo</h1>
         <div className={"placeholder " + this.state.loading}>
           <Placeholder/>
