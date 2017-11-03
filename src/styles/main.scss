@@ -83,10 +83,11 @@ img {
   }
   @media only screen and (max-width: $max-screen__m) {
     right: 25px;
-    top: 70px;
+    top: 30px;
   }
   @media only screen and (max-width: $max-screen__s) {
     top: 20px;
+    right: 10px;
   }
 }
 
@@ -102,7 +103,8 @@ img {
     bottom: 20px;
   }
   @media only screen and (max-width: $max-screen__s) {
-    bottom: 20px;
+    bottom: 15px;
+    right: 10px;
   }
 }
 
