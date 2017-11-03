@@ -50189,8 +50189,10 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
+    var pageType = _this.props.location.pathname.split('/')[1];
     _this.state = {
-      backgroundClass: _this.props.location.pathname.split('/')[1] + '__page'
+      backgroundClass: pageType ? pageType + '__page' : 'home__page',
+      showSocial: props.params.hasOwnProperty('album') ? true : false
     };
     return _this;
   }
@@ -50200,7 +50202,8 @@ var App = function (_React$Component) {
     value: function componentWillReceiveProps(nextProps) {
       var pageType = nextProps.location.pathname.split('/')[1];
       this.setState({
-        backgroundClass: pageType ? pageType + '__page' : 'home__page'
+        backgroundClass: pageType ? pageType + '__page' : 'home__page',
+        showSocial: nextProps.params.hasOwnProperty('album') ? true : false
       });
     }
   }, {
@@ -50225,7 +50228,7 @@ var App = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'hide-for-small-only' },
+            { className: this.state.showSocial ? 'hide-social' : 'hide-for-small-only' },
             _react2.default.createElement(_Social2.default, null)
           )
         )
@@ -50308,11 +50311,6 @@ var Blog = function (_React$Component) {
     return _this;
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //   });
-  // }
-
   _createClass(Blog, [{
     key: 'getBlogPosts',
     value: function getBlogPosts() {
@@ -50357,33 +50355,37 @@ var Blog = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: this.state.layoutClass + " columns" },
-            this.state.blogPosts.map(function (data, i) {
-              return _react2.default.createElement(
-                _reactTransitionGroup.Transition,
-                { key: i, 'in': _this2.state.animateIn, timeout: duration },
-                function (state) {
-                  return _react2.default.createElement(
-                    'div',
-                    { className: 'blog__container', style: _extends({}, defaultStyle, transitionStyles[state]) },
-                    _react2.default.createElement(
+            _react2.default.createElement(
+              'div',
+              { className: 'blog__list' },
+              this.state.blogPosts.map(function (data, i) {
+                return _react2.default.createElement(
+                  _reactTransitionGroup.Transition,
+                  { key: i, 'in': _this2.state.animateIn, timeout: duration },
+                  function (state) {
+                    return _react2.default.createElement(
                       'div',
-                      { className: 'blog__title' },
-                      data.fields.blogTitle,
+                      { className: 'blog__container', style: _extends({}, defaultStyle, transitionStyles[state]) },
                       _react2.default.createElement(
-                        'span',
-                        { className: 'blog__date' },
-                        data.fields.date
+                        'div',
+                        { className: 'blog__title' },
+                        data.fields.blogTitle,
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'blog__date' },
+                          data.fields.date.split('-')[1] + '/' + data.fields.date.split('-')[2] + '/' + data.fields.date.split('-')[0]
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'blog__body' },
+                        data.fields.blogContent
                       )
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'blog__body' },
-                      data.fields.blogContent
-                    )
-                  );
-                }
-              );
-            })
+                    );
+                  }
+                );
+              })
+            )
           )
         )
       );
@@ -50997,7 +50999,7 @@ var Nav = function (_React$Component) {
         { className: 'navbar' },
         _react2.default.createElement(
           'div',
-          { className: 'row small-collapse medium-uncollapse' },
+          { className: 'row small-collapse large-uncollapse' },
           _react2.default.createElement(
             'div',
             { className: 'columns' },
@@ -51158,7 +51160,8 @@ var Photo = function (_React$Component) {
         activeAlbum: props.params.album,
         loading: 'loading',
         activePhoto: props.params.item ? props.params.item : 0,
-        lightbox: false
+        lightbox: false,
+        showSwitch: ''
       };
     } else {
       _this.state = {
@@ -51169,7 +51172,8 @@ var Photo = function (_React$Component) {
         activeAlbum: 0,
         loading: 'loading',
         activePhoto: 0,
-        lightbox: false
+        lightbox: false,
+        showSwitch: ''
       };
     }
     return _this;
@@ -51315,7 +51319,12 @@ var Photo = function (_React$Component) {
             albumPhotos.push({ 'url': url });
           }
           setTimeout(function () {
-            react.setState({ photoArray: albumPhotos, currentTitle: '', layoutClass: 'small-up-1', page: 'album-individual', loading: ' ' });
+            react.setState({
+              photoArray: albumPhotos,
+              currentTitle: '',
+              layoutClass: 'small-up-1',
+              page: 'album-individual', loading: ' ',
+              showSwitch: '' });
           }, this.animationTime);
         }
       }
@@ -51345,6 +51354,13 @@ var Photo = function (_React$Component) {
         document.body.classList.remove('lightbox');
         this.setState({ lightbox: false });
       }
+    }
+  }, {
+    key: 'hideSwitch',
+    value: function hideSwitch() {
+      this.setState({
+        showSwitch: 'hide'
+      });
     }
   }, {
     key: 'render',
@@ -51383,11 +51399,6 @@ var Photo = function (_React$Component) {
                     _react2.default.createElement(
                       'div',
                       { className: "image-container", onClick: _this4.handlePhotoClick.bind(_this4, i, _this4.state.photoArray, _this4.state.page) },
-                      _react2.default.createElement(
-                        'div',
-                        { className: "album-title-overlay " + data.loaded },
-                        data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")
-                      ),
                       _this4.state.page !== "album-individual" && _react2.default.createElement(
                         _reactRouter.Link,
                         { className: 'image-link', to: {
@@ -51396,6 +51407,11 @@ var Photo = function (_React$Component) {
                               page: 'album-individual'
                             }
                           } },
+                        _react2.default.createElement(
+                          'div',
+                          { className: "album-title-overlay " + data.loaded },
+                          data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")
+                        ),
                         _react2.default.createElement('img', { onLoad: function onLoad(e) {
                             return _this4.handleImageLoad(e, i);
                           }, src: data.url })
@@ -51423,7 +51439,7 @@ var Photo = function (_React$Component) {
               ),
               this.state.page == 'album-individual' && _react2.default.createElement(
                 'span',
-                { className: 'lightswitch', onClick: this.lightSwitch.bind(this) },
+                { className: "lightswitch " + this.state.showSwitch, onClick: this.lightSwitch.bind(this) },
                 this.state.lightbox ? 'lights on' : 'lights off'
               ),
               this.state.page == 'album-individual' && _react2.default.createElement(
@@ -51431,7 +51447,9 @@ var Photo = function (_React$Component) {
                 { className: 'back-link' },
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: {
+                  {
+                    onClick: this.hideSwitch.bind(this),
+                    to: {
                       pathname: "/photo",
                       state: {
                         page: 'album-list'
@@ -51525,6 +51543,15 @@ var Social = function Social() {
           "a",
           { href: "https://www.github.com/thebluegene/" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-github-alt", "aria-hidden": "true" })
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "social-media__list-item" },
+        _react2.default.createElement(
+          "a",
+          { href: "mailto:gene.ang92@gmail.com" },
+          _react2.default.createElement("i", { className: "fa fa-lg fa-envelope", "aria-hidden": "true" })
         )
       )
     )

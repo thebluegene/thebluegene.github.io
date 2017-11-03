@@ -73,7 +73,7 @@ img {
 }
 
 .back-link {
-  right: 10vh;
+  right: 7vh;
   top: 7vh;
   position: fixed;
 
@@ -83,10 +83,11 @@ img {
   }
   @media only screen and (max-width: $max-screen__m) {
     right: 25px;
-    top: 70px;
+    top: 30px;
   }
   @media only screen and (max-width: $max-screen__s) {
     top: 20px;
+    right: 10px;
   }
 }
 
@@ -95,14 +96,15 @@ img {
   float: right;
   font-family: $main-font-family;
   position: fixed;
-  right: 10vh;
-  bottom: 10vh;
+  right: 7vh;
+  bottom: 7vh;
   @media only screen and (max-width: $max-screen__m) {
     right: 25px;
     bottom: 20px;
   }
   @media only screen and (max-width: $max-screen__s) {
-    bottom: 20px;
+    bottom: 15px;
+    right: 10px;
   }
 }
 
@@ -139,10 +141,14 @@ body.lightbox {
   height: 100vh;
 }
 
+.hide-social {
+  display: none;
+}
+
 .social-media {
   position: absolute;
-  right: 50px;
-  bottom: 40px;
+  right: 65px;
+  bottom: 50px;
   color: $text-color;
   z-index: 9;
 
@@ -160,7 +166,7 @@ body.lightbox {
   }
   @media only screen and (max-width: $max-screen__m) {
     top: 25px;
-    right: 30px;
+    right: 40px;
     bottom: inherit;
   }
 }
@@ -172,7 +178,7 @@ body.lightbox {
   .top-nav {
     font-family: $main-font-family;
     position: relative;
-    margin: 30px 0 0 40px;
+    margin: 0 0 0 10px;
 
     &.closed {
       ul.top-nav-list {
@@ -259,12 +265,17 @@ body.lightbox {
 
       &--name {
         left: 10px;
+        top: -15px;
         text-align: left;
       }
 
       &.open {
         height: 100vh;
         background: $color-white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border: 15px solid white;
       }
 
       ul.top-nav-list {
@@ -279,6 +290,9 @@ body.lightbox {
   }
   @media only screen and (max-width: $max-screen__s) {
     .top-nav {
+      &.open {
+        border: 0;
+      }
       ul.top-nav-list {
         li {
           margin: 0 0 15px;
@@ -459,10 +473,9 @@ body.lightbox {
   background: #e6e6e6;
 
   h1 {
-    position: absolute;
     left: 0;
     right: 0;
-    padding: 60px 0 50px;
+    padding: 60px 0 0;
     visibility: visible;
     opacity: 1;
     transition: visibility .2s, opacity .2s;
@@ -484,7 +497,7 @@ body.lightbox {
   }
 
   &.album-list {
-    margin: 200px 0 35px;
+    margin: 60px 0 35px;
 
     .album-list__container {
       .image-container {
@@ -503,6 +516,10 @@ body.lightbox {
 
   &.album-individual {
     margin: 0;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
 
     img {
       max-height: 70vh;
@@ -520,8 +537,8 @@ body.lightbox {
       font-size: 12px;
       color: $text-color;
       position: fixed;
-      left: 15vh;
-      bottom: 10vh;
+      left: 8vh;
+      bottom: 7vh;
     }
   }
 
@@ -533,7 +550,7 @@ body.lightbox {
   }
   @media only screen and (max-width: $max-screen__m) {
     &.album-list {
-      margin: 200px 0;
+      margin: 70px 0 40px;
     }
 
     &.album-individual {
@@ -547,7 +564,7 @@ body.lightbox {
     margin: 0;
 
     &.album-list {
-      margin: 150px 0;
+      margin: 60px 0 0;
     }
 
     .album-individual {
@@ -575,8 +592,12 @@ body.lightbox {
     }
   }
 
+  &__list {
+    margin: 0 0 75px;
+  }
+
   &__container {
-    margin: 20px 0 0;
+    margin: 20px 0;
     font-family: $main-font-family;
     text-align: left;
   }
@@ -587,6 +608,8 @@ body.lightbox {
   }
 
   &__date {
+    position: relative;
+    top: 6px;
     font-style: italic;
     font-weight: normal;
     font-size: 16px;

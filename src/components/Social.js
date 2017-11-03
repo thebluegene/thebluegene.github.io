@@ -23,6 +23,11 @@ const Social = () => (
           <i className="fa fa-lg fa-github-alt" aria-hidden="true"></i>
         </a>
       </li>
+      <li className="social-media__list-item">
+        <a href="mailto:gene.ang92@gmail.com">
+          <i className="fa fa-lg fa-envelope" aria-hidden="true"></i>
+        </a>
+      </li>
     </ul>
   </div>
 );

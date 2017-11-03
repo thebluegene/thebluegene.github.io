@@ -30,11 +30,6 @@ class Blog extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //   });
-  // }
-
   getBlogPosts() {
     const react = this;
     const client = contentful.createClient({
@@ -66,25 +61,27 @@ class Blog extends React.Component {
         </div>
         <div className="row">
           <div className={ this.state.layoutClass + " columns" } >
-          {this.state.blogPosts.map((data, i) => {
-            return (
-              <Transition key={i} in={this.state.animateIn} timeout={duration} >
-                {(state) => (
-                  <div className="blog__container" style={{...defaultStyle, ...transitionStyles[state]}}>
-                    <div className="blog__title">
-                      { data.fields.blogTitle }
-                      <span className="blog__date">
-                        { data.fields.date }
-                      </span>
+            <div className="blog__list">
+            {this.state.blogPosts.map((data, i) => {
+              return (
+                <Transition key={i} in={this.state.animateIn} timeout={duration} >
+                  {(state) => (
+                    <div className="blog__container" style={{...defaultStyle, ...transitionStyles[state]}}>
+                      <div className="blog__title">
+                        { data.fields.blogTitle }
+                        <span className="blog__date">
+                          { data.fields.date.split('-')[1] + '/' + data.fields.date.split('-')[2] + '/' + data.fields.date.split('-')[0] }
+                        </span>
+                      </div>
+                      <div className="blog__body">
+                        { data.fields.blogContent }
+                      </div>
                     </div>
-                    <div className="blog__body">
-                      { data.fields.blogContent }
-                    </div>
-                  </div>
-                )}
-              </Transition>
-            );
-          })}
+                  )}
+                </Transition>
+              );
+            })}
+            </div>
           </div>
         </div>
       </div>
