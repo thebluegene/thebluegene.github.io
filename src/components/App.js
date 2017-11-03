@@ -13,14 +13,15 @@ import $ from 'jquery';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    
+    let pageType = this.props.location.pathname.split('/')[1];
+
     this.state = {
-      backgroundClass: this.props.location.pathname.split('/')[1] + '__page'
+      backgroundClass: pageType ? pageType + '__page' : 'home__page'
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    var pageType = nextProps.location.pathname.split('/')[1];
+    let pageType = nextProps.location.pathname.split('/')[1];
     this.setState({
       backgroundClass: pageType ? pageType + '__page' : 'home__page'
     })

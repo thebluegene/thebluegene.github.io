@@ -50189,8 +50189,10 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
+    var pageType = _this.props.location.pathname.split('/')[1];
+
     _this.state = {
-      backgroundClass: _this.props.location.pathname.split('/')[1] + '__page'
+      backgroundClass: pageType ? pageType + '__page' : 'home__page'
     };
     return _this;
   }
