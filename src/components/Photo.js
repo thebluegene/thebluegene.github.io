@@ -24,7 +24,8 @@ class Photo extends React.Component {
         activePhoto: props.params.item
           ? props.params.item
           : 0,
-        lightbox: false
+        lightbox: false,
+        showSwitch: ''
       };
     } else {
       this.state = {
@@ -39,7 +40,8 @@ class Photo extends React.Component {
         activeAlbum: 0,
         loading: 'loading',
         activePhoto: 0,
-        lightbox: false
+        lightbox: false,
+        showSwitch: ''
       };
     }
   }
@@ -151,7 +153,12 @@ class Photo extends React.Component {
           albumPhotos.push({'url': url});
         }
         setTimeout(function() {
-          react.setState({photoArray: albumPhotos, currentTitle: '', layoutClass: 'small-up-1', page: 'album-individual', loading: ' '});
+          react.setState({
+            photoArray: albumPhotos, 
+            currentTitle: '', 
+            layoutClass: 'small-up-1', 
+            page: 'album-individual', loading: ' ',
+            showSwitch: ''});
         }, this.animationTime);
       }
     }
@@ -182,6 +189,12 @@ class Photo extends React.Component {
       document.body.classList.remove('lightbox');
       this.setState({lightbox: false});
     }
+  }
+
+  hideSwitch() {
+    this.setState({
+      showSwitch: 'hide'
+    })
   }
 
   handleImageLoad = (e, i) => {
@@ -219,15 +232,15 @@ class Photo extends React.Component {
                       ? 'photo-hide'
                       : '')} >
                       <div className={"image-container"} onClick={this.handlePhotoClick.bind(this, i, this.state.photoArray, this.state.page)}>
-                        <div className={"album-title-overlay " + data.loaded}>
-                          {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
-                        </div>
                         {this.state.page !== "album-individual" && <Link className="image-link" to={{
                           pathname: "/photo/" + i,
                           state: {
                             page: 'album-individual'
                           }
                         }}>
+                          <div className={"album-title-overlay " + data.loaded}>
+                            {data.title && data.title.split(' ').slice(1, data.title.split(' ').length - 1).join(" ")}
+                          </div>
                           <img onLoad={(e) => this.handleImageLoad(e, i)} src={data.url}></img>
                         </Link>}
                         {this.state.page == "album-individual" && <Link to={{
@@ -247,13 +260,15 @@ class Photo extends React.Component {
                   );
                 })}
               </div>
-              {this.state.page == 'album-individual' && <span className="lightswitch" onClick={this.lightSwitch.bind(this)}>
+              {this.state.page == 'album-individual' && <span className={"lightswitch " + this.state.showSwitch} onClick={this.lightSwitch.bind(this)}>
                 {this.state.lightbox
                   ? 'lights on'
                   : 'lights off'}
               </span>
               }
-              {this.state.page == 'album-individual' && <span className="back-link"><Link to={{
+              {this.state.page == 'album-individual' && <span className="back-link"><Link
+                onClick = {this.hideSwitch.bind(this)}
+                to={{
                 pathname: "/photo",
                 state: {
                   page: 'album-list'

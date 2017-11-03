@@ -27,7 +27,7 @@ class Nav extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <div className="row small-collapse medium-uncollapse">
+        <div className="row small-collapse large-uncollapse">
           <div className="columns">
             <div className={this.state.openNav + " top-nav"}>
               <div className="show-for-small-only">

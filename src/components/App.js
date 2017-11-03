@@ -14,16 +14,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     let pageType = this.props.location.pathname.split('/')[1];
-
     this.state = {
-      backgroundClass: pageType ? pageType + '__page' : 'home__page'
+      backgroundClass: pageType ? pageType + '__page' : 'home__page',
+      showSocial: props.params.hasOwnProperty('album') ? true : false
     }
   }
 
   componentWillReceiveProps(nextProps) {
     let pageType = nextProps.location.pathname.split('/')[1];
     this.setState({
-      backgroundClass: pageType ? pageType + '__page' : 'home__page'
+      backgroundClass: pageType ? pageType + '__page' : 'home__page',
+      showSocial: nextProps.params.hasOwnProperty('album') ? true : false
     })
   }
 
@@ -38,10 +39,10 @@ class App extends React.Component {
         {this.props.children &&
           <div>
             <Nav page={this.props.location.pathname} />
-                <div>
-                  { this.props.children }
-                </div>
-            <div className="hide-for-small-only">
+            <div>
+              { this.props.children }
+            </div>
+            <div className={this.state.showSocial ? 'hide-social':'hide-for-small-only'}>
               <Social />
             </div>
           </div>
