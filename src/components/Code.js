@@ -19,39 +19,43 @@ class Code extends React.Component {
     super(props);
     this.state = {
       animateIn: false,
-      layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
+      layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       projectArray: [
         {
           'title': '8 Years of Photography',
-          'date': 'May 2017',
-          'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online',
+          'date': 'October 2017',
+          'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data via the Flickr API and used D3 for the visualizations.',
           'color': '#004777',
           'styles': {
             fontFamily: 'Fredericka the Great',
-            fontSize: '45px'
+            fontSize: '40px'
           },
           'link': '/flickr-data-proj'
-        }, {
+        },
+        {
           'title': 'Photo Gallery',
-          'date': 'September 2017',
-          'subtitle': 'React photo gallery using Flickr\'s API',
+          'date': 'October 2017',
+          'subtitle': 'As a part of building this website, I created a photo gallery from scratch that pulls selected Flickr albums (based on album name) through their API.',
           'color': '#FF7700',
           'styles': {
             fontFamily: 'Suranna',
-            fontSize: '45px'
+            fontSize: '40px'
           },
           'link': '#/photo'
-        }, {
-          'title': 'Past Projects',
-          'subtitle': '(Coming soon)',
-          'date': 'January 2016',
+        }, 
+        {
+          'title': 'Vonnda',
+          'subtitle': 'Vonnda is a web development agency specializing in e-commerce solutions where I currently work as a developer. If you have any questions about our work, feel free to contact me.',
+          'date': 'February 2016 - Present',
           'color': '#A30000',
           'styles': {
-            fontFamily: 'Arial',
-            fontSize: '45px'
+            fontFamily: 'Quicksand',
+            fontSize: '40px',
+            letterSpacing: '3px',
+            textTransform: 'uppercase'
           },
-          'link': '#'
-        }
+          'link': 'https://vonnda.com/'
+        },
       ]
     }
   }
@@ -72,7 +76,7 @@ class Code extends React.Component {
                 <Transition key={i} in={this.state.animateIn} timeout={duration * i} >
                   {(state) => (
                   <div className="code" style={{...defaultStyle, ...transitionStyles[state]}}>
-                    <a href={data.link}>
+                    <a target="_blank" href={data.link}>
                       <div className="code__title" style={data.styles}>
                         {data.title}
                       </div>

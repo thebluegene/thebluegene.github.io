@@ -50446,37 +50446,39 @@ var Code = function (_React$Component) {
 
     _this.state = {
       animateIn: false,
-      layoutClass: props.page ? 'small-12' : 'medium-10 medium-offset-1',
+      layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       projectArray: [{
         'title': '8 Years of Photography',
-        'date': 'May 2017',
-        'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online',
+        'date': 'October 2017',
+        'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data via the Flickr API and used D3 for the visualizations.',
         'color': '#004777',
         'styles': {
           fontFamily: 'Fredericka the Great',
-          fontSize: '45px'
+          fontSize: '40px'
         },
         'link': '/flickr-data-proj'
       }, {
         'title': 'Photo Gallery',
-        'date': 'September 2017',
-        'subtitle': 'React photo gallery using Flickr\'s API',
+        'date': 'October 2017',
+        'subtitle': 'As a part of building this website, I created a photo gallery from scratch that pulls selected Flickr albums (based on album name) through their API.',
         'color': '#FF7700',
         'styles': {
           fontFamily: 'Suranna',
-          fontSize: '45px'
+          fontSize: '40px'
         },
         'link': '#/photo'
       }, {
-        'title': 'Past Projects',
-        'subtitle': '(Coming soon)',
-        'date': 'January 2016',
+        'title': 'Vonnda',
+        'subtitle': 'Vonnda is a web development agency specializing in e-commerce solutions where I currently work as a developer. If you have any questions about our work, feel free to contact me.',
+        'date': 'February 2016 - Present',
         'color': '#A30000',
         'styles': {
-          fontFamily: 'Arial',
-          fontSize: '45px'
+          fontFamily: 'Quicksand',
+          fontSize: '40px',
+          letterSpacing: '3px',
+          textTransform: 'uppercase'
         },
-        'link': '#'
+        'link': 'https://vonnda.com/'
       }]
     };
     return _this;
@@ -50518,7 +50520,7 @@ var Code = function (_React$Component) {
                     { className: 'code', style: _extends({}, defaultStyle, transitionStyles[state]) },
                     _react2.default.createElement(
                       'a',
-                      { href: data.link },
+                      { target: '_blank', href: data.link },
                       _react2.default.createElement(
                         'div',
                         { className: 'code__title', style: data.styles },
@@ -51514,7 +51516,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { href: "https://www.flickr.com/people/thebluegene/" },
+          { target: "_blank", href: "https://www.flickr.com/people/thebluegene/" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-flickr", "aria-hidden": "true" })
         )
       ),
@@ -51523,7 +51525,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { href: "https://vimeo.com/thebluegene" },
+          { target: "_blank", href: "https://vimeo.com/thebluegene" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-vimeo", "aria-hidden": "true" })
         )
       ),
@@ -51532,7 +51534,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { href: "https://www.linkedin.com/in/geneang/" },
+          { target: "_blank", href: "https://www.linkedin.com/in/geneang/" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-linkedin-square", "aria-hidden": "true" })
         )
       ),
@@ -51541,7 +51543,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { href: "https://www.github.com/thebluegene/" },
+          { target: "_blank", href: "https://www.github.com/thebluegene/" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-github-alt", "aria-hidden": "true" })
         )
       ),
@@ -51550,7 +51552,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { href: "mailto:gene.ang92@gmail.com" },
+          { target: "_blank", href: "mailto:gene.ang92@gmail.com" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-envelope", "aria-hidden": "true" })
         )
       )
