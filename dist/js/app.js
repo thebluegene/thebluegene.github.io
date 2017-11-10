@@ -50376,11 +50376,7 @@ var Blog = function (_React$Component) {
                           data.fields.date.split('-')[1] + '/' + data.fields.date.split('-')[2] + '/' + data.fields.date.split('-')[0]
                         )
                       ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'blog__body' },
-                        data.fields.blogContent
-                      )
+                      _react2.default.createElement('div', { className: 'blog__body', dangerouslySetInnerHTML: { __html: data.fields.blogContent } })
                     );
                   }
                 );
@@ -50449,7 +50445,7 @@ var Code = function (_React$Component) {
       layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       projectArray: [{
         'title': '8 Years of Photography',
-        'date': 'October 2017',
+        'date': 'November 2017',
         'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data via the Flickr API and used D3 for the visualizations.',
         'color': '#004777',
         'styles': {
@@ -50890,14 +50886,14 @@ var HomePage = function (_React$Component) {
                                             ' '
                                         )
                                     ),
-                                    'and makes',
+                                    'and dabbles in',
                                     _react2.default.createElement(
                                         _reactRouter.Link,
                                         { to: '/film' },
                                         _react2.default.createElement(
                                             'span',
                                             { className: 'link-text' },
-                                            'Videos'
+                                            'Filmmaking.'
                                         ),
                                         _react2.default.createElement(
                                             'span',
@@ -50905,9 +50901,8 @@ var HomePage = function (_React$Component) {
                                             ' '
                                         )
                                     ),
-                                    'here and there. ',
                                     _react2.default.createElement('br', null),
-                                    'I\'ll update my',
+                                    'I also try to keep my',
                                     _react2.default.createElement(
                                         _reactRouter.Link,
                                         { onClick: _this2.handleClick.bind(_this2), to: '/blog' },
@@ -50922,7 +50917,7 @@ var HomePage = function (_React$Component) {
                                             ' '
                                         )
                                     ),
-                                    'occasionally.'
+                                    'updated.'
                                 );
                             }
                         )
@@ -51552,7 +51547,7 @@ var Social = function Social() {
         { className: "social-media__list-item" },
         _react2.default.createElement(
           "a",
-          { target: "_blank", href: "mailto:gene.ang92@gmail.com" },
+          { href: "mailto:gene.ang92@gmail.com" },
           _react2.default.createElement("i", { className: "fa fa-lg fa-envelope", "aria-hidden": "true" })
         )
       )

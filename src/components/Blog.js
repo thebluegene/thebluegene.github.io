@@ -73,8 +73,7 @@ class Blog extends React.Component {
                           { data.fields.date.split('-')[1] + '/' + data.fields.date.split('-')[2] + '/' + data.fields.date.split('-')[0] }
                         </span>
                       </div>
-                      <div className="blog__body">
-                        { data.fields.blogContent }
+                      <div className="blog__body" dangerouslySetInnerHTML={{__html: data.fields.blogContent}}>
                       </div>
                     </div>
                   )}
