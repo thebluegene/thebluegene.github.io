@@ -94,18 +94,18 @@ class HomePage extends React.Component {
                                     <span className="link-text">Photos</span>
                                     <span style={{...linkStyle, ...transitionLinkStyles[state]}} className="link-text--bg photo-link"> </span>
                                 </Link>
-                                and makes
+                                and dabbles in 
                                 <Link to="/film">
-                                    <span className="link-text">Videos</span>
+                                    <span className="link-text">Filmmaking.</span>
                                     <span style={{...linkStyle, ...transitionLinkStyles[state]}} className="link-text--bg film-link"> </span>
                                 </Link>
-                                here and there. <br />
-                                I'll update my
+                                <br />
+                                I also try to keep my
                                 <Link onClick={ this.handleClick.bind(this) } to="/blog">
                                     <span className="link-text">blog</span>
                                     <span style={{...linkStyle, ...transitionLinkStyles[state]}} className="link-text--bg blog-link"> </span>
                                 </Link>
-                                occasionally.
+                                updated.
                             </div>
                             )}
                         </Transition>

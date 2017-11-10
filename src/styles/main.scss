@@ -534,6 +534,9 @@ body.lightbox {
   &__body {
     white-space: pre-wrap;
     text-align: justify;
+    a {
+      display: inline;
+    }
   }
   &__date {
     position: relative;
