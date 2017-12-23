@@ -50615,7 +50615,10 @@ var Film = function (_React$Component) {
       var react = this;
       var publicVimeoToken = '2cdf01eba4de6c5d983064404b2ca260';
       var chosenVideoArr = [];
-      var mainVideo = void 0;
+      var mainVideo = void 0,
+          mainDescription = void 0,
+          mainTitle = void 0,
+          embedUrl = void 0;
       _jquery2.default.ajax().then(function () {
         return _jquery2.default.ajax({
           method: 'GET',
@@ -50625,20 +50628,26 @@ var Film = function (_React$Component) {
           },
           success: function success(result) {
             mainVideo = result.data[3].embed.html;
+            embedUrl = 'https://player.vimeo.com/video/' + result.data[3].uri.split('/')[2] + '?transparent=1&title=false&byline=false&portrait=false';
+            mainDescription = result.data[3].description;
+            mainTitle = result.data[3].name;
             chosenVideoArr = [result.data[3], result.data[1], result.data[0]];
           }
         });
       }).then(function () {
         return _jquery2.default.ajax({
           method: 'GET',
-          url: 'https://api.vimeo.com/users/thebluegene/appearances',
+          url: 'https://api.vimeo.com/users/thebluegene/appearances?direction=desc',
           headers: {
             'Authorization': 'Bearer ' + publicVimeoToken
           },
           success: function success(result) {
-            chosenVideoArr.push(result.data[0]);
+            chosenVideoArr.push(result.data[2]);
             react.setState({
               mainVideo: mainVideo,
+              mainDescription: mainDescription,
+              mainTitle: mainTitle,
+              embedUrl: embedUrl,
               chosenVideos: chosenVideoArr,
               loading: ''
             });
@@ -50649,8 +50658,12 @@ var Film = function (_React$Component) {
   }, {
     key: 'handleVideoClick',
     value: function handleVideoClick(index, data) {
+      var embedUrl = 'https://player.vimeo.com/video/' + data.uri.split('/')[2] + '?transparent=1&title=false&byline=false&portrait=false';
       this.setState({
         mainVideo: data.embed.html,
+        mainDescription: data.description,
+        embedUrl: embedUrl,
+        mainTitle: data.name,
         activeIndex: index
       });
     }
@@ -50678,7 +50691,21 @@ var Film = function (_React$Component) {
               { className: "placeholder " + this.state.loading },
               _react2.default.createElement(_Placeholder2.default, null)
             ),
-            _react2.default.createElement('div', { className: 'film__main-video', dangerouslySetInnerHTML: { __html: this.state.mainVideo } }),
+            _react2.default.createElement(
+              'div',
+              { className: 'film__main-video' },
+              _react2.default.createElement('iframe', { src: this.state.embedUrl, height: '800', width: '1920', allowFullScreen: true })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'film__main-description' },
+              _react2.default.createElement(
+                'span',
+                { className: 'film__main-title' },
+                this.state.mainTitle
+              ),
+              this.state.mainDescription
+            ),
             _react2.default.createElement(
               'div',
               { className: 'film__video-gallery' },
@@ -50691,10 +50718,15 @@ var Film = function (_React$Component) {
                     { key: i, className: i == _this2.state.activeIndex ? "not-active columns" : "columns" },
                     _react2.default.createElement(
                       'div',
-                      null,
+                      { className: 'film__video-thumbnail-container' },
                       _react2.default.createElement('img', { onLoad: function onLoad(e) {
                           return _this2.handleImageLoad(e, i);
-                        }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) })
+                        }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) }),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'film__video-thumbnail-title' },
+                        data.name
+                      )
                     )
                   );
                 })
@@ -51333,16 +51365,16 @@ var Photo = function (_React$Component) {
 
       if (prevPageState == 'album-individual') {
         var newIndex = void 0;
-        // if (e.nativeEvent.offsetX < (e.target.offsetWidth) / 2) {
-        //   newIndex = index - 1 < 0
-        //     ? this.state.photoArray.length - 1
-        //     : index - 1;
-        // } else {
-        //   newIndex = index < this.state.photoArray.length - 1
-        //     ? index + 1
-        //     : 0;
-        // }
-        newIndex = index < this.state.photoArray.length - 1 ? index + 1 : 0;
+        console.log(e.nativeEvent.offsetX);
+        console.log(e.target.offsetWidth / 2);
+        if (e.nativeEvent.offsetX < e.target.offsetWidth / 2) {
+          newIndex = index - 1 < 0 ? this.state.photoArray.length - 1 : index - 1;
+        } else {
+          newIndex = index < this.state.photoArray.length - 1 ? index + 1 : 0;
+        }
+        // newIndex = index < this.state.photoArray.length - 1
+        //   ? index + 1
+        //   : 0;
         this.setState({ activePhoto: newIndex });
       }
     }

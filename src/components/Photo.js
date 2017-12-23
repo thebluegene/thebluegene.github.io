@@ -165,18 +165,20 @@ class Photo extends React.Component {
 
     if (prevPageState == 'album-individual') {
       let newIndex;
-      // if (e.nativeEvent.offsetX < (e.target.offsetWidth) / 2) {
-      //   newIndex = index - 1 < 0
-      //     ? this.state.photoArray.length - 1
-      //     : index - 1;
-      // } else {
-      //   newIndex = index < this.state.photoArray.length - 1
-      //     ? index + 1
-      //     : 0;
-      // }
-      newIndex = index < this.state.photoArray.length - 1
-        ? index + 1
-        : 0;
+      console.log(e.nativeEvent.offsetX);
+      console.log(e.target.offsetWidth/2);
+      if (e.nativeEvent.offsetX < (e.target.offsetWidth) / 2) {
+        newIndex = index - 1 < 0
+          ? this.state.photoArray.length - 1
+          : index - 1;
+      } else {
+        newIndex = index < this.state.photoArray.length - 1
+          ? index + 1
+          : 0;
+      }
+      // newIndex = index < this.state.photoArray.length - 1
+      //   ? index + 1
+      //   : 0;
       this.setState({activePhoto: newIndex});
     }
   }
