@@ -2,6 +2,19 @@ import React from 'react';
 import Nav from './Nav';
 import Placeholder from './Placeholder';
 import $ from 'jquery';
+import { Transition } from 'react-transition-group';
+
+const duration = 500;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 }
+};
 
 class Film extends React.Component {
   constructor(){
@@ -10,7 +23,8 @@ class Film extends React.Component {
       mainVideo: '',
       chosenVideos: [],
       activeIndex: 0,
-      loading: 'loading'
+      loading: 'loading',
+      animateIn: false
     };
   }
 
@@ -51,7 +65,8 @@ class Film extends React.Component {
             mainTitle: mainTitle,
             embedUrl: embedUrl,
             chosenVideos: chosenVideoArr,
-            loading: ''
+            loading: '',
+            animateIn: true
           });
         }
       });
@@ -86,15 +101,21 @@ class Film extends React.Component {
               <Placeholder/>
             </div>
             {/* <div className="film__main-video" dangerouslySetInnerHTML={{ __html: this.state.mainVideo }} /> */}
-            <div className="film__main-video">
-              <iframe src={this.state.embedUrl} height="800" width="1920" allowFullScreen></iframe>
-            </div>
-            <div className="film__main-description">
-              <span className="film__main-title">
-                { this.state.mainTitle }
-              </span>
-              { this.state.mainDescription }
-            </div>
+            <Transition in={this.state.animateIn} timeout={duration} >
+              {(state) => (
+              <div style={{...defaultStyle, ...transitionStyles[state]}}>
+                <div className="film__main-video">
+                  <iframe src={this.state.embedUrl} height="800" width="1920" allowFullScreen></iframe>
+                </div>
+                <div className="film__main-description">
+                  <span className="film__main-title">
+                    { this.state.mainTitle }
+                  </span>
+                  { this.state.mainDescription }
+                </div>
+              </div>
+              )}
+            </Transition>
             <div className="film__video-gallery">
               <div className="row small-up-3">
                 {this.state.chosenVideos.map((data, i) => {
