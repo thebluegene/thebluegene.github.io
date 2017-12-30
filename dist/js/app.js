@@ -50555,6 +50555,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -50573,6 +50575,8 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _reactTransitionGroup = require('react-transition-group');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50580,6 +50584,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var duration = 500;
+
+var defaultStyle = {
+  transition: 'opacity ' + duration + 'ms ease-in-out',
+  opacity: 0
+};
+
+var transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 }
+};
 
 var Film = function (_React$Component) {
   _inherits(Film, _React$Component);
@@ -50600,7 +50616,8 @@ var Film = function (_React$Component) {
       mainVideo: '',
       chosenVideos: [],
       activeIndex: 0,
-      loading: 'loading'
+      loading: 'loading',
+      animateIn: false
     };
     return _this;
   }
@@ -50611,7 +50628,10 @@ var Film = function (_React$Component) {
       var react = this;
       var publicVimeoToken = '2cdf01eba4de6c5d983064404b2ca260';
       var chosenVideoArr = [];
-      var mainVideo = void 0;
+      var mainVideo = void 0,
+          mainDescription = void 0,
+          mainTitle = void 0,
+          embedUrl = void 0;
       _jquery2.default.ajax().then(function () {
         return _jquery2.default.ajax({
           method: 'GET',
@@ -50621,22 +50641,29 @@ var Film = function (_React$Component) {
           },
           success: function success(result) {
             mainVideo = result.data[3].embed.html;
+            embedUrl = 'https://player.vimeo.com/video/' + result.data[3].uri.split('/')[2] + '?transparent=1&title=false&byline=false&portrait=false';
+            mainDescription = result.data[3].description;
+            mainTitle = result.data[3].name;
             chosenVideoArr = [result.data[3], result.data[1], result.data[0]];
           }
         });
       }).then(function () {
         return _jquery2.default.ajax({
           method: 'GET',
-          url: 'https://api.vimeo.com/users/thebluegene/appearances',
+          url: 'https://api.vimeo.com/users/thebluegene/appearances?direction=desc',
           headers: {
             'Authorization': 'Bearer ' + publicVimeoToken
           },
           success: function success(result) {
-            chosenVideoArr.push(result.data[0]);
+            chosenVideoArr.push(result.data[2]);
             react.setState({
               mainVideo: mainVideo,
+              mainDescription: mainDescription,
+              mainTitle: mainTitle,
+              embedUrl: embedUrl,
               chosenVideos: chosenVideoArr,
-              loading: ''
+              loading: '',
+              animateIn: true
             });
           }
         });
@@ -50645,8 +50672,12 @@ var Film = function (_React$Component) {
   }, {
     key: 'handleVideoClick',
     value: function handleVideoClick(index, data) {
+      var embedUrl = 'https://player.vimeo.com/video/' + data.uri.split('/')[2] + '?transparent=1&title=false&byline=false&portrait=false';
       this.setState({
         mainVideo: data.embed.html,
+        mainDescription: data.description,
+        embedUrl: embedUrl,
+        mainTitle: data.name,
         activeIndex: index
       });
     }
@@ -50674,7 +50705,31 @@ var Film = function (_React$Component) {
               { className: "placeholder " + this.state.loading },
               _react2.default.createElement(_Placeholder2.default, null)
             ),
-            _react2.default.createElement('div', { className: 'film__main-video', dangerouslySetInnerHTML: { __html: this.state.mainVideo } }),
+            _react2.default.createElement(
+              _reactTransitionGroup.Transition,
+              { 'in': this.state.animateIn, timeout: duration },
+              function (state) {
+                return _react2.default.createElement(
+                  'div',
+                  { style: _extends({}, defaultStyle, transitionStyles[state]) },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'film__main-video' },
+                    _react2.default.createElement('iframe', { src: _this2.state.embedUrl, height: '800', width: '1920', allowFullScreen: true })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'film__main-description' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'film__main-title' },
+                      _this2.state.mainTitle
+                    ),
+                    _this2.state.mainDescription
+                  )
+                );
+              }
+            ),
             _react2.default.createElement(
               'div',
               { className: 'film__video-gallery' },
@@ -50687,10 +50742,15 @@ var Film = function (_React$Component) {
                     { key: i, className: i == _this2.state.activeIndex ? "not-active columns" : "columns" },
                     _react2.default.createElement(
                       'div',
-                      null,
+                      { className: 'film__video-thumbnail-container' },
                       _react2.default.createElement('img', { onLoad: function onLoad(e) {
                           return _this2.handleImageLoad(e, i);
-                        }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) })
+                        }, src: data.pictures.sizes[3].link, onClick: _this2.handleVideoClick.bind(_this2, i, data) }),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'film__video-thumbnail-title' },
+                        data.name
+                      )
                     )
                   );
                 })
@@ -50707,7 +50767,7 @@ var Film = function (_React$Component) {
 
 exports.default = Film;
 
-},{"./Nav":273,"./Placeholder":275,"jquery":33,"react":265}],272:[function(require,module,exports){
+},{"./Nav":273,"./Placeholder":275,"jquery":33,"react":265,"react-transition-group":237}],272:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

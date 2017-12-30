@@ -112,9 +112,9 @@ class Photo extends React.Component {
           let url = this.createUrl(albumPhoto[i].farm, albumPhoto[i].server, albumPhoto[i].id, albumPhoto[i].secret);
           if (albumPhoto[i].isprimary === '1') {
             photoUrls.push({
-              'url': url, 
+              'url': url,
               'title': data.photoset.title,
-              'photos': data.photoset.photo, 
+              'photos': data.photoset.photo,
               'loaded': ' '
             });
           }
@@ -154,9 +154,9 @@ class Photo extends React.Component {
         }
         setTimeout(function() {
           react.setState({
-            photoArray: albumPhotos, 
-            currentTitle: '', 
-            layoutClass: 'small-up-1', 
+            photoArray: albumPhotos,
+            currentTitle: '',
+            layoutClass: 'small-up-1',
             page: 'album-individual', loading: ' ',
             showSwitch: ''});
         }, this.animationTime);
@@ -201,7 +201,7 @@ class Photo extends React.Component {
     let target = e.target;
     let overlayArray = this.state.photoArray;
     let react = this;
-    
+
     setTimeout(function() {
       target.setAttribute("class", "show");
       if (react.state.page == "album-list") {
@@ -209,10 +209,10 @@ class Photo extends React.Component {
         overlayArray[i].loaded = 'loaded';
         react.setState({
           photoArray: overlayArray
-        });  
+        });
       }
     }, this.animationTime);
-    
+
   }
 
   render() {
