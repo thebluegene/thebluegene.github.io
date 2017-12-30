@@ -40,7 +40,7 @@ class Film extends React.Component {
         url: 'https://api.vimeo.com/users/thebluegene/videos?direction=desc',
         headers: {
           'Authorization': 'Bearer ' + publicVimeoToken
-        },
+        }, 
         success: (result) => {
           mainVideo = result.data[3].embed.html;
           embedUrl = 'https://player.vimeo.com/video/'+result.data[3].uri.split('/')[2]+'?transparent=1&title=false&byline=false&portrait=false';
