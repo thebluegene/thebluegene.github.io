@@ -24,7 +24,7 @@ const Social = () => (
         </a>
       </li>
       <li className="social-media__list-item">
-        <a target="_blank" href="mailto:gene.ang92@gmail.com">
+        <a href="mailto:gene.ang92@gmail.com">
           <i className="fa fa-lg fa-envelope" aria-hidden="true"></i>
         </a>
       </li>

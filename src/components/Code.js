@@ -23,7 +23,7 @@ class Code extends React.Component {
       projectArray: [
         {
           'title': '8 Years of Photography',
-          'date': 'October 2017',
+          'date': 'November 2017',
           'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data via the Flickr API and used D3 for the visualizations.',
           'color': '#004777',
           'styles': {
