@@ -1,13 +1,13 @@
 $default-bg-color: #ffffff;
 $secondary-bg: #31313a;
-$home-bg-color: #aad4e4;
+$home-bg-color: #d3f3ff;
 $text-color: #1c1c1c;
 $secondary-color: #1938a9;
-$border-width: 30px;
+$border-width: 0;
 $photo-color: #C9DBBA;
-$blog-color: #d6ffd3;
-$code-color: #fffcd1;
-$film-color: #f5b0b0;
+$blog-color: #ecffea;
+$code-color: #fff8e5;
+$film-color: #ffe8e8;
 $color-white: #ffffff;
 $name-font-family: 'Lato',
 sans-serif;
@@ -40,6 +40,7 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 20px;
+  padding-left: 20px;
 }
 
 a {
@@ -103,9 +104,6 @@ img {
     h1 {
       font-size: 32px;
     }
-  }
-  @media only screen and (max-width: $max-screen__s) {
-    border-width: 0 !important;
   }
 }
 
@@ -178,7 +176,7 @@ body.lightbox {
       position: absolute;
       display: block;
       font-size: 52px;
-      margin: 0 40px 10px 0;
+      margin: 20px 40px 10px 20px;
       text-transform: uppercase;
       letter-spacing: 3px;
       transform: rotate(225deg);
@@ -192,7 +190,7 @@ body.lightbox {
     ul.top-nav-list {
       display: inline-block;
       color: $text-color;
-      margin: 65px 0 0;
+      margin: 90px 26px 0;
       opacity: 1;
       transition: 1s opacity;
       li {
@@ -232,8 +230,8 @@ body.lightbox {
         height: 100%;
       }
       &--name {
-        left: 10px;
-        top: -15px;
+        left: 0px;
+        top: -25px;
         text-align: left;
       }
       &.open {
@@ -270,12 +268,6 @@ body.lightbox {
 .site-container {
   overflow-y: auto;
   transition: all 1s;
-  @media only screen and (max-width: $max-screen__m) {
-    border-width: 15px !important;
-  }
-  @media only screen and (max-width: $max-screen__s) {
-    border-width: 0 !important;
-  }
 }
 
 .main-title {
@@ -286,12 +278,22 @@ body.lightbox {
     position: relative;
     text-align: left;
     color: $text-color;
+    padding: 0;
     margin: 0 auto;
     font-family: $name-font-family;
+    text-transform: none;
+  }
+  @media only screen and (max-width: $max-screen__m) {
+    h1 {
+      font-size: 52px;
+    }
   }
   @media only screen and (max-width: $max-screen__s) {
     h1 {
+      padding: 0 0 15px 20px;
+      border-bottom: none;
       text-align: center;
+      font-size: 45px;
     }
   }
 }
@@ -304,7 +306,7 @@ body.lightbox {
   font-size: 20px;
   text-transform: none;
   letter-spacing: 1px;
-  line-height: 35px;
+  line-height: 40px;
   bottom: 120px;
   left: 200px;
   a {
@@ -315,6 +317,20 @@ body.lightbox {
     margin: 8px 10px;
     letter-spacing: 2px;
     position: relative;
+    &:hover {
+      .code-link {
+        background: #fffbbd;
+      }
+      .photo-link {
+        background: #afffc0;
+      }
+      .film-link {
+        background: #ffafaf;
+      }
+      .blog-link {
+        background: #f4e2ff;
+      }
+    }
   }
   .link-text {
     position: relative;
@@ -342,7 +358,7 @@ body.lightbox {
   }
   @media only screen and (max-width: $max-screen__s) {
     font-size: 16px;
-    line-height: 30px;
+    line-height: 35px;
     text-align: center;
     margin: 0 20px;
     a {
@@ -366,9 +382,6 @@ body.lightbox {
   }
   &__sections {
     padding: 50px 0 0;
-  }
-  @media only screen and (max-width: $max-screen__m) {
-    border-width: 15px;
   }
 }
 
@@ -418,12 +431,11 @@ body.lightbox {
 .photo__page {
   margin: 0;
   height: 100vh;
-  border: $border-width solid $color-white;
   background: #e6e6e6;
   h1 {
     left: 0;
     right: 0;
-    padding: 60px 0 0;
+    margin: 60px 0 0;
     visibility: visible;
     opacity: 1;
     transition: visibility .2s, opacity .2s;
@@ -518,16 +530,15 @@ body.lightbox {
   &__page {
     height: 100vh;
     background: $blog-color;
-    border: $border-width solid $color-white;
     h1 {
-      margin: 60px 0;
+      margin: 85px 0 60px;
     }
   }
   &__list {
-    margin: 0 0 75px;
+    margin: 0 0 100px;
   }
   &__container {
-    margin: 20px 0;
+    margin: 20px 0 60px;
     font-family: $main-font-family;
     text-align: left;
   }
@@ -582,12 +593,11 @@ body.lightbox {
   &__page {
     background: $code-color;
     height: 100vh;
-    border: $border-width solid white;
     h1 {
-      margin: 60px 0;
+      margin: 85px 0 60px;
     }
     .code {
-      margin: 0 0 30px;
+      margin: 0 0 45px;
       position: relative;
       text-align: center;
     }
@@ -604,7 +614,6 @@ body.lightbox {
   &__page {
     background: $film-color;
     height: 100vh;
-    border: $border-width solid white;
     h1 {
       margin: 60px 0 20px;
     }

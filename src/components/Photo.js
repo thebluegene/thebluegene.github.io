@@ -133,7 +133,7 @@ class Photo extends React.Component {
       if (react.state.activeAlbum) {
         react.handlePhotoClick(react.state.activeAlbum, photoUrls, 'album-list');
       } else {
-        react.setState({photoArray: photoUrls, loading: ' '});
+        react.setState({photoArray: photoUrls.reverse(), loading: ' '});
       }
     });
   }

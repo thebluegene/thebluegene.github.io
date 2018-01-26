@@ -22,14 +22,26 @@ class Code extends React.Component {
       layoutClass: props.page ? 'small-12' : 'medium-8 medium-offset-2',
       projectArray: [
         {
+          'title': 'South Korea',
+          'date': 'COMING SOON',
+          'subtitle': 'Scroll-story project using pictures and video from an 8-day vacation I took in South Korea.',
+          'color': '#FF7700',
+          'styles': {
+            fontFamily: 'Abril Fatface',
+            fontSize: '42px'
+          },
+          'link': '#/code'
+        },
+        {
           'title': '8 Years of Photography',
           'date': 'November 2017',
-          'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data via the Flickr API and used D3 for the visualizations.',
+          'subtitle': 'Data visualization project using EXIF data from all the photos I\'ve posted online. I collected data using NodeJS and the Flickr API and D3 for the visualizations.',
           'color': '#004777',
           'styles': {
             fontFamily: 'Fredericka the Great',
             fontSize: '40px'
           },
+          'target': '_blank',
           'link': '/flickr-data-proj'
         },
         {
@@ -41,6 +53,7 @@ class Code extends React.Component {
             fontFamily: 'Suranna',
             fontSize: '40px'
           },
+          'target': '_blank',
           'link': '#/photo'
         }, 
         {
@@ -52,8 +65,10 @@ class Code extends React.Component {
             fontFamily: 'Quicksand',
             fontSize: '40px',
             letterSpacing: '3px',
+            paddingLeft: '3px',
             textTransform: 'uppercase'
           },
+          'target': '_blank',
           'link': 'https://vonnda.com/'
         },
       ]
@@ -76,7 +91,7 @@ class Code extends React.Component {
                 <Transition key={i} in={this.state.animateIn} timeout={duration * i} >
                   {(state) => (
                   <div className="code" style={{...defaultStyle, ...transitionStyles[state]}}>
-                    <a target="_blank" href={data.link}>
+                    <a target={data.target} href={data.link}>
                       <div className="code__title" style={data.styles}>
                         {data.title}
                       </div>
