@@ -9,7 +9,7 @@ const duration = 500;
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out`,
   opacity: 0,
-}
+};
 
 const transitionStyles = {
   entering: { opacity: 0 },
@@ -58,7 +58,7 @@ class Film extends React.Component {
           'Authorization': 'Bearer ' + publicVimeoToken
         },
         success: (result) => {
-          chosenVideoArr.push(result.data[2]);
+          chosenVideoArr.push(result.data[1]);
           react.setState({
             mainVideo: mainVideo,
             mainDescription: mainDescription,
@@ -84,7 +84,7 @@ class Film extends React.Component {
       })
   }
 
-  handleImageLoad = (e, i) => {
+  handleImageLoad (e, i) {
     var target = e.target;
     setTimeout(function() {
       target.setAttribute("class", "show");
@@ -100,7 +100,6 @@ class Film extends React.Component {
             <div className={"placeholder " + this.state.loading}>
               <Placeholder/>
             </div>
-            {/* <div className="film__main-video" dangerouslySetInnerHTML={{ __html: this.state.mainVideo }} /> */}
             <Transition in={this.state.animateIn} timeout={duration} >
               {(state) => (
               <div style={{...defaultStyle, ...transitionStyles[state]}}>

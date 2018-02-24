@@ -36,7 +36,7 @@ h1 {
   font-family: $main-font-family;
   font-style: normal;
   font-size: 62px;
-  font-weight: 600;
+  font-weight: 300;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 20px;
@@ -181,6 +181,7 @@ body.lightbox {
       letter-spacing: 3px;
       transform: rotate(225deg);
       transition: 1s all;
+      font-weight: 300;
       cursor: pointer;
       a {
         color: $text-color;
@@ -213,6 +214,7 @@ body.lightbox {
         }
         a {
           color: $text-color;
+          font-weight: 300;
         }
       }
     }
