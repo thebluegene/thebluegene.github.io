@@ -50619,13 +50619,6 @@ var Film = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Film.__proto__ || Object.getPrototypeOf(Film)).call(this));
 
-    _this.handleImageLoad = function (e, i) {
-      var target = e.target;
-      setTimeout(function () {
-        target.setAttribute("class", "show");
-      }, 400);
-    };
-
     _this.state = {
       mainVideo: '',
       chosenVideos: [],
@@ -50669,7 +50662,7 @@ var Film = function (_React$Component) {
             'Authorization': 'Bearer ' + publicVimeoToken
           },
           success: function success(result) {
-            chosenVideoArr.push(result.data[2]);
+            chosenVideoArr.push(result.data[1]);
             react.setState({
               mainVideo: mainVideo,
               mainDescription: mainDescription,
@@ -50694,6 +50687,14 @@ var Film = function (_React$Component) {
         mainTitle: data.name,
         activeIndex: index
       });
+    }
+  }, {
+    key: 'handleImageLoad',
+    value: function handleImageLoad(e, i) {
+      var target = e.target;
+      setTimeout(function () {
+        target.setAttribute("class", "show");
+      }, 400);
     }
   }, {
     key: 'render',
