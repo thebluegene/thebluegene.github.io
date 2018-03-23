@@ -56,21 +56,6 @@ class Code extends React.Component {
           'target': '_blank',
           'link': '#/photo'
         }, 
-        {
-          'title': 'Vonnda',
-          'subtitle': 'Vonnda is a web development agency specializing in e-commerce solutions where I currently work as a developer. If you have any questions about our work, feel free to contact me.',
-          'date': 'February 2016 - Present',
-          'color': '#A30000',
-          'styles': {
-            fontFamily: 'Quicksand',
-            fontSize: '40px',
-            letterSpacing: '3px',
-            paddingLeft: '3px',
-            textTransform: 'uppercase'
-          },
-          'target': '_blank',
-          'link': 'https://vonnda.com/'
-        },
       ]
     }
   }
